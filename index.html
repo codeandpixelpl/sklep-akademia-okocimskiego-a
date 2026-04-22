@@ -6,50 +6,76 @@
   <title>Sklep — Akademia Okocimskiego</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
     :root {
+      --bg-deep: #070f09;
+      --bg-dark: #0a1a10;
+      --bg-card: #0e2216;
+      --surface: #162b1d;
       --g900: #0D3B1F;
-      --g800: #f4f7f5;
-      --g700: #e8ede9;
-      --g600: #174023;
       --g500: #1E5630;
       --g400: #286B3E;
       --g300: #3B8C58;
       --gold: #C9A84C;
-      --gold2: #b8922e;
-      --gold3: #F0D68A;
-      --white: #FFFFFF;
-      --offwhite: #1a2e1e;
-      --muted: rgba(20,45,25,0.55);
-      --border: rgba(30,86,48,0.15);
-      --r: 4px;
+      --gold-glow: rgba(201,168,76,0.3);
+      --gold-dim: #a8883a;
+      --text-primary: #f0ebe3;
+      --text-secondary: rgba(240,235,227,0.6);
+      --text-muted: rgba(240,235,227,0.35);
+      --r: 6px;
       --transition: 0.32s cubic-bezier(.4,0,.2,1);
     }
 
     html { scroll-behavior: smooth; }
 
     body {
-      background: #ffffff;
-      color: #1a2e1e;
+      background: var(--bg-deep);
+      color: var(--text-primary);
       font-family: 'DM Sans', sans-serif;
       font-size: 15px;
       line-height: 1.6;
       overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
     }
 
-    /* ── TOPBAR ── */
+    a { color: inherit; text-decoration: none; }
+    button { cursor: pointer; border: none; background: none; color: inherit; font-family: inherit; }
+    img { display: block; max-width: 100%; }
+
+    .container { max-width: 1360px; margin: 0 auto; padding: 0 32px; }
+
+    /* ── FADE UP ANIMATION ── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .fade-up.delay-1 { transition-delay: 0.1s; }
+    .fade-up.delay-2 { transition-delay: 0.2s; }
+    .fade-up.delay-3 { transition-delay: 0.3s; }
+    .fade-up.delay-4 { transition-delay: 0.4s; }
+    .fade-up.delay-5 { transition-delay: 0.5s; }
+
+    /* ══════════════════════════════════════════
+       1. TOPBAR — GOLD SHIMMER PROMO
+    ══════════════════════════════════════════ */
     .topbar {
-      background: var(--gold);
-      color: var(--g900);
+      background: linear-gradient(90deg, #b8922e, var(--gold), #dcc16e, var(--gold), #b8922e);
+      background-size: 200% 100%;
+      color: var(--bg-deep);
       text-align: center;
       font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 600;
+      font-weight: 700;
       font-size: 13px;
-      letter-spacing: 0.08em;
-      padding: 9px 20px;
+      letter-spacing: 0.12em;
+      padding: 10px 20px;
       text-transform: uppercase;
       position: relative;
       overflow: hidden;
@@ -58,19 +84,23 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.18) 50%, transparent 100%);
+      background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.25) 50%, transparent 100%);
       animation: shimmer 3s ease-in-out infinite;
     }
     @keyframes shimmer { 0%,100%{transform:translateX(-100%)} 50%{transform:translateX(100%)} }
 
-    /* ── HEADER ── */
+    /* ══════════════════════════════════════════
+       2. STICKY HEADER — GLASS MORPHISM
+    ══════════════════════════════════════════ */
     header {
       position: sticky;
       top: 0;
       z-index: 1000;
-      background: rgba(255,255,255,0.95);
-      backdrop-filter: blur(16px) saturate(160%);
-      border-bottom: 1px solid rgba(30,86,48,0.12);
+      background: rgba(7,15,9,0.85);
+      backdrop-filter: blur(24px) saturate(140%);
+      -webkit-backdrop-filter: blur(24px) saturate(140%);
+      border-bottom: 1px solid rgba(201,168,76,0.12);
+      transition: background 0.3s;
     }
     .header-inner {
       max-width: 1360px;
@@ -88,1819 +118,2015 @@
       text-decoration: none;
       flex-shrink: 0;
     }
-    .logo-badge {
-      width: 44px;
-      height: 44px;
-      background: linear-gradient(135deg, var(--g500) 0%, var(--g400) 100%);
-      border: 2px solid var(--gold);
-      border-radius: 50%;
-      display: grid;
-      place-items: center;
-      position: relative;
+    .logo img {
+      height: 56px;
+      width: auto;
     }
-    .logo-badge svg { width: 24px; height: 24px; }
-    .logo-text {
-      display: flex;
-      flex-direction: column;
-      line-height: 1.1;
-    }
-    .logo-text span:first-child {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 22px;
-      color: var(--g900);
-      letter-spacing: 0.04em;
-    }
-    .logo-text span:last-child {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 11px;
-      font-weight: 600;
-      color: var(--gold);
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-    }
-
-    nav {
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      flex: 1;
-    }
+    nav { display: flex; gap: 8px; flex: 1; }
     nav a {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 15px;
       font-weight: 600;
-      letter-spacing: 0.06em;
+      font-size: 14px;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
-      color: rgba(20,45,25,0.55);
-      text-decoration: none;
+      color: var(--text-secondary);
       padding: 8px 14px;
       border-radius: var(--r);
       transition: color var(--transition), background var(--transition);
+      position: relative;
     }
-    nav a:hover, nav a.active {
-      color: var(--g500);
-      background: rgba(30,86,48,0.07);
+    nav a:hover { color: var(--gold); }
+    nav a.active { color: var(--gold); }
+    nav a.active::after {
+      content: '';
+      position: absolute;
+      bottom: 2px;
+      left: 14px;
+      right: 14px;
+      height: 2px;
+      background: var(--gold);
+      border-radius: 2px;
     }
-    nav a.active { color: var(--g500); }
 
     .header-actions {
       display: flex;
       align-items: center;
-      gap: 8px;
-      margin-left: auto;
+      gap: 6px;
     }
-    .icon-btn {
-      width: 40px;
-      height: 40px;
-      border: none;
-      background: transparent;
-      color: rgba(20,45,25,0.5);
-      border-radius: var(--r);
-      cursor: pointer;
+    .header-actions button {
+      width: 42px;
+      height: 42px;
       display: grid;
       place-items: center;
-      transition: color var(--transition), background var(--transition);
+      border-radius: 50%;
+      transition: background var(--transition);
       position: relative;
     }
-    .icon-btn:hover { color: var(--g500); background: rgba(30,86,48,0.08); }
-    .icon-btn svg { width: 20px; height: 20px; }
+    .header-actions button:hover { background: rgba(201,168,76,0.1); }
+    .header-actions button svg { width: 20px; height: 20px; stroke: var(--text-secondary); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+    .header-actions button:hover svg { stroke: var(--gold); }
+
     .cart-badge {
       position: absolute;
-      top: 6px; right: 6px;
-      width: 16px; height: 16px;
+      top: 4px;
+      right: 2px;
       background: var(--gold);
-      color: var(--g900);
-      border-radius: 50%;
-      font-size: 10px;
+      color: var(--bg-deep);
+      font-family: 'Barlow Condensed', sans-serif;
       font-weight: 700;
+      font-size: 10px;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
       display: grid;
       place-items: center;
-      font-family: 'Barlow Condensed', sans-serif;
+      line-height: 1;
     }
-    .btn-primary {
-      background: var(--gold);
-      color: var(--g900);
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 700;
-      font-size: 14px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      border: none;
-      border-radius: var(--r);
-      padding: 10px 20px;
-      cursor: pointer;
-      transition: background var(--transition), transform var(--transition);
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .btn-primary:hover { background: var(--gold2); transform: translateY(-1px); }
-    .btn-outline {
-      background: transparent;
-      color: var(--gold);
-      border: 1.5px solid var(--gold);
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 700;
-      font-size: 14px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      border-radius: var(--r);
-      padding: 10px 20px;
-      cursor: pointer;
-      transition: background var(--transition), color var(--transition), transform var(--transition);
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-    }
-    .btn-outline:hover { background: var(--gold); color: var(--g900); transform: translateY(-1px); }
 
-    /* ── HERO ── */
-    .hero {
-      position: relative;
-      height: 350px;
-      display: flex;
-      align-items: center;
-      overflow: hidden;
-    }
-    .hero-img-placeholder {
-      position: absolute;
-      inset: 0;
-      background: #c8d5cc;
-      display: flex;
+    /* Hamburger */
+    .hamburger {
+      display: none;
+      width: 42px;
+      height: 42px;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 12px;
-      color: rgba(20,60,30,0.4);
-      font-family: 'DM Sans', sans-serif;
-      font-size: 13px;
-      letter-spacing: 0.04em;
-      /* Zamiast placeholdera wklej tu obrazek: */
-      /* background-image: url('hero.jpg'); background-size: cover; background-position: center; */
+      gap: 5px;
+      cursor: pointer;
+      z-index: 1001;
     }
-    .hero-img-placeholder svg { opacity: 0.5; }
+    .hamburger span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      background: var(--text-primary);
+      border-radius: 2px;
+      transition: transform 0.3s, opacity 0.3s;
+    }
+    .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+    /* Mobile Nav Overlay */
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(7,15,9,0.97);
+      z-index: 999;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+    }
+    .mobile-nav.open { opacity: 1; pointer-events: all; }
+    .mobile-nav a {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 36px;
+      letter-spacing: 0.06em;
+      color: var(--text-primary);
+      transition: color 0.3s;
+    }
+    .mobile-nav a:hover { color: var(--gold); }
+
+    /* ══════════════════════════════════════════
+       3. HERO — FULL VIEWPORT CINEMATIC
+    ══════════════════════════════════════════ */
+    .hero {
+      position: relative;
+      height: 600px;
+      display: flex;
+      align-items: flex-end;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: url('00%20-%20Assets/hero-banner.jpg') center center / cover no-repeat;
+      transform: scale(1.05);
+      animation: heroZoom 20s ease-in-out infinite alternate;
+    }
+    @keyframes heroZoom { 0%{transform:scale(1.05)} 100%{transform:scale(1.12)} }
+
     .hero-overlay {
       position: absolute;
       inset: 0;
-      background: linear-gradient(90deg, rgba(10,35,15,0.72) 0%, rgba(10,35,15,0.45) 55%, rgba(10,35,15,0.1) 100%);
+      background:
+        linear-gradient(180deg, rgba(7,15,9,0.3) 0%, rgba(7,15,9,0.15) 40%, rgba(7,15,9,0.7) 70%, rgba(7,15,9,0.95) 100%),
+        linear-gradient(90deg, rgba(7,15,9,0.6) 0%, transparent 60%);
+    }
+    /* Grain/Noise overlay */
+    .hero-grain {
+      position: absolute;
+      inset: 0;
+      opacity: 0.04;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 256px 256px;
+      pointer-events: none;
+      z-index: 1;
     }
     .hero-content {
       position: relative;
       z-index: 2;
+      padding: 0 0 80px 0;
       width: 100%;
-      max-width: 1360px;
-      margin: 0 auto;
-      padding: 28px 32px;
     }
-    .hero-eyebrow {
+    .hero-content .container {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+    .hero-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gold);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .hero-label::before {
+      content: '';
+      width: 40px;
+      height: 2px;
+      background: var(--gold);
+    }
+    .hero-title {
+      font-family: 'Bebas Neue', cursive;
+      font-size: clamp(36px, 5vw, 72px);
+      line-height: 0.9;
+      letter-spacing: 0.02em;
+      color: var(--text-primary);
+      max-width: 800px;
+    }
+    .hero-title em {
+      font-style: normal;
+      color: var(--gold);
+      text-shadow: 0 0 60px var(--gold-glow);
+    }
+    .hero-subtitle {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      color: var(--text-secondary);
+      max-width: 480px;
+      line-height: 1.7;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    /* Buttons */
+    .btn-primary {
       display: inline-flex;
       align-items: center;
       gap: 10px;
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 13px;
-      font-weight: 600;
-      letter-spacing: 0.2em;
+      font-weight: 700;
+      font-size: 15px;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
-      color: var(--gold3);
-      margin-bottom: 14px;
+      padding: 16px 36px;
+      background: var(--gold);
+      color: var(--bg-deep);
+      border-radius: var(--r);
+      transition: all var(--transition);
+      border: 2px solid var(--gold);
     }
-    .hero-eyebrow::before {
-      content: '';
-      width: 32px;
-      height: 2px;
-      background: var(--gold3);
+    .btn-primary:hover {
+      background: transparent;
+      color: var(--gold);
+      box-shadow: 0 0 30px var(--gold-glow);
     }
-    .hero-title {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(48px, 5vw, 72px);
-      line-height: 0.92;
-      letter-spacing: 0.02em;
-      color: var(--white);
-      margin-bottom: 8px;
-    }
-    .hero-title { color: #ffffff; }
-    .hero-title .accent { color: var(--gold2); display: inline; }
-    .hero-subtitle {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 17px;
-      font-weight: 400;
-      color: rgba(255,255,255,0.75);
-      margin-bottom: 24px;
-      max-width: 420px;
-      line-height: 1.5;
-    }
-    .hero-actions { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
-    .hero-stats {
-      display: flex;
-      gap: 32px;
-      margin-top: 28px;
-      padding-top: 24px;
-      border-top: 1px solid rgba(30,86,48,0.15);
-    }
-    .stat { display: flex; flex-direction: column; gap: 4px; }
-    .stat-num {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 28px;
-      color: var(--g500);
-      line-height: 1;
-    }
-    .stat-label {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 12px;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: rgba(20,45,25,0.5);
-    }
-    .hero-visual {
-      position: relative;
-      z-index: 2;
-      height: 100%;
-      display: flex;
+    .btn-outline {
+      display: inline-flex;
       align-items: center;
-      justify-content: center;
-      padding: 24px 60px 24px 32px;
-    }
-    .jersey-showcase {
-      position: relative;
-      width: 240px;
-      height: 300px;
-    }
-    .jersey-card-main {
-      width: 190px;
-      height: 255px;
-      background: linear-gradient(160deg, var(--g500) 0%, var(--g700) 60%, var(--g800) 100%);
-      border: 1px solid rgba(201,168,76,0.3);
-      border-radius: 16px;
-      position: absolute;
-      top: 40px;
-      left: 40px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      box-shadow: 0 40px 80px rgba(0,0,0,0.5), 0 0 0 1px rgba(201,168,76,0.15), inset 0 1px 0 rgba(255,255,255,0.08);
-      animation: floatCard 4s ease-in-out infinite;
-    }
-    @keyframes floatCard { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-12px)} }
-    .jersey-card-main::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, var(--gold), var(--gold2), var(--gold));
-    }
-    .jersey-svg {
-      width: 160px;
-      height: 180px;
-      position: relative;
-    }
-    .jersey-label {
-      margin-top: 20px;
-      text-align: center;
-    }
-    .jersey-label-name {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 22px;
-      color: var(--white);
-      letter-spacing: 0.04em;
-    }
-    .jersey-label-price {
+      gap: 10px;
       font-family: 'Barlow Condensed', sans-serif;
       font-weight: 700;
-      font-size: 18px;
+      font-size: 15px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 16px 36px;
+      background: transparent;
+      color: var(--text-primary);
+      border: 2px solid rgba(240,235,227,0.2);
+      border-radius: var(--r);
+      transition: all var(--transition);
+    }
+    .btn-outline:hover {
+      border-color: var(--gold);
       color: var(--gold);
     }
-    .jersey-card-back {
-      width: 140px;
-      height: 180px;
-      background: linear-gradient(160deg, var(--g400) 0%, var(--g600) 100%);
-      border: 1px solid rgba(201,168,76,0.15);
-      border-radius: 12px;
-      position: absolute;
-      bottom: 0; right: 0;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transform: rotate(6deg);
-      animation: floatCard2 4s ease-in-out infinite 1s;
-    }
-    @keyframes floatCard2 { 0%,100%{transform:rotate(6deg) translateY(0)} 50%{transform:rotate(6deg) translateY(-8px)} }
-    .gold-ring {
-      position: absolute;
-      top: -14px; right: -14px;
-      width: 80px; height: 80px;
-      border: 2px solid rgba(201,168,76,0.3);
-      border-radius: 50%;
-      animation: pulse-ring 3s ease-in-out infinite;
-    }
-    .gold-ring::after {
-      content: '';
-      position: absolute;
-      inset: 20px;
-      border: 1px solid rgba(201,168,76,0.15);
-      border-radius: 50%;
-    }
-    @keyframes pulse-ring { 0%,100%{opacity:0.5; transform:scale(1)} 50%{opacity:1; transform:scale(1.05)} }
-    .badge-sale {
-      position: absolute;
-      top: 20px; right: 20px;
-      background: var(--gold);
-      color: var(--g900);
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 20px;
-      letter-spacing: 0.04em;
-      padding: 6px 14px;
-      border-radius: var(--r);
-    }
 
-    /* ── CATEGORIES ── */
-    .section {
-      max-width: 1360px;
-      margin: 0 auto;
-      padding: 80px 32px;
-    }
-    .section-header {
+    /* Hero Stats */
+    .hero-stats {
       display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      margin-bottom: 48px;
-      gap: 24px;
+      gap: 48px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(240,235,227,0.08);
+      margin-top: 12px;
     }
-    .section-eyebrow {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 12px;
+    .hero-stat { text-align: left; }
+    .hero-stat-number {
+      font-family: 'Oswald', sans-serif;
       font-weight: 700;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--gold2);
-      margin-bottom: 10px;
-    }
-    .section-title {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: clamp(36px, 4vw, 56px);
-      color: var(--g900);
+      font-size: 42px;
+      color: var(--gold);
       line-height: 1;
-      letter-spacing: 0.02em;
     }
-
-    .categories-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      grid-template-rows: 240px 240px;
-      gap: 14px;
-    }
-    /* Bento spans */
-    .cat-card {
-      position: relative;
-      border-radius: 14px;
-      overflow: hidden;
-      cursor: pointer;
-      background: #0D3B1F;
-    }
-    .cat-wide-top { grid-column: span 2; }
-    .cat-wide-bot  { grid-column: span 2; }
-    .cat-bg {
-      position: absolute;
-      inset: 0;
-    }
-    .cat-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to top, rgba(6,20,9,0.9) 0%, rgba(6,20,9,0.4) 40%, rgba(6,20,9,0) 70%);
-      z-index: 2;
-    }
-    .cat-info {
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      padding: 28px;
-      z-index: 3;
-    }
-    .cat-count {
+    .hero-stat-label {
       font-family: 'Barlow Condensed', sans-serif;
       font-size: 12px;
       font-weight: 600;
       letter-spacing: 0.15em;
       text-transform: uppercase;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+
+    /* ══════════════════════════════════════════
+       SECTION DIVIDER — CLIP PATH
+    ══════════════════════════════════════════ */
+    .section-divider {
+      height: 60px;
+      background: var(--bg-dark);
+      clip-path: polygon(0 0, 100% 60%, 100% 100%, 0 100%);
+      margin-top: -60px;
+      position: relative;
+      z-index: 3;
+    }
+    .section-divider-reverse {
+      height: 60px;
+      background: var(--bg-deep);
+      clip-path: polygon(0 60%, 100% 0, 100% 100%, 0 100%);
+      margin-top: -60px;
+      position: relative;
+      z-index: 3;
+    }
+
+    /* ══════════════════════════════════════════
+       4. TRUST BAR
+    ══════════════════════════════════════════ */
+    .trust-bar {
+      background: var(--bg-dark);
+      padding: 18px 0;
+      position: relative;
+      z-index: 4;
+    }
+    .trust-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      align-items: center;
+    }
+    .trust-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 12px;
+    }
+    .trust-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: 1.5px solid var(--gold);
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      box-shadow: 0 0 20px var(--gold-glow);
+    }
+    .trust-icon svg { width: 22px; height: 22px; stroke: var(--gold); fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+    .trust-text strong {
+      display: block;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: var(--text-primary);
+    }
+    .trust-text span {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    /* ══════════════════════════════════════════
+       SECTION HEADING
+    ══════════════════════════════════════════ */
+    .section-heading {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    .section-heading-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
       color: var(--gold);
-      margin-bottom: 6px;
+      margin-bottom: 8px;
+    }
+    .section-heading h2 {
+      font-family: 'Bebas Neue', cursive;
+      font-size: clamp(36px, 5vw, 56px);
+      letter-spacing: 0.03em;
+      line-height: 1;
+      color: var(--text-primary);
+    }
+    .section-heading p {
+      margin-top: 12px;
+      font-size: 16px;
+      color: var(--text-secondary);
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .gold-line {
+      width: 60px;
+      height: 3px;
+      background: var(--gold);
+      margin: 16px auto 0;
+      border-radius: 3px;
+    }
+
+    /* ══════════════════════════════════════════
+       5. CATEGORIES GRID
+    ══════════════════════════════════════════ */
+    .categories {
+      background: var(--bg-deep);
+      padding: 80px 0;
+      position: relative;
+    }
+    .cat-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 14px;
+    }
+    .cat-card {
+      position: relative;
+      height: 240px;
+      border-radius: 14px;
+      overflow: hidden;
+      background: #f0f0f0;
+      cursor: pointer;
+      display: block;
+      text-decoration: none;
+    }
+    .cat-card:nth-child(5) { grid-column: span 2; }
+
+    .cat-card img {
+      position: absolute;
+      right: 0; top: 0;
+      height: 100%;
+      width: 58%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+      pointer-events: none;
+    }
+    .cat-card:hover img { transform: scale(1.05); }
+
+    .cat-body {
+      position: absolute;
+      bottom: 0; left: 0;
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+    .cat-count {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 600;
+      font-size: 12px;
+      color: #c9a84c;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
     }
     .cat-name {
-      font-family: 'Bebas Neue', sans-serif;
+      font-family: 'Bebas Neue', cursive;
       font-size: 32px;
-      color: var(--white);
+      color: #111;
       letter-spacing: 0.03em;
       line-height: 1;
     }
-    .cat-arrow {
-      width: 36px; height: 36px;
+
+    /* ══════════════════════════════════════════
+       6. FEATURED PRODUCTS
+    ══════════════════════════════════════════ */
+    .products-section {
+      background: var(--bg-dark);
+      padding: 100px 0;
+      position: relative;
+    }
+
+    /* Filter Chips */
+    .filter-bar {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 48px;
+      flex-wrap: wrap;
+    }
+    .filter-chip {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 600;
+      font-size: 13px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 10px 22px;
+      border: 1.5px solid rgba(240,235,227,0.12);
+      border-radius: 100px;
+      color: var(--text-secondary);
+      background: transparent;
+      transition: all var(--transition);
+      cursor: pointer;
+    }
+    .filter-chip:hover { border-color: var(--gold); color: var(--gold); }
+    .filter-chip.active {
       background: var(--gold);
-      border-radius: 50%;
-      display: grid;
-      place-items: center;
-      margin-top: 14px;
-      transform: translateX(-8px);
-      opacity: 0;
-      transition: transform var(--transition), opacity var(--transition);
-    }
-    .cat-card:hover .cat-arrow { transform: translateX(0); opacity: 1; }
-    .cat-arrow svg { width: 16px; height: 16px; color: var(--g900); }
-
-    /* category gradient backgrounds */
-    .cat-1 { background: linear-gradient(172deg, #1E5630 8%, #0D3B1F 92%); }
-    .cat-2 { background: linear-gradient(164deg, #152b1f 8%, #0a1c11 92%); }
-    .cat-3 { background: linear-gradient(164deg, #1a3a23 8%, #0e2416 92%); }
-    .cat-4 { background: linear-gradient(172deg, #162e1f 8%, #0b1c11 92%); }
-    .cat-5 { background: linear-gradient(172deg, #162e1f 8%, #0b1c11 92%); }
-
-    /* product photo */
-    .cat-img {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center 25%;
-      z-index: 1;
-      transition: transform 0.6s cubic-bezier(.4,0,.2,1);
-      pointer-events: none;
-    }
-    .cat-card:hover .cat-img { transform: scale(1.05); }
-    /* wide cards: bias image toward right where product appears */
-    .cat-wide-top .cat-img { object-position: 65% 25%; }
-    .cat-wide-bot .cat-img { object-position: 70% 30%; }
-
-    /* ── DIVIDER ── */
-    .divider {
-      height: 1px;
-      background: linear-gradient(90deg, transparent, var(--border), transparent);
-      margin: 0 32px;
+      border-color: var(--gold);
+      color: var(--bg-deep);
     }
 
-    /* ── PRODUCTS ── */
+    /* Product Grid */
     .products-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: 20px;
     }
+
+    /* Product Card */
     .product-card {
-      background: #ffffff;
-      border: 1px solid rgba(30,86,48,0.12);
-      border-radius: 12px;
+      background: var(--bg-card);
+      border-radius: 10px;
       overflow: hidden;
-      cursor: pointer;
-      transition: border-color var(--transition), transform var(--transition), box-shadow var(--transition);
       position: relative;
-      display: flex;
-      flex-direction: column;
+      border: 1px solid rgba(240,235,227,0.04);
+      transition: border-color 0.4s, box-shadow 0.4s, transform 0.4s;
     }
     .product-card:hover {
-      border-color: rgba(30,86,48,0.3);
+      border-color: rgba(201,168,76,0.2);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
       transform: translateY(-4px);
-      box-shadow: 0 16px 40px rgba(0,0,0,0.1);
     }
-    .product-img {
-      aspect-ratio: 1;
+    .product-img-wrap {
       position: relative;
+      aspect-ratio: 3/4;
       overflow: hidden;
+      background: var(--surface);
     }
-    .product-img-bg {
+    .product-img-wrap img {
       width: 100%;
       height: 100%;
-      background-size: cover;
-      background-position: center top;
-      transition: transform 0.5s cubic-bezier(.4,0,.2,1);
+      object-fit: cover;
+      transition: transform 0.6s ease, opacity 0.4s ease;
     }
-    .product-img-hover {
+    .product-img-wrap .product-img-hover {
       position: absolute;
       inset: 0;
-      background: url('00%20-%20Assets/generowane/freepik_clean-ecommerce-product-photography-photorealistic.-pure-white-seamless-studio-backdrop-f2f2f2-soft-even-diffused-overhead-light-minimal-flat-shadows-no-gradients.-same-model-as-master-sh_0003.png') center top / cover no-repeat;
       opacity: 0;
-      transition: opacity 0.4s ease;
       z-index: 1;
     }
+    .product-card:hover .product-img-hover { opacity: 1; }
+    .product-card:hover .product-img-main { opacity: 0; }
+
+    /* Video hover */
     .product-img-video {
       position: absolute;
       inset: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: top center;
       opacity: 0;
-      transition: opacity 0.4s ease;
       z-index: 2;
-      pointer-events: none;
+      transition: opacity 0.4s;
     }
-    .product-card:hover .product-img-bg { transform: scale(1.04); }
-    .product-card:hover .product-img-hover { opacity: 0; }
     .product-card:hover .product-img-video { opacity: 1; }
-    /* Image-based hover (getry, skarpetki — bez video) */
-    .product-card.hover-image .product-img-hover { opacity: 0; transition: opacity 0.4s ease; background-size: cover; background-position: center; }
-    .product-card.hover-image:hover .product-img-hover { opacity: 1; }
-    .product-actions { display: none; }
-    .product-badge {
+
+    /* Card overlay on hover */
+    .product-card-overlay {
       position: absolute;
-      top: 12px;
-      left: 12px;
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      padding: 4px 10px;
-      border-radius: 4px;
-    }
-    .badge-new { background: var(--g300); color: var(--white); }
-    .badge-hot { background: var(--gold); color: var(--g900); }
-    .badge-sale2 { background: #e05252; color: var(--white); }
-    .product-body {
-      padding: 8px 20px 20px;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 45%, rgba(7,15,9,0.93) 100%);
+      opacity: 0;
+      transition: opacity 0.4s;
+      z-index: 3;
       display: flex;
       flex-direction: column;
-      flex: 1;
+      align-items: stretch;
+      justify-content: flex-end;
+      padding: 16px;
+      gap: 8px;
     }
-    .product-meta {
+    .product-card:hover .product-card-overlay { opacity: 1; }
+
+    .product-card-overlay .see-btn {
+      display: block; text-align: center;
+      font-family: 'Barlow Condensed', sans-serif; font-weight: 700;
+      font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--text-primary); text-decoration: none;
+      border: 1.5px solid rgba(240,235,227,0.45); border-radius: var(--r);
+      padding: 11px;
+      transform: translateY(8px); opacity: 0;
+      transition: all 0.4s 0.05s, color 0.25s, border-color 0.25s;
+    }
+    .product-card:hover .product-card-overlay .see-btn { transform: translateY(0); opacity: 1; }
+    .product-card-overlay .see-btn:hover { border-color: var(--gold); color: var(--gold); }
+
+    .product-card-overlay .cart-btn {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 12px;
-      font-weight: 600;
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 12px;
+      background: var(--gold);
+      color: var(--bg-deep);
+      border: none;
+      border-radius: var(--r);
+      cursor: pointer;
+      width: 100%;
+      transform: translateY(8px);
+      opacity: 0;
+      transition: all 0.4s 0.1s;
+    }
+    .product-card:hover .product-card-overlay .cart-btn {
+      transform: translateY(0);
+      opacity: 1;
+    }
+    .product-card-overlay .cart-btn:hover {
+      background: var(--text-primary);
+    }
+
+    /* Badge */
+    .product-badge {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      z-index: 5;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 11px;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: var(--g400);
+      padding: 6px 14px;
+      border-radius: 4px;
+      background: var(--gold);
+      color: var(--bg-deep);
+    }
+    .product-badge.sale { background: #c0392b; color: #fff; }
+
+    /* Card info */
+    .product-info {
+      padding: 18px 20px 22px;
+    }
+    .product-cat {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 600;
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
       margin-bottom: 6px;
     }
     .product-name {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 18px;
-      font-weight: 600;
-      color: var(--g900);
-      margin-bottom: 12px;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 500;
+      font-size: 15px;
+      color: var(--text-primary);
       line-height: 1.3;
+      margin-bottom: 10px;
     }
-    .product-footer {
+    .product-price-row {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+    }
+    .product-price {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 600;
+      font-size: 20px;
+      color: var(--text-primary);
+    }
+    .product-old-price {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      color: var(--text-muted);
+      text-decoration: line-through;
+    }
+
+    /* ══════════════════════════════════════════
+       7. FEATURED BANNER — JUBILEUSZ
+    ══════════════════════════════════════════ */
+    .feat-banner {
+      position: relative;
+      height: 420px;
+      overflow: hidden;
+    }
+    .feat-banner-bg {
+      position: absolute;
+      inset: 0;
+      background: url('00%20-%20Assets/banner-jubileusz.jpg') center center / cover no-repeat;
+      background-attachment: fixed;
+    }
+    .feat-banner-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(7,15,9,0.92) 0%, rgba(7,15,9,0.6) 50%, rgba(7,15,9,0.3) 100%);
+    }
+    .feat-banner-content {
+      position: relative;
+      z-index: 2;
+      height: 100%;
       display: flex;
       flex-direction: column;
-      gap: 8px;
-      margin-top: auto;
-      padding-top: 12px;
-    }
-    .cart-btn {
-      width: 100%;
-      background: var(--g500);
-      color: #fff;
-      border: none;
-      border-radius: var(--r);
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 700;
-      font-size: 13px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      padding: 10px 14px;
-      cursor: pointer;
-      transition: background var(--transition);
-      white-space: nowrap;
-    }
-    .cart-btn:hover { background: var(--g400); }
-    .product-price {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 26px;
-      color: var(--g500);
-      letter-spacing: 0.02em;
-    }
-    .product-price-old {
-      font-size: 16px;
-      color: rgba(20,45,25,0.4);
-      text-decoration: line-through;
-      margin-right: 8px;
-    }
-    .add-btn {
-      width: 36px; height: 36px;
-      background: transparent;
-      border: 1.5px solid rgba(30,86,48,0.2);
-      color: var(--g500);
-      border-radius: 8px;
-      cursor: pointer;
-      display: grid;
-      place-items: center;
-      transition: background var(--transition), border-color var(--transition);
-    }
-    .add-btn:hover { background: var(--g500); border-color: var(--g500); color: #fff; }
-    .add-btn svg { width: 16px; height: 16px; }
-    .product-stars {
-      display: flex;
-      gap: 2px;
-      margin-bottom: 4px;
-    }
-    .star { color: var(--gold); font-size: 12px; }
-    .star.empty { color: rgba(201,168,76,0.25); }
-
-    /* ── SIZES ── */
-    .product-sizes {
-      display: flex;
-      gap: 5px;
-      margin-bottom: 12px;
-      flex-wrap: wrap;
-    }
-    .size-dot {
-      width: 30px; height: 30px;
-      border: 1.5px solid rgba(30,86,48,0.18);
-      border-radius: 6px;
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 11px;
-      font-weight: 700;
-      color: rgba(20,45,25,0.5);
-      display: grid;
-      place-items: center;
-      cursor: pointer;
-      transition: border-color var(--transition), color var(--transition), background var(--transition);
-      letter-spacing: 0.02em;
-    }
-    .size-dot:hover { border-color: var(--g500); color: var(--g500); }
-    .size-dot.out { opacity: 0.3; cursor: not-allowed; text-decoration: line-through; }
-
-    /* ── BADGE LAST ── */
-    .badge-last { background: #b84a2e; color: #fff; }
-
-    /* ── TRUST BAR ── */
-    .trust-bar {
-      background: #f4f7f5;
-      border-bottom: 1px solid rgba(30,86,48,0.1);
-    }
-    .trust-bar-inner {
+      justify-content: center;
       max-width: 1360px;
       margin: 0 auto;
       padding: 0 32px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 63px;
-      height: 52px;
     }
-    .trust-item {
-      display: flex;
-      align-items: center;
-      gap: 8px;
+    .feat-banner-label {
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 13px;
-      font-weight: 600;
-      letter-spacing: 0.04em;
-      color: rgba(20,45,25,0.65);
-      white-space: nowrap;
-    }
-    .trust-item svg { width: 21px; height: 21px; flex-shrink: 0; }
-
-    /* ── BACK TO TOP ── */
-    .back-to-top {
-      position: fixed;
-      bottom: 32px;
-      right: 32px;
-      width: 44px; height: 44px;
-      background: var(--g500);
-      color: #fff;
-      border: none;
-      border-radius: 50%;
-      cursor: pointer;
-      display: grid;
-      place-items: center;
-      box-shadow: 0 4px 16px rgba(30,86,48,0.3);
-      opacity: 0;
-      transform: translateY(12px);
-      transition: opacity 0.3s, transform 0.3s, background var(--transition);
-      z-index: 999;
-      pointer-events: none;
-    }
-    .back-to-top.visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
-    .back-to-top:hover { background: var(--g400); }
-    .back-to-top svg { width: 18px; height: 18px; }
-
-    /* ── FEATURED BANNER ── */
-    .featured-banner {
-      margin: 0;
-      border-radius: 20px;
-      background: linear-gradient(149.71deg, #1E5630 7.74%, #174023 50%, #0D3B1F 92.27%);
-      border: 1px solid rgba(201,168,76,0.25);
-      overflow: hidden;
-      position: relative;
-      height: 437px;
-    }
-    .featured-banner-img {
-      position: absolute;
-      right: 0;
-      top: -1px;
-      height: calc(100% + 2px);
-      width: 65%;
-      object-fit: cover;
-      object-position: center top;
-      pointer-events: none;
-    }
-    .featured-banner-content {
-      position: absolute;
-      left: 40px;
-      top: 71px;
-      z-index: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 32px;
-    }
-    .featured-banner-title {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 72px;
-      line-height: 1;
-      letter-spacing: 0.02em;
-    }
-    .featured-banner-title .line-white { color: #ffffff; display: block; }
-    .featured-banner-title .line-gold  { color: var(--gold); display: block; }
-    .featured-banner-btn {
-      display: inline-flex;
-      align-items: center;
-      background: var(--gold);
-      color: #0D3B1F;
-      border: none;
-      border-radius: 4px;
-      padding: 11px 20px;
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 14px;
       font-weight: 700;
-      letter-spacing: 0.08em;
+      font-size: 13px;
+      letter-spacing: 0.25em;
       text-transform: uppercase;
-      text-decoration: none;
-      cursor: pointer;
-      transition: background var(--transition);
-      width: fit-content;
+      color: var(--gold);
+      margin-bottom: 12px;
     }
-    .featured-banner-btn:hover { background: var(--gold2); }
+    .feat-banner-title {
+      font-family: 'Bebas Neue', cursive;
+      font-size: clamp(40px, 6vw, 72px);
+      line-height: 0.95;
+      color: var(--text-primary);
+      max-width: 600px;
+    }
+    .feat-banner-title em { font-style: normal; color: var(--gold); }
+    .feat-banner-desc {
+      font-size: 16px;
+      color: var(--text-secondary);
+      margin-top: 16px;
+      max-width: 420px;
+    }
+    .feat-banner-btn {
+      margin-top: 28px;
+    }
 
-    /* ── TESTIMONIALS ── */
+    /* ══════════════════════════════════════════
+       8. TESTIMONIALS
+    ══════════════════════════════════════════ */
+    .testimonials {
+      background: var(--bg-deep);
+      padding: 100px 0;
+    }
     .testimonials-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
+      gap: 24px;
     }
     .testimonial-card {
-      background: #ffffff;
-      border: 1px solid rgba(30,86,48,0.12);
+      background: var(--bg-card);
+      border: 1px solid rgba(240,235,227,0.05);
       border-radius: 12px;
-      padding: 28px;
-      box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+      padding: 36px 32px;
+      position: relative;
     }
-    .testimonial-stars { display: flex; gap: 4px; margin-bottom: 16px; }
+    .testimonial-card::before {
+      content: '\201C';
+      font-family: 'Bebas Neue', cursive;
+      font-size: 80px;
+      color: var(--gold);
+      opacity: 0.15;
+      position: absolute;
+      top: 12px;
+      left: 24px;
+      line-height: 1;
+    }
+    .testimonial-stars {
+      display: flex;
+      gap: 3px;
+      margin-bottom: 16px;
+    }
+    .testimonial-stars svg { width: 16px; height: 16px; fill: var(--gold); }
     .testimonial-text {
       font-size: 15px;
-      color: rgba(20,45,25,0.6);
+      color: var(--text-secondary);
       line-height: 1.7;
-      margin-bottom: 20px;
+      margin-bottom: 24px;
       font-style: italic;
     }
     .testimonial-author {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 14px;
     }
-    .author-avatar {
-      width: 40px; height: 40px;
+    .testimonial-avatar {
+      width: 44px;
+      height: 44px;
       border-radius: 50%;
+      background: var(--surface);
+      border: 2px solid var(--gold);
       display: grid;
       place-items: center;
-      font-family: 'Bebas Neue', sans-serif;
+      font-family: 'Bebas Neue', cursive;
       font-size: 18px;
-      color: var(--g900);
+      color: var(--gold);
     }
-    .author-info { display: flex; flex-direction: column; gap: 2px; }
-    .author-name {
+    .testimonial-name {
       font-family: 'Barlow Condensed', sans-serif;
       font-weight: 700;
       font-size: 15px;
-      color: var(--g900);
+      color: var(--text-primary);
     }
-    .author-role {
+    .testimonial-role {
       font-size: 12px;
-      color: rgba(20,45,25,0.5);
+      color: var(--text-muted);
     }
 
-    /* ── NEWSLETTER ── */
+    /* ══════════════════════════════════════════
+       9. NEWSLETTER
+    ══════════════════════════════════════════ */
     .newsletter {
-      margin: 0 0 80px;
-      background: #f4f7f5;
-      border: 1px solid rgba(30,86,48,0.12);
-      border-radius: 20px;
-      padding: 64px 40px;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 60px;
-      align-items: center;
+      background: var(--bg-dark);
+      padding: 80px 0;
       position: relative;
       overflow: hidden;
-    }
-    .newsletter::after {
-      content: '';
-      position: absolute;
-      top: -60px; right: -60px;
-      width: 300px; height: 300px;
-      border: 1px solid rgba(201,168,76,0.08);
-      border-radius: 50%;
     }
     .newsletter::before {
       content: '';
       position: absolute;
-      top: -20px; right: -20px;
-      width: 200px; height: 200px;
-      border: 1px solid rgba(201,168,76,0.12);
-      border-radius: 50%;
+      top: -50%;
+      left: -10%;
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, var(--gold-glow) 0%, transparent 70%);
+      opacity: 0.3;
+      pointer-events: none;
     }
-    .nl-title {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 52px;
-      color: var(--g900);
-      line-height: 1;
-      letter-spacing: 0.02em;
-      margin-bottom: 12px;
-    }
-    .nl-title span { color: var(--g400); }
-    .nl-desc { color: rgba(20,45,25,0.6); font-size: 16px; }
-    .nl-form { display: flex; gap: 12px; }
-    .nl-input {
-      flex: 1;
-      background: #ffffff;
-      border: 1px solid rgba(30,86,48,0.2);
-      border-radius: var(--r);
-      padding: 14px 18px;
-      color: var(--white);
-      font-family: 'DM Sans', sans-serif;
-      font-size: 15px;
-      outline: none;
-      transition: border-color var(--transition);
-    }
-    .nl-input::placeholder { color: rgba(20,45,25,0.4); }
-    .nl-input:focus { border-color: var(--g400); }
-    .nl-input { color: var(--g900); }
-
-    /* ── FOOTER ── */
-    footer {
-      background: #f4f7f5;
-      border-top: 1px solid rgba(30,86,48,0.12);
-    }
-    .footer-main {
-      max-width: 1360px;
-      margin: 0 auto;
-      padding: 64px 32px 48px;
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr 1fr;
-      gap: 48px;
-    }
-    .footer-brand p {
-      color: rgba(20,45,25,0.6);
-      font-size: 14px;
-      line-height: 1.7;
-      margin-top: 16px;
-      max-width: 280px;
-    }
-    .footer-socials {
-      display: flex;
-      gap: 10px;
-      margin-top: 24px;
-    }
-    .social-btn {
-      width: 36px; height: 36px;
-      background: #ffffff;
-      border: 1px solid rgba(30,86,48,0.15);
-      border-radius: 8px;
-      display: grid;
-      place-items: center;
-      color: var(--muted);
-      cursor: pointer;
-      transition: background var(--transition), color var(--transition), border-color var(--transition);
-      text-decoration: none;
-    }
-    .social-btn:hover { background: var(--gold); color: var(--g900); border-color: var(--gold); }
-    .social-btn svg { width: 16px; height: 16px; }
-    .footer-col h4 {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--g500);
-      margin-bottom: 20px;
-    }
-    .footer-col ul {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-    .footer-col a {
-      color: rgba(20,45,25,0.55);
-      text-decoration: none;
-      font-size: 14px;
-      transition: color var(--transition);
-    }
-    .footer-col a:hover { color: var(--g900); }
-    .footer-bottom {
-      max-width: 1360px;
-      margin: 0 auto;
-      padding: 20px 32px;
-      border-top: 1px solid var(--border);
+    .newsletter-inner {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 24px;
+      gap: 48px;
+      position: relative;
+      z-index: 1;
+    }
+    .newsletter-text { max-width: 480px; }
+    .newsletter-text h3 {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 40px;
+      letter-spacing: 0.03em;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .newsletter-text h3 em { font-style: normal; color: var(--gold); }
+    .newsletter-text p {
+      font-size: 15px;
+      color: var(--text-secondary);
+    }
+    .newsletter-form {
+      display: flex;
+      gap: 12px;
+      flex: 1;
+      max-width: 480px;
+    }
+    .newsletter-form input {
+      flex: 1;
+      padding: 16px 20px;
+      background: var(--bg-card);
+      border: 1.5px solid rgba(240,235,227,0.08);
+      border-radius: var(--r);
+      color: var(--text-primary);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      outline: none;
+      transition: border-color 0.3s;
+    }
+    .newsletter-form input::placeholder { color: var(--text-muted); }
+    .newsletter-form input:focus { border-color: var(--gold); }
+    .newsletter-form button {
+      padding: 16px 28px;
+      background: var(--gold);
+      color: var(--bg-deep);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border-radius: var(--r);
+      white-space: nowrap;
+      transition: all var(--transition);
+    }
+    .newsletter-form button:hover { background: var(--text-primary); }
+
+    /* ══════════════════════════════════════════
+       10. FOOTER
+    ══════════════════════════════════════════ */
+    footer {
+      background: var(--bg-deep);
+      border-top: 1px solid rgba(240,235,227,0.06);
+      padding: 64px 0 0;
+    }
+    .footer-top {
+      display: grid;
+      grid-template-columns: 1.5fr repeat(3, 1fr);
+      gap: 48px;
+      padding-bottom: 48px;
+      border-bottom: 1px solid rgba(240,235,227,0.06);
+    }
+    .footer-brand { }
+    .footer-brand .logo { margin-bottom: 16px; }
+    .footer-brand p {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      max-width: 300px;
+      margin-bottom: 20px;
+    }
+    .footer-social { display: flex; gap: 10px; }
+    .footer-social a {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(240,235,227,0.1);
+      display: grid;
+      place-items: center;
+      transition: all 0.3s;
+    }
+    .footer-social a:hover { border-color: var(--gold); background: rgba(201,168,76,0.1); }
+    .footer-social a svg { width: 18px; height: 18px; fill: var(--text-secondary); }
+    .footer-social a:hover svg { fill: var(--gold); }
+
+    .footer-col h4 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 20px;
+    }
+    .footer-col ul { list-style: none; }
+    .footer-col li { margin-bottom: 10px; }
+    .footer-col a {
+      font-size: 14px;
+      color: var(--text-secondary);
+      transition: color 0.3s;
+    }
+    .footer-col a:hover { color: var(--gold); }
+
+    .footer-bottom {
+      padding: 28px 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
     }
     .footer-bottom p {
       font-size: 13px;
-      color: rgba(20,45,25,0.5);
+      color: var(--text-muted);
     }
-    .footer-payments {
+    .payment-badges {
       display: flex;
-      gap: 8px;
+      gap: 12px;
       align-items: center;
     }
     .payment-badge {
-      background: #ffffff;
-      border: 1px solid rgba(30,86,48,0.15);
-      border-radius: 4px;
-      padding: 4px 10px;
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      color: var(--muted);
-    }
-
-    /* ── FILTER BAR ── */
-    .filter-bar {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-    .filter-chip {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 13px;
       font-weight: 600;
-      letter-spacing: 0.08em;
+      font-size: 11px;
+      letter-spacing: 0.06em;
       text-transform: uppercase;
-      padding: 8px 16px;
-      border-radius: 100px;
-      border: 1.5px solid rgba(30,86,48,0.2);
-      color: rgba(20,45,25,0.55);
-      background: transparent;
-      cursor: pointer;
-      transition: all var(--transition);
+      padding: 6px 14px;
+      border: 1px solid rgba(240,235,227,0.08);
+      border-radius: 4px;
+      color: var(--text-muted);
     }
-    .filter-chip:hover, .filter-chip.active {
-      border-color: var(--g500);
-      color: var(--g500);
-      background: rgba(30,86,48,0.07);
-    }
-    .filter-chip.active { background: var(--g500); color: #ffffff; border-color: var(--g500); }
 
-    /* ── CART DRAWER ── */
+    /* ══════════════════════════════════════════
+       CART DRAWER
+    ══════════════════════════════════════════ */
     .cart-overlay {
-      position: fixed; inset: 0; background: rgba(0,0,0,0.45);
-      z-index: 2000; opacity: 0; pointer-events: none;
-      transition: opacity 0.3s ease;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+      z-index: 2000;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
     }
     .cart-overlay.open { opacity: 1; pointer-events: all; }
 
     .cart-drawer {
-      position: fixed; top: 0; right: 0; bottom: 0;
-      width: 420px; max-width: 100vw;
-      background: #ffffff;
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 420px;
+      max-width: 100vw;
+      height: 100vh;
+      background: var(--bg-deep);
+      border-left: 1px solid rgba(201,168,76,0.15);
       z-index: 2001;
-      display: flex; flex-direction: column;
+      display: flex;
+      flex-direction: column;
       transform: translateX(100%);
       transition: transform 0.35s cubic-bezier(.4,0,.2,1);
-      box-shadow: -8px 0 40px rgba(0,0,0,0.12);
     }
     .cart-drawer.open { transform: translateX(0); }
 
     .cart-drawer-header {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 20px 24px;
-      border-bottom: 1px solid rgba(30,86,48,0.12);
-      flex-shrink: 0;
-    }
-    .cart-drawer-header h3 {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 22px; letter-spacing: 0.04em; color: var(--g900);
-    }
-    .cart-close-btn {
-      width: 36px; height: 36px; border: none; background: rgba(30,86,48,0.07);
-      border-radius: 50%; cursor: pointer; display: grid; place-items: center;
-      color: var(--g900); transition: background var(--transition);
-    }
-    .cart-close-btn:hover { background: rgba(30,86,48,0.14); }
-    .cart-close-btn svg { width: 18px; height: 18px; }
-
-    .cart-items {
-      flex: 1; overflow-y: auto; padding: 16px 24px;
-      display: flex; flex-direction: column; gap: 16px;
-    }
-    .cart-empty {
-      display: flex; flex-direction: column; align-items: center;
-      justify-content: center; height: 100%; gap: 16px;
-      color: rgba(20,45,25,0.4); font-family: 'Barlow Condensed', sans-serif;
-      font-size: 16px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase;
-    }
-    .cart-empty svg { opacity: 0.25; }
-
-    .cart-item {
-      display: flex; gap: 14px; align-items: flex-start;
-      padding: 14px; border: 1px solid rgba(30,86,48,0.12);
-      border-radius: 10px; background: #fafcfa;
-    }
-    .cart-item-img {
-      width: 72px; height: 72px; border-radius: 8px; overflow: hidden; flex-shrink: 0;
-      background: #e8ede9;
-    }
-    .cart-item-img img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
-    .cart-item-info { flex: 1; min-width: 0; }
-    .cart-item-meta {
-      font-family: 'Barlow Condensed', sans-serif; font-size: 11px; font-weight: 600;
-      letter-spacing: 0.12em; text-transform: uppercase; color: var(--g400); margin-bottom: 3px;
-    }
-    .cart-item-name {
-      font-family: 'Barlow Condensed', sans-serif; font-size: 15px; font-weight: 600;
-      color: var(--g900); line-height: 1.2; margin-bottom: 4px;
-    }
-    .cart-item-size {
-      font-size: 12px; color: rgba(20,45,25,0.5); margin-bottom: 10px;
-    }
-    .cart-item-bottom { display: flex; align-items: center; justify-content: space-between; }
-    .cart-item-price {
-      font-family: 'Bebas Neue', sans-serif; font-size: 20px; color: var(--g500);
-    }
-    .qty-ctrl {
-      display: flex; align-items: center; gap: 8px;
-    }
-    .qty-btn {
-      width: 28px; height: 28px; border: 1.5px solid rgba(30,86,48,0.2);
-      border-radius: 6px; background: #fff; cursor: pointer; display: grid;
-      place-items: center; font-size: 16px; color: var(--g900); line-height: 1;
-      transition: border-color var(--transition), background var(--transition);
-      font-family: 'DM Sans', sans-serif; padding: 0;
-    }
-    .qty-btn:hover { border-color: var(--g500); background: rgba(30,86,48,0.06); }
-    .qty-val {
-      font-family: 'Barlow Condensed', sans-serif; font-size: 16px; font-weight: 700;
-      color: var(--g900); min-width: 20px; text-align: center;
-    }
-    .cart-item-remove {
-      width: 28px; height: 28px; border: none; background: transparent; cursor: pointer;
-      display: grid; place-items: center; color: rgba(20,45,25,0.3);
-      border-radius: 6px; transition: color var(--transition), background var(--transition);
-      margin-left: 6px; flex-shrink: 0;
-    }
-    .cart-item-remove:hover { color: #e05252; background: rgba(224,82,82,0.08); }
-    .cart-item-remove svg { width: 14px; height: 14px; }
-
-    .cart-drawer-footer {
-      padding: 20px 24px; border-top: 1px solid rgba(30,86,48,0.12);
-      flex-shrink: 0; background: #fff;
-    }
-    .cart-subtotal {
-      display: flex; justify-content: space-between; align-items: baseline;
-      margin-bottom: 6px;
-    }
-    .cart-subtotal-label {
-      font-family: 'Barlow Condensed', sans-serif; font-size: 14px; font-weight: 600;
-      letter-spacing: 0.1em; text-transform: uppercase; color: rgba(20,45,25,0.55);
-    }
-    .cart-subtotal-val {
-      font-family: 'Bebas Neue', sans-serif; font-size: 28px; color: var(--g900);
-    }
-    .cart-free-ship {
-      font-size: 12px; color: rgba(20,45,25,0.5); margin-bottom: 16px; line-height: 1.4;
-    }
-    .cart-free-ship span { color: var(--g400); font-weight: 600; }
-    .cart-checkout-btn {
-      width: 100%; padding: 14px; text-align: center; justify-content: center;
-      font-size: 15px;
-    }
-
-    /* ── SIZE PICKER MODAL ── */
-    .size-picker-backdrop {
-      position: fixed; inset: 0; background: rgba(0,0,0,0.5);
-      z-index: 3000; display: none; align-items: center; justify-content: center;
-    }
-    .size-picker-backdrop.open { display: flex; }
-    .size-picker-box {
-      background: #fff; border-radius: 16px; padding: 28px;
-      width: 320px; max-width: calc(100vw - 32px);
-      box-shadow: 0 24px 60px rgba(0,0,0,0.18);
-      animation: popIn 0.2s cubic-bezier(.34,1.56,.64,1);
-    }
-    @keyframes popIn { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
-    .size-picker-box h4 {
-      font-family: 'Bebas Neue', sans-serif; font-size: 20px; letter-spacing: 0.04em;
-      color: var(--g900); margin-bottom: 4px;
-    }
-    .size-picker-product-name {
-      font-family: 'Barlow Condensed', sans-serif; font-size: 14px; color: rgba(20,45,25,0.55);
-      margin-bottom: 20px; font-weight: 600;
-    }
-    .size-picker-options {
-      display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px;
-    }
-    .size-opt {
-      width: 52px; height: 44px; border: 1.5px solid rgba(30,86,48,0.2);
-      border-radius: 8px; background: #fff; cursor: pointer;
-      font-family: 'Barlow Condensed', sans-serif; font-size: 14px; font-weight: 700;
-      color: var(--g900); transition: all var(--transition); display: grid; place-items: center;
-    }
-    .size-opt:hover { border-color: var(--g500); background: rgba(30,86,48,0.06); }
-    .size-opt.selected { border-color: var(--g500); background: var(--g500); color: #fff; }
-    .size-opt.out { opacity: 0.35; cursor: not-allowed; text-decoration: line-through; }
-    .size-picker-actions { display: flex; gap: 10px; }
-    .size-picker-cancel {
-      flex: 1; padding: 11px; border: 1.5px solid rgba(30,86,48,0.2);
-      border-radius: var(--r); background: transparent; cursor: pointer;
-      font-family: 'Barlow Condensed', sans-serif; font-size: 14px; font-weight: 700;
-      letter-spacing: 0.06em; text-transform: uppercase; color: rgba(20,45,25,0.55);
-      transition: border-color var(--transition);
-    }
-    .size-picker-cancel:hover { border-color: rgba(30,86,48,0.4); }
-    .size-picker-confirm {
-      flex: 2;
-    }
-
-    /* ── UTILS ── */
-    .sr-only { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0,0,0,0); }
-    .text-gold { color: var(--gold); }
-
-    /* ── PRODUCT VISUAL PLACEHOLDERS ── */
-    .prod-vis {
-      width: 100%;
-      height: 100%;
       display: flex;
       align-items: center;
-      justify-content: center;
-      position: relative;
+      justify-content: space-between;
+      padding: 20px 24px;
+      border-bottom: 1px solid rgba(240,235,227,0.06);
+    }
+    .cart-drawer-title {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 24px;
+      letter-spacing: 0.04em;
+    }
+    .cart-drawer-title span { color: var(--text-muted); font-size: 18px; }
+    .cart-close-btn {
+      width: 36px;
+      height: 36px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      transition: background 0.3s;
+    }
+    .cart-close-btn:hover { background: rgba(240,235,227,0.06); }
+    .cart-close-btn svg { width: 18px; height: 18px; stroke: var(--text-secondary); fill: none; stroke-width: 2; }
+
+    .cart-body {
+      flex: 1;
+      overflow-y: auto;
+      padding: 16px 24px;
+    }
+    .cart-empty-msg {
+      text-align: center;
+      padding: 60px 0;
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+    .cart-empty-msg svg { width: 48px; height: 48px; stroke: var(--text-muted); fill: none; stroke-width: 1.2; margin-bottom: 12px; }
+
+    .cart-item {
+      display: flex;
+      gap: 14px;
+      padding: 16px 0;
+      border-bottom: 1px solid rgba(240,235,227,0.04);
+    }
+    .cart-item-img {
+      width: 72px;
+      height: 90px;
+      border-radius: 6px;
+      overflow: hidden;
+      flex-shrink: 0;
+      background: var(--surface);
+    }
+    .cart-item-img img { width: 100%; height: 100%; object-fit: cover; }
+    .cart-item-info { flex: 1; display: flex; flex-direction: column; justify-content: space-between; }
+    .cart-item-meta {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+    .cart-item-name { font-size: 14px; font-weight: 500; color: var(--text-primary); line-height: 1.3; }
+    .cart-item-size { font-size: 12px; color: var(--text-muted); }
+    .cart-item-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 8px;
+    }
+    .cart-item-price {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 600;
+      font-size: 16px;
+      color: var(--text-primary);
+    }
+    .qty-ctrl {
+      display: flex;
+      align-items: center;
+      border: 1px solid rgba(240,235,227,0.08);
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .qty-btn {
+      width: 28px;
+      height: 28px;
+      display: grid;
+      place-items: center;
+      font-size: 14px;
+      color: var(--text-secondary);
+      transition: background 0.2s, color 0.2s;
+    }
+    .qty-btn:hover { background: rgba(201,168,76,0.15); color: var(--gold); }
+    .qty-val {
+      width: 28px;
+      text-align: center;
+      font-size: 13px;
+      font-weight: 600;
+    }
+    .cart-item-remove {
+      width: 28px;
+      height: 28px;
+      display: grid;
+      place-items: center;
+      border-radius: 4px;
+      margin-left: 6px;
+      transition: background 0.2s;
+    }
+    .cart-item-remove:hover { background: rgba(192,57,43,0.2); }
+    .cart-item-remove svg { width: 16px; height: 16px; stroke: var(--text-muted); fill: none; stroke-width: 2; }
+
+    .cart-footer {
+      padding: 20px 24px;
+      border-top: 1px solid rgba(240,235,227,0.06);
+    }
+    .cart-ship-info {
+      text-align: center;
+      font-size: 13px;
+      color: var(--text-secondary);
+      margin-bottom: 14px;
+    }
+    .cart-ship-info span { color: var(--gold); font-weight: 600; }
+    .cart-total-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 16px;
+    }
+    .cart-total-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .cart-total-price {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      font-size: 24px;
+      color: var(--gold);
+    }
+    .cart-checkout-btn {
+      width: 100%;
+      padding: 16px;
+      background: var(--gold);
+      color: var(--bg-deep);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 15px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border-radius: var(--r);
+      transition: all var(--transition);
+      display: block;
+      text-align: center;
+    }
+    .cart-checkout-btn:hover { background: var(--text-primary); }
+
+    /* ══════════════════════════════════════════
+       SIZE PICKER MODAL
+    ══════════════════════════════════════════ */
+    .size-picker-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.7);
+      z-index: 3000;
+      display: grid;
+      place-items: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+    }
+    .size-picker-backdrop.open { opacity: 1; pointer-events: all; }
+
+    .size-picker {
+      background: var(--bg-card);
+      border: 1px solid rgba(201,168,76,0.15);
+      border-radius: 12px;
+      padding: 32px;
+      width: 380px;
+      max-width: 90vw;
+    }
+    .size-picker h3 {
+      font-family: 'Bebas Neue', cursive;
+      font-size: 24px;
+      letter-spacing: 0.04em;
+      margin-bottom: 6px;
+    }
+    .sp-product-name {
+      font-size: 14px;
+      color: var(--text-secondary);
+      margin-bottom: 20px;
+    }
+    .sp-options {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+    .size-opt {
+      min-width: 52px;
+      padding: 12px 16px;
+      border: 1.5px solid rgba(240,235,227,0.12);
+      border-radius: 6px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 600;
+      font-size: 14px;
+      letter-spacing: 0.06em;
+      color: var(--text-primary);
+      background: transparent;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-align: center;
+    }
+    .size-opt:hover:not(.out) { border-color: var(--gold); color: var(--gold); }
+    .size-opt.selected { background: var(--gold); border-color: var(--gold); color: var(--bg-deep); }
+    .size-opt.out { opacity: 0.3; cursor: not-allowed; text-decoration: line-through; }
+
+    .sp-actions { display: flex; gap: 10px; }
+    .sp-actions button {
+      flex: 1;
+      padding: 14px;
+      border-radius: var(--r);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: all 0.3s;
+    }
+    #sp-cancel {
+      border: 1.5px solid rgba(240,235,227,0.12);
+      color: var(--text-secondary);
+    }
+    #sp-cancel:hover { border-color: var(--text-primary); color: var(--text-primary); }
+    #sp-confirm {
+      background: var(--gold);
+      color: var(--bg-deep);
+    }
+    #sp-confirm:disabled { opacity: 0.3; cursor: not-allowed; }
+    #sp-confirm:not(:disabled):hover { background: var(--text-primary); }
+
+    /* ══════════════════════════════════════════
+       FLOATING CART PILL
+    ══════════════════════════════════════════ */
+    .floating-cart {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      z-index: 1500;
+      background: var(--gold);
+      color: var(--bg-deep);
+      border-radius: 100px;
+      padding: 14px 24px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      box-shadow: 0 8px 30px rgba(201,168,76,0.35);
+      cursor: pointer;
+      transition: all 0.3s;
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    .floating-cart.show { opacity: 1; transform: translateY(0); }
+    .floating-cart:hover { box-shadow: 0 12px 40px rgba(201,168,76,0.5); transform: translateY(-2px); }
+    .floating-cart.show:hover { transform: translateY(-2px); }
+    .floating-cart svg { width: 18px; height: 18px; fill: none; stroke: var(--bg-deep); stroke-width: 2; }
+    .floating-cart .fc-count {
+      background: var(--bg-deep);
+      color: var(--gold);
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-size: 11px;
+      font-weight: 700;
+    }
+    @keyframes pulse-cart {
+      0% { box-shadow: 0 8px 30px rgba(201,168,76,0.35); }
+      50% { box-shadow: 0 8px 50px rgba(201,168,76,0.65); }
+      100% { box-shadow: 0 8px 30px rgba(201,168,76,0.35); }
+    }
+    .floating-cart.pulse { animation: pulse-cart 0.6s ease; }
+
+    /* ══════════════════════════════════════════
+       BACK TO TOP
+    ══════════════════════════════════════════ */
+    .back-to-top {
+      position: fixed;
+      bottom: 28px;
+      left: 28px;
+      z-index: 1500;
+      width: 44px;
+      height: 44px;
+      background: var(--bg-card);
+      border: 1.5px solid rgba(240,235,227,0.08);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: all 0.3s;
+    }
+    .back-to-top.show { opacity: 1; pointer-events: all; }
+    .back-to-top:hover { border-color: var(--gold); background: rgba(201,168,76,0.1); }
+    .back-to-top svg { width: 18px; height: 18px; stroke: var(--text-secondary); fill: none; stroke-width: 2; }
+    .back-to-top:hover svg { stroke: var(--gold); }
+
+    /* ══════════════════════════════════════════
+       RESPONSIVE
+    ══════════════════════════════════════════ */
+    @media (max-width: 1024px) {
+      .products-grid { grid-template-columns: repeat(3, 1fr); }
+      .cat-grid { grid-template-columns: repeat(2, 1fr); grid-template-rows: auto; }
+      .cat-card:nth-child(1) { grid-column: span 2; }
+      .cat-card:nth-child(2) { grid-column: span 1; }
+      .cat-card:nth-child(3) { grid-column: span 1; }
+      .cat-card:nth-child(4) { grid-column: span 2; }
+      .cat-card:nth-child(5) { grid-column: span 2; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+      .hero-stats { gap: 32px; }
+      .newsletter-inner { flex-direction: column; text-align: center; }
+      .newsletter-form { width: 100%; max-width: 100%; }
     }
 
-    /* scroll fade-in */
-    .fade-up {
-      opacity: 0;
-      transform: translateY(32px);
-      transition: opacity 0.6s cubic-bezier(.4,0,.2,1), transform 0.6s cubic-bezier(.4,0,.2,1);
+    @media (max-width: 768px) {
+      .container { padding: 0 20px; }
+      nav { display: none; }
+      .hamburger { display: flex; }
+      .mobile-nav { display: flex; }
+      .header-inner { padding: 0 20px; gap: 16px; }
+      .products-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+      .cat-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto;
+      }
+      .cat-card:nth-child(1) { grid-column: span 2; }
+      .cat-card:nth-child(2) { grid-column: span 1; }
+      .cat-card:nth-child(3) { grid-column: span 1; }
+      .cat-card:nth-child(4) { grid-column: span 1; }
+      .cat-card:nth-child(5) { grid-column: span 1; }
+      .cat-card { min-height: 200px; }
+      .trust-grid { grid-template-columns: 1fr 1fr; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .hero-stats { flex-wrap: wrap; gap: 24px; }
+      .hero-stat-number { font-size: 32px; }
+      .footer-top { grid-template-columns: 1fr; gap: 32px; }
+      .feat-banner { height: 360px; }
+      .hero { height: 500px; max-width: 100%; }
+      .hero-content { padding: 0 0 60px 0; }
+      .cart-drawer { width: 100vw; }
+      .newsletter-form { flex-direction: column; }
+      .newsletter-form button { width: 100%; }
     }
-    .fade-up.visible { opacity: 1; transform: translateY(0); }
-    .fade-up:nth-child(2) { transition-delay: 0.1s; }
-    .fade-up:nth-child(3) { transition-delay: 0.2s; }
-    .fade-up:nth-child(4) { transition-delay: 0.3s; }
+
+    @media (max-width: 480px) {
+      .hero-title { font-size: 44px; }
+      .hero-actions { flex-direction: column; width: 100%; }
+      .hero-actions .btn-primary,
+      .hero-actions .btn-outline { width: 100%; justify-content: center; }
+      .hero-stats { flex-direction: column; gap: 20px; }
+      .trust-grid { grid-template-columns: 1fr; }
+      .cat-grid {
+        grid-template-columns: 1fr;
+      }
+      .cat-card:nth-child(1),
+      .cat-card:nth-child(2),
+      .cat-card:nth-child(3),
+      .cat-card:nth-child(4),
+      .cat-card:nth-child(5) { grid-column: span 1; }
+      .products-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+      .product-info { padding: 12px 14px 16px; }
+      .product-name { font-size: 13px; }
+      .product-price { font-size: 17px; }
+      .section-heading h2 { font-size: 32px; }
+      .feat-banner-title { font-size: 32px; }
+    }
   </style>
 </head>
 <body>
 
-<!-- TOPBAR -->
-<div class="topbar">
-  Darmowa dostawa od 199 zł &nbsp;·&nbsp; Oficjalny sklep Akademii Okocimskiego &nbsp;·&nbsp; Kup teraz, zapłać do 30 dni
-</div>
+  <!-- ═══════════════════════════════════════
+       1. TOPBAR
+  ═══════════════════════════════════════ -->
+  <div class="topbar">
+    Darmowa dostawa od 199 zl &nbsp;&bull;&nbsp; Odbiór osobisty w Brzesku
+  </div>
 
-<!-- HEADER -->
-<header>
-  <div class="header-inner">
-    <a href="#" class="logo">
-      <img src="00%20-%20Assets/Logo.png" alt="Logo Akademii Okocimskiego" style="height:44px;width:auto;display:block;">
-    </a>
-    <nav>
-      <a href="#" class="active">Strona główna</a>
-      <a href="#kolekcje">Kolekcje</a>
-      <a href="#produkty">Produkty</a>
-      <a href="#">Nowości</a>
-    </nav>
-    <div class="header-actions">
-      <button class="icon-btn" aria-label="Wyszukaj">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+  <!-- ═══════════════════════════════════════
+       2. STICKY HEADER
+  ═══════════════════════════════════════ -->
+  <header>
+    <div class="header-inner">
+      <a href="index.html" class="logo">
+        <img src="00%20-%20Assets/image%201.png" alt="Akademia Okocimskiego">
+      </a>
+
+      <nav>
+        <a href="#" class="active">Sklep</a>
+        <a href="#kategorie">Kategorie</a>
+        <a href="#produkty">Produkty</a>
+        <a href="#opinie">Opinie</a>
+        <a href="#kontakt">Kontakt</a>
+      </nav>
+
+      <div class="header-actions">
+        <button aria-label="Szukaj">
+          <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        </button>
+        <button aria-label="Konto">
+          <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        </button>
+        <button id="cart-icon-btn" aria-label="Koszyk">
+          <svg viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          <span class="cart-badge" style="display:none;">0</span>
+        </button>
+      </div>
+
+      <button class="hamburger" id="hamburger-btn" aria-label="Menu">
+        <span></span><span></span><span></span>
       </button>
-      <button class="icon-btn" aria-label="Konto">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+    </div>
+  </header>
+
+  <!-- Mobile Nav -->
+  <div class="mobile-nav" id="mobile-nav">
+    <a href="#" onclick="closeMobileNav()">Sklep</a>
+    <a href="#kategorie" onclick="closeMobileNav()">Kategorie</a>
+    <a href="#produkty" onclick="closeMobileNav()">Produkty</a>
+    <a href="#opinie" onclick="closeMobileNav()">Opinie</a>
+    <a href="#kontakt" onclick="closeMobileNav()">Kontakt</a>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       3. HERO
+  ═══════════════════════════════════════ -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-grain"></div>
+    <div class="hero-content">
+      <div class="container">
+        <div class="hero-label fade-up">Oficjalny Sklep Akademii</div>
+        <h1 class="hero-title fade-up delay-1">NOSISZ DUME<br><em>AKADEMII</em></h1>
+        <p class="hero-subtitle fade-up delay-2">Oficjalna kolekcja odziezi Akademii Pilkarskiej Okocimskiego. Reprezentuj swoj klub z duma.</p>
+        <div class="hero-actions fade-up delay-3">
+          <a href="#produkty" class="btn-primary">
+            Odkryj kolekcje
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="#kategorie" class="btn-outline">Kategorie</a>
+        </div>
+        <div class="hero-stats fade-up delay-4">
+          <div class="hero-stat">
+            <div class="hero-stat-number" data-count="500">0</div>
+            <div class="hero-stat-label">Zawodnikow w akademii</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-number" data-count="25">0</div>
+            <div class="hero-stat-label">Lat tradycji</div>
+          </div>
+          <div class="hero-stat">
+            <div class="hero-stat-number" data-count="100">0</div>
+            <div class="hero-stat-label">% oryginalne produkty</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       4. TRUST BAR
+  ═══════════════════════════════════════ -->
+  <section class="trust-bar">
+    <div class="container">
+      <div class="trust-grid">
+        <div class="trust-item fade-up">
+          <div class="trust-icon">
+            <svg viewBox="0 0 24 24"><path d="M5 18H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h3.19M15 6h2a2 2 0 0 1 2 2v1M23 13v3a2 2 0 0 1-2 2h-2"/><path d="M14 6 9 2 4 6"/><rect x="9" y="11" width="6" height="7" rx="1"/><path d="M12 11v7"/><path d="M9 2v4h10V2"/></svg>
+          </div>
+          <div class="trust-text">
+            <strong>Darmowa dostawa od 199 zl</strong>
+            <span>Na terenie calej Polski</span>
+          </div>
+        </div>
+        <div class="trust-item fade-up delay-1">
+          <div class="trust-icon">
+            <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div class="trust-text">
+            <strong>Odbior osobisty</strong>
+            <span>W siedzibie akademii</span>
+          </div>
+        </div>
+        <div class="trust-item fade-up delay-2">
+          <div class="trust-icon">
+            <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+          </div>
+          <div class="trust-text">
+            <strong>Oryginalne produkty</strong>
+            <span>Oficjalna licencja AO</span>
+          </div>
+        </div>
+        <div class="trust-item fade-up delay-3">
+          <div class="trust-icon">
+            <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          </div>
+          <div class="trust-text">
+            <strong>Bezpieczne platnosci</strong>
+            <span>Szyfrowane polaczenie SSL</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       5. CATEGORIES GRID
+  ═══════════════════════════════════════ -->
+  <section class="categories" id="kategorie">
+    <div class="container">
+      <div class="section-heading fade-up">
+        <div class="section-heading-label">Kolekcja 2025</div>
+        <h2>Odkryj Kategorie</h2>
+        <div class="gold-line"></div>
+      </div>
+      <div class="cat-grid">
+        <a href="kategoria.html?cat=koszulki" class="cat-card fade-up">
+          <img src="00%20-%20Assets/cat-koszulki.jpg" alt="Koszulki & Stroje" loading="lazy">
+          <div class="cat-body">
+            <div class="cat-count">48 produktów</div>
+            <div class="cat-name">Koszulki &amp; Stroje</div>
+          </div>
+        </a>
+        <a href="kategoria.html?cat=bluzy" class="cat-card fade-up delay-1">
+          <img src="00%20-%20Assets/cat-bluzy.jpg" alt="Bluzy & Kurtki" loading="lazy">
+          <div class="cat-body">
+            <div class="cat-count">32 produkty</div>
+            <div class="cat-name">Bluzy<br>&amp; Kurtki</div>
+          </div>
+        </a>
+        <a href="kategoria.html?cat=akcesoria" class="cat-card fade-up delay-1">
+          <img src="00%20-%20Assets/cat-czapki.jpg" alt="Czapki & Akcesoria" loading="lazy">
+          <div class="cat-body">
+            <div class="cat-count">24 produkty</div>
+            <div class="cat-name">Czapki<br>&amp; Akcesoria</div>
+          </div>
+        </a>
+        <a href="kategoria.html?cat=gadzety" class="cat-card fade-up delay-2">
+          <img src="00%20-%20Assets/cat-gadgety.jpg" alt="Gadżety" loading="lazy">
+          <div class="cat-body">
+            <div class="cat-count">22 produkty</div>
+            <div class="cat-name">Gadżety</div>
+          </div>
+        </a>
+        <a href="kategoria.html?cat=spodenki" class="cat-card fade-up delay-2">
+          <img src="00%20-%20Assets/cat-spodenki.jpg" alt="Spodenki & Spodnie" loading="lazy">
+          <div class="cat-body">
+            <div class="cat-count">29 produktów</div>
+            <div class="cat-name">Spodenki<br>&amp; Spodnie</div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider-reverse"></div>
+
+  <!-- ═══════════════════════════════════════
+       6. FEATURED PRODUCTS
+  ═══════════════════════════════════════ -->
+  <section class="products-section" id="produkty">
+    <div class="container">
+      <div class="section-heading fade-up">
+        <div class="section-heading-label">Wyrozniamy</div>
+        <h2>Popularne Produkty</h2>
+        <p>Najczesciej wybierane przez zawodnikow i kibicow Akademii</p>
+        <div class="gold-line"></div>
+      </div>
+
+      <div class="filter-bar fade-up">
+        <button class="filter-chip active">Wszystkie</button>
+        <button class="filter-chip">Bluzy</button>
+        <button class="filter-chip">Kurtki</button>
+        <button class="filter-chip">Getry</button>
+        <button class="filter-chip">Spodenki</button>
+        <button class="filter-chip">Skarpetki</button>
+      </div>
+
+      <div class="products-grid">
+
+        <!-- Product 1: Bluza Kangurka -->
+        <div class="product-card fade-up" data-product-id="1">
+          <div class="product-img-wrap">
+            <img class="product-img-main" src="01%20-%20Produkty/01%20-%20Bluza/Bluza_01.png" alt="Bluza Kangurka AO" loading="lazy">
+            <video class="product-img-video" src="01%20-%20Produkty/01%20-%20Bluza/Bluza_04%20%2B%20hover.mp4" muted loop playsinline></video>
+            <span class="product-badge">Nowosc</span>
+            <div class="product-card-overlay">
+              <a href="produkt.html" class="see-btn">Zobacz produkt</a>
+              <button class="cart-btn">Dodaj do koszyka</button>
+            </div>
+          </div>
+          <div class="product-info">
+            <div class="product-cat">Bluzy Treningowe</div>
+            <div class="product-name">Bluza Kangurka AO</div>
+            <div class="product-price-row">
+              <span class="product-price">229 zl</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 2: Kurtka Windbreaker (-25%) -->
+        <div class="product-card fade-up delay-1" data-product-id="2">
+          <div class="product-img-wrap">
+            <img class="product-img-main" src="01%20-%20Produkty/04%20-%20Kurtka/kurtka_01.png" alt="Kurtka Windbreaker AO" loading="lazy">
+            <video class="product-img-video" src="01%20-%20Produkty/04%20-%20Kurtka/kurtka_05%20_hover.mp4" muted loop playsinline></video>
+            <span class="product-badge sale">-25%</span>
+            <div class="product-card-overlay">
+              <a href="produkt.html" class="see-btn">Zobacz produkt</a>
+              <button class="cart-btn">Dodaj do koszyka</button>
+            </div>
+          </div>
+          <div class="product-info">
+            <div class="product-cat">Kurtki</div>
+            <div class="product-name">Kurtka Windbreaker AO</div>
+            <div class="product-price-row">
+              <span class="product-price">239 zl</span>
+              <span class="product-old-price">319 zl</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 3: Bluza Kangurka (duplicate) -->
+        <div class="product-card fade-up delay-2" data-product-id="3">
+          <div class="product-img-wrap">
+            <img class="product-img-main" src="01%20-%20Produkty/01%20-%20Bluza/Bluza_01.png" alt="Bluza Kangurka AO" loading="lazy">
+            <img class="product-img-hover" src="01%20-%20Produkty/01%20-%20Bluza/Bluza_02.png" alt="Bluza Kangurka AO" loading="lazy">
+            <span class="product-badge">Nowosc</span>
+            <div class="product-card-overlay">
+              <a href="produkt.html" class="see-btn">Zobacz produkt</a>
+              <button class="cart-btn">Dodaj do koszyka</button>
+            </div>
+          </div>
+          <div class="product-info">
+            <div class="product-cat">Bluzy Treningowe</div>
+            <div class="product-name">Bluza Kangurka AO</div>
+            <div class="product-price-row">
+              <span class="product-price">229 zl</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 4: Getry Meczowe -->
+        <div class="product-card fade-up delay-3" data-product-id="4">
+          <div class="product-img-wrap">
+            <img class="product-img-main" src="01%20-%20Produkty/02%20-%20Getry/Getry_01.png" alt="Getry Meczowe AO" loading="lazy">
+            <img class="product-img-hover" src="01%20-%20Produkty/02%20-%20Getry/Getry_02.png" alt="Getry Meczowe AO" loading="lazy">
+            <span class="product-badge">Nowosc</span>
+            <div class="product-card-overlay">
+              <a href="produkt.html" class="see-btn">Zobacz produkt</a>
+              <button class="cart-btn">Dodaj do koszyka</button>
+            </div>
+          </div>
+          <div class="product-info">
+            <div class="product-cat">Akcesoria Meczowe</div>
+            <div class="product-name">Getry Meczowe AO</div>
+            <div class="product-price-row">
+              <span class="product-price">49 zl</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 5: Getry Meczowe (duplicate) -->
+        <div class="product-card fade-up" data-product-id="5">
+          <div class="product-img-wrap">
+            <img class="product-img-main" src="01%20-%20Produkty/02%20-%20Getry/Getry_01.png" alt="Getry Meczowe AO" loading="lazy">
+            <img class="product-img-hover" src="01%20-%20Produkty/02%20-%20Getry/Getry_02.png" alt="Getry Meczowe AO" loading="lazy">
+            <div class="product-card-overlay">
+              <a href="produkt.html" class="see-btn">Zobacz produkt</a>
+              <button class="cart-btn">Dodaj do koszyka</button>
+            </div>
+          </div>
+          <div class="product-info">
+            <div class="product-cat">Akcesoria Meczowe</div>
+            <div class="product-name">Getry Meczowe AO</div>
+            <div class="product-price-row">
+              <span class="product-price">49 zl</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 6: Spodenki Treningowe -->
+        <div class="product-card fade-up delay-1" data-product-id="6">
+          <div class="product-img-wrap">
+            <img class="product-img-main" src="01%20-%20Produkty/05%20-%20Spodenki/spodenki_01.png" alt="Spodenki Treningowe AO" loading="lazy">
+            <img class="product-img-hover" src="01%20-%20Produkty/05%20-%20Spodenki/spodenki_02.png" alt="Spodenki Treningowe AO" loading="lazy">
+            <div class="product-card-overlay">
+              <a href="produkt.html" class="see-btn">Zobacz produkt</a>
+              <button class="cart-btn">Dodaj do koszyka</button>
+            </div>
+          </div>
+          <div class="product-info">
+            <div class="product-cat">Spodenki</div>
+            <div class="product-name">Spodenki Treningowe AO</div>
+            <div class="product-price-row">
+              <span class="product-price">89 zl</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 7: Kurtka Windbreaker (duplicate) -->
+        <div class="product-card fade-up delay-2" data-product-id="7">
+          <div class="product-img-wrap">
+            <img class="product-img-main" src="01%20-%20Produkty/04%20-%20Kurtka/kurtka_01.png" alt="Kurtka Windbreaker AO" loading="lazy">
+            <img class="product-img-hover" src="01%20-%20Produkty/04%20-%20Kurtka/kurtka_02.png" alt="Kurtka Windbreaker AO" loading="lazy">
+            <span class="product-badge sale">-25%</span>
+            <div class="product-card-overlay">
+              <a href="produkt.html" class="see-btn">Zobacz produkt</a>
+              <button class="cart-btn">Dodaj do koszyka</button>
+            </div>
+          </div>
+          <div class="product-info">
+            <div class="product-cat">Kurtki</div>
+            <div class="product-name">Kurtka Windbreaker AO</div>
+            <div class="product-price-row">
+              <span class="product-price">239 zl</span>
+              <span class="product-old-price">319 zl</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Product 8: Skarpetki -->
+        <div class="product-card fade-up delay-3" data-product-id="8">
+          <div class="product-img-wrap">
+            <img class="product-img-main" src="01%20-%20Produkty/03%20-%20Skarpetki/Skarpetki_01.png" alt="Skarpetki AO" loading="lazy">
+            <img class="product-img-hover" src="01%20-%20Produkty/03%20-%20Skarpetki/Skarpetki_02.png" alt="Skarpetki AO" loading="lazy">
+            <span class="product-badge">Nowosc</span>
+            <div class="product-card-overlay">
+              <a href="produkt.html" class="see-btn">Zobacz produkt</a>
+              <button class="cart-btn">Dodaj do koszyka</button>
+            </div>
+          </div>
+          <div class="product-info">
+            <div class="product-cat">Akcesoria Meczowe</div>
+            <div class="product-name">Skarpetki AO</div>
+            <div class="product-price-row">
+              <span class="product-price">29 zl</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       7. FEATURED BANNER — JUBILEUSZ
+  ═══════════════════════════════════════ -->
+  <section class="feat-banner">
+    <div class="feat-banner-bg"></div>
+    <div class="feat-banner-overlay"></div>
+    <div class="feat-banner-content">
+      <div class="feat-banner-label fade-up">Limitowana Edycja</div>
+      <h2 class="feat-banner-title fade-up delay-1">Kolekcja<br><em>Jubileuszowa 2025</em></h2>
+      <p class="feat-banner-desc fade-up delay-2">Swietuj z nami rocznice istnienia Akademii. Limitowane produkty z unikalnymi detalami i okolicznosciowym haftem.</p>
+      <div class="feat-banner-btn fade-up delay-3">
+        <a href="#" class="btn-primary">
+          Zobacz kolekcje
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       8. TESTIMONIALS
+  ═══════════════════════════════════════ -->
+  <section class="testimonials" id="opinie">
+    <div class="container">
+      <div class="section-heading fade-up">
+        <div class="section-heading-label">Opinie</div>
+        <h2>Co Mowia Nasi Klienci</h2>
+        <div class="gold-line"></div>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testimonial-card fade-up">
+          <div class="testimonial-stars">
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <p class="testimonial-text">Bluza dla syna przyszla w 2 dni. Jakosc materialu i haft sa na najwyzszym poziomie. Syn nie chce jej zdejmowac — nosi z duma na kazdym treningu!</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">MW</div>
+            <div>
+              <div class="testimonial-name">Marek Wisniewski</div>
+              <div class="testimonial-role">Rodzic zawodnika</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card fade-up delay-1">
+          <div class="testimonial-stars">
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <p class="testimonial-text">Kurtka windbreaker jest idealna na treningi w deszczu. Lekka, przewiewna, a przy tym swietnie wyglada. Cala druzyna chce taka sama!</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">KN</div>
+            <div>
+              <div class="testimonial-name">Kamil Nowak</div>
+              <div class="testimonial-role">Zawodnik U17</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card fade-up delay-2">
+          <div class="testimonial-stars">
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <p class="testimonial-text">Kupuje tu od lat — koszulki, bluzy, skarpetki. Wszystko w klubowych kolorach, z pieknymi detalami. Swietny sklep dla prawdziwych kibicow!</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">AK</div>
+            <div>
+              <div class="testimonial-name">Anna Kowalska</div>
+              <div class="testimonial-role">Kibic od 8 lat</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       9. NEWSLETTER
+  ═══════════════════════════════════════ -->
+  <section class="newsletter" id="kontakt">
+    <div class="container">
+      <div class="newsletter-inner">
+        <div class="newsletter-text fade-up">
+          <h3>Zapisz się i zyskaj <em>-10%</em></h3>
+          <p>Dołącz do naszego newslettera i otrzymaj 10% rabatu na pierwsze zamówienie. Bądź na bieżąco z nowościami!</p>
+        </div>
+        <form class="newsletter-form fade-up delay-1" onsubmit="event.preventDefault(); this.querySelector('button').textContent='Zapisano!'; setTimeout(()=>this.querySelector('button').textContent='ZAPISZ SIĘ',2000);">
+          <input type="email" placeholder="Twoj adres e-mail" required>
+          <button type="submit">Zapisz się</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════
+       10. FOOTER
+  ═══════════════════════════════════════ -->
+  <footer>
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="index.html" class="logo">
+            <img src="00%20-%20Assets/image%201.png" alt="Akademia Okocimskiego" style="height:44px;">
+          </a>
+          <p>Oficjalny sklep Akademii Piłkarskiej Okocimskiego w Brzesku. Reprezentuj swój klub z dumą i stylem.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="Facebook">
+              <svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+            </a>
+            <a href="#" aria-label="Instagram">
+              <svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="5" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="17.5" cy="6.5" r="1.5"/></svg>
+            </a>
+            <a href="#" aria-label="YouTube">
+              <svg viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19.1c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" fill="#fff"/></svg>
+            </a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Sklep</h4>
+          <ul>
+            <li><a href="#">Wszystkie produkty</a></li>
+            <li><a href="#">Stroje meczowe</a></li>
+            <li><a href="#">Bluzy treningowe</a></li>
+            <li><a href="#">Kurtki</a></li>
+            <li><a href="#">Akcesoria</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Akademia</h4>
+          <ul>
+            <li><a href="#">O akademii</a></li>
+            <li><a href="#">Drużyny</a></li>
+            <li><a href="#">Harmonogram</a></li>
+            <li><a href="#">Kontakt</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Pomoc</h4>
+          <ul>
+            <li><a href="#">Dostawa i zwroty</a></li>
+            <li><a href="#">Tabela rozmiarów</a></li>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Regulamin</a></li>
+            <li><a href="#">Polityka prywatnosci</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Akademia Okocimskiego. Wszelkie prawa zastrzeżone.</p>
+        <div class="payment-badges">
+          <span class="payment-badge">Visa</span>
+          <span class="payment-badge">Mastercard</span>
+          <span class="payment-badge">Blik</span>
+          <span class="payment-badge">Przelewy24</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ═══════════════════════════════════════
+       CART DRAWER
+  ═══════════════════════════════════════ -->
+  <div class="cart-overlay" id="cart-overlay"></div>
+  <aside class="cart-drawer" id="cart-drawer">
+    <div class="cart-drawer-header">
+      <div class="cart-drawer-title">Koszyk <span id="cart-count-drawer">(0)</span></div>
+      <button class="cart-close-btn" id="cart-close">
+        <svg viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
       </button>
-      <button class="icon-btn" id="cart-icon-btn" aria-label="Koszyk">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-        <span class="cart-badge" style="display:none;">0</span>
-      </button>
     </div>
-  </div>
-</header>
-
-<!-- HERO -->
-<section class="hero" style="padding:0;position:relative;overflow:hidden;background:none;">
-  <img src="00%20-%20Assets/hero-baner.jpg" alt="Noś Dumę Akademii — Kolekcja 2025/26" style="display:block;width:100%;height:auto;max-height:350px;object-fit:cover;object-position:center;">
-</section>
-
-<!-- TRUST BAR -->
-<div class="trust-bar">
-  <div class="trust-bar-inner">
-    <div class="trust-item">
-      <svg viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 5v4h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
-      Darmowa dostawa od 199 zł
-    </div>
-    <div class="trust-item">
-      <svg viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-      Możliwy odbiór osobisty
-    </div>
-    <div class="trust-item">
-      <svg viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
-      Oryginalne produkty
-    </div>
-    <div class="trust-item">
-      <svg viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-      Bezpieczne płatności
-    </div>
-  </div>
-</div>
-
-<!-- CATEGORIES -->
-<section id="kolekcje">
-  <div class="section">
-    <div class="section-header">
-      <div>
-        <div class="section-eyebrow">Przeglądaj</div>
-        <h2 class="section-title">Kategorie Produktów</h2>
-      </div>
-      <a href="#" class="btn-outline">Wszystkie kategorie</a>
-    </div>
-
-    <div class="categories-grid">
-
-      <!-- ROW 1 col 1-2: Koszulki & Stroje (wide) -->
-      <a href="kategoria.html?kat=koszulki" class="cat-card cat-wide-top" style="text-decoration:none;display:block;">
-        <img class="cat-img" src="00%20-%20Assets/cat-bluza.png" alt="Koszulki & Stroje">
-        <div class="cat-overlay"></div>
-        <div class="cat-info">
-          <div class="cat-count">48 produktów</div>
-          <div class="cat-name">Koszulki & Stroje</div>
-          <div class="cat-arrow">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-          </div>
-        </div>
-      </a>
-
-      <!-- ROW 1 col 3: Bluzy & Kurtki -->
-      <a href="kategoria.html?kat=bluzy" class="cat-card" style="text-decoration:none;display:block;">
-        <img class="cat-img" src="00%20-%20Assets/cat-kurtka.png" alt="Bluzy & Kurtki">
-        <div class="cat-overlay"></div>
-        <div class="cat-info">
-          <div class="cat-count">32 produkty</div>
-          <div class="cat-name">Bluzy & Kurtki</div>
-          <div class="cat-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
-        </div>
-      </a>
-
-      <!-- ROW 1 col 4: Czapki & Akcesoria -->
-      <a href="kategoria.html?kat=czapki" class="cat-card" style="text-decoration:none;display:block;">
-        <img class="cat-img" src="00%20-%20Assets/cat-getry.png" alt="Czapki & Akcesoria">
-        <div class="cat-overlay"></div>
-        <div class="cat-info">
-          <div class="cat-count">24 produkty</div>
-          <div class="cat-name">Czapki & Akcesoria</div>
-          <div class="cat-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
-        </div>
-      </a>
-
-      <!-- ROW 2 col 1-2: Gadżety (wide) -->
-      <a href="kategoria.html?kat=gadgety" class="cat-card cat-wide-bot" style="text-decoration:none;display:block;">
-        <img class="cat-img" src="00%20-%20Assets/cat-skarpetki.png" alt="Gadżety">
-        <div class="cat-overlay"></div>
-        <div class="cat-info">
-          <div class="cat-count">22 produkty</div>
-          <div class="cat-name">Gadżety</div>
-          <div class="cat-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
-        </div>
-      </a>
-
-      <!-- ROW 2 col 3-4: Spodenki & Spodnie (wide) -->
-      <a href="kategoria.html?kat=spodenki" class="cat-card cat-wide-bot" style="text-decoration:none;display:block;">
-        <img class="cat-img" src="00%20-%20Assets/cat-spodenki.png" alt="Spodenki & Spodnie">
-        <div class="cat-overlay"></div>
-        <div class="cat-info">
-          <div class="cat-count">29 produktów</div>
-          <div class="cat-name">Spodenki & Spodnie</div>
-          <div class="cat-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div>
-        </div>
-      </a>
-
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- PRODUCTS -->
-<section id="produkty">
-  <div class="section">
-    <div class="section-header">
-      <div>
-        <div class="section-eyebrow">Bestsellery</div>
-        <h2 class="section-title">Polecane Produkty</h2>
-      </div>
-      <a href="#" class="btn-outline">Zobacz wszystkie</a>
-    </div>
-
-    <div class="filter-bar" style="margin-bottom: 32px;">
-      <button class="filter-chip active">Wszystkie</button>
-      <button class="filter-chip">Koszulki</button>
-      <button class="filter-chip">Bluzy</button>
-      <button class="filter-chip">Akcesoria</button>
-      <button class="filter-chip">Nowości</button>
-      <button class="filter-chip">Sale</button>
-    </div>
-
-    <div class="products-grid">
-
-      <!-- Product 1 — Bluza (placeholder) -->
-      <div class="product-card fade-up" data-product-id="3">
-        <a href="produkt.html" style="display:block;text-decoration:none;color:inherit;">
-        <div class="product-img">
-          <div class="product-img-bg" style="background-image: url('01%20-%20Produkty/01%20-%20Bluza/Bluza_01.png');"></div>
-          <div class="product-img-hover"></div>
-          <video class="product-img-video" muted loop playsinline preload="none">
-            <source src="01%20-%20Produkty/01%20-%20Bluza/Bluza_04%20%2B%20hover.mp4" type="video/mp4">
-          </video>
-          <span class="product-badge badge-new">Nowość</span>
-          <div class="product-actions">
-            <button class="btn-primary" style="font-size:12px; padding:8px 16px;">+ Koszyk</button>
-          </div>
-        </div>
-        <div class="product-body">
-          <div class="product-stars">
-            <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
-            <span style="font-size:11px;color:var(--muted);margin-left:6px;">5.0 (24)</span>
-          </div>
-          <div class="product-meta">Bluzy Treningowe</div>
-          <div class="product-name">Bluza Kangurka AO — Zielona</div>
-          <div class="product-sizes">
-            <div class="size-dot">XS</div><div class="size-dot">S</div><div class="size-dot">M</div><div class="size-dot">L</div><div class="size-dot">XL</div>
-          </div>
-          <div class="product-footer">
-            <div class="product-price">229 zł</div>
-            <button class="cart-btn" onclick="event.preventDefault();">Dodaj do koszyka</button>
-          </div>
-        </div>
-        </a>
-      </div>
-
-      <!-- Product 2 — Kurtka (placeholder) -->
-      <div class="product-card fade-up" data-product-id="7">
-        <div class="product-img">
-          <div class="product-img-bg" style="background-image: url('01%20-%20Produkty/04%20-%20Kurtka/kurtka_01.png');"></div>
-          <div class="product-img-hover"></div>
-          <video class="product-img-video" muted loop playsinline preload="none">
-            <source src="01%20-%20Produkty/04%20-%20Kurtka/kurtka_05%20_hover.mp4" type="video/mp4">
-          </video>
-          <span class="product-badge badge-sale2">-25%</span>
-          <div class="product-actions">
-            <button class="btn-primary" style="font-size:12px; padding:8px 16px;">+ Koszyk</button>
-          </div>
-        </div>
-        <div class="product-body">
-          <div class="product-stars">
-            <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
-            <span style="font-size:11px;color:var(--muted);margin-left:6px;">4.9 (33)</span>
-          </div>
-          <div class="product-meta">Kurtki</div>
-          <div class="product-name">Kurtka Reprezentacyjna AO Windbreaker</div>
-          <div class="product-sizes">
-            <div class="size-dot out">XS</div><div class="size-dot out">S</div><div class="size-dot">M</div><div class="size-dot">L</div><div class="size-dot out">XL</div>
-          </div>
-          <div class="product-footer">
-            <div class="product-price"><span class="product-price-old">319 zł</span>239 zł</div>
-            <button class="cart-btn">Dodaj do koszyka</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Product 3 -->
-      <div class="product-card fade-up" data-product-id="3">
-        <a href="produkt.html" style="display:block;text-decoration:none;color:inherit;">
-        <div class="product-img">
-          <div class="product-img-bg" style="background-image: url('01%20-%20Produkty/01%20-%20Bluza/Bluza_01.png');"></div>
-          <div class="product-img-hover"></div>
-          <video class="product-img-video" muted loop playsinline preload="none">
-            <source src="01%20-%20Produkty/01%20-%20Bluza/Bluza_04%20%2B%20hover.mp4" type="video/mp4">
-          </video>
-          <span class="product-badge badge-new">Nowość</span>
-          <div class="product-actions">
-            <button class="btn-primary" style="font-size:12px; padding:8px 16px;">+ Koszyk</button>
-          </div>
-        </div>
-        <div class="product-body">
-          <div class="product-stars">
-            <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
-            <span style="font-size:11px;color:var(--muted);margin-left:6px;">5.0 (24)</span>
-          </div>
-          <div class="product-meta">Bluzy Treningowe</div>
-          <div class="product-name">Bluza Kangurka AO — Zielona</div>
-          <div class="product-sizes">
-            <div class="size-dot">XS</div><div class="size-dot">S</div><div class="size-dot">M</div><div class="size-dot">L</div><div class="size-dot">XL</div>
-          </div>
-          <div class="product-footer">
-            <div class="product-price">229 zł</div>
-            <button class="cart-btn" onclick="event.preventDefault();">Dodaj do koszyka</button>
-          </div>
-        </div>
-        </a>
-      </div>
-
-      <!-- Product 4 — Getry -->
-      <div class="product-card hover-image fade-up" data-product-id="4">
-        <div class="product-img">
-          <div class="product-img-bg" style="background-image: url('01%20-%20Produkty/02%20-%20Getry/Getry_01.png');"></div>
-          <div class="product-img-hover" style="background-image: url('01%20-%20Produkty/02%20-%20Getry/Getry_02.png');"></div>
-          <span class="product-badge badge-new">Nowość</span>
-          <div class="product-actions">
-            <button class="btn-primary" style="font-size:12px; padding:8px 16px;">+ Koszyk</button>
-          </div>
-        </div>
-        <div class="product-body">
-          <div class="product-stars">
-            <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
-            <span style="font-size:11px;color:var(--muted);margin-left:6px;">5.0 (18)</span>
-          </div>
-          <div class="product-meta">Akcesoria Meczowe</div>
-          <div class="product-name">Getry Meczowe AO — Zielone</div>
-          <div class="product-sizes">
-            <div class="size-dot">S</div><div class="size-dot">M</div><div class="size-dot">L</div>
-          </div>
-          <div class="product-footer">
-            <div class="product-price">49 zł</div>
-            <button class="cart-btn">Dodaj do koszyka</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Product 5 — Getry (placeholder) -->
-      <div class="product-card hover-image fade-up" data-product-id="4">
-        <div class="product-img">
-          <div class="product-img-bg" style="background-image: url('01%20-%20Produkty/02%20-%20Getry/Getry_01.png');"></div>
-          <div class="product-img-hover" style="background-image: url('01%20-%20Produkty/02%20-%20Getry/Getry_02.png');"></div>
-          <span class="product-badge badge-new">Nowość</span>
-          <div class="product-actions">
-            <button class="btn-primary" style="font-size:12px; padding:8px 16px;">+ Koszyk</button>
-          </div>
-        </div>
-        <div class="product-body">
-          <div class="product-stars">
-            <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
-            <span style="font-size:11px;color:var(--muted);margin-left:6px;">5.0 (18)</span>
-          </div>
-          <div class="product-meta">Akcesoria Meczowe</div>
-          <div class="product-name">Getry Meczowe AO — Zielone</div>
-          <div class="product-sizes">
-            <div class="size-dot">S</div><div class="size-dot">M</div><div class="size-dot">L</div>
-          </div>
-          <div class="product-footer">
-            <div class="product-price">49 zł</div>
-            <button class="cart-btn">Dodaj do koszyka</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Product 6 — Spodenki -->
-      <div class="product-card hover-image fade-up" data-product-id="6">
-        <div class="product-img">
-          <div class="product-img-bg" style="background-image: url('01%20-%20Produkty/05%20-%20Spodenki/spodenki_01.png');"></div>
-          <div class="product-img-hover" style="background-image: url('01%20-%20Produkty/05%20-%20Spodenki/spodenki_02.png');"></div>
-          <div class="product-actions">
-            <button class="btn-primary" style="font-size:12px; padding:8px 16px;">+ Koszyk</button>
-          </div>
-        </div>
-        <div class="product-body">
-          <div class="product-stars">
-            <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star empty">★</span>
-            <span style="font-size:11px;color:var(--muted);margin-left:6px;">4.5 (67)</span>
-          </div>
-          <div class="product-meta">Spodenki</div>
-          <div class="product-name">Spodenki Treningowe AO Dry-Fit</div>
-          <div class="product-footer">
-            <div class="product-price">89 zł</div>
-            <button class="cart-btn">Dodaj do koszyka</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Product 7 — Kurtka -->
-      <div class="product-card fade-up" data-product-id="7">
-        <div class="product-img">
-          <div class="product-img-bg" style="background-image: url('01%20-%20Produkty/04%20-%20Kurtka/kurtka_01.png');"></div>
-          <div class="product-img-hover"></div>
-          <video class="product-img-video" muted loop playsinline preload="none">
-            <source src="01%20-%20Produkty/04%20-%20Kurtka/kurtka_05%20_hover.mp4" type="video/mp4">
-          </video>
-          <span class="product-badge badge-sale2">-25%</span>
-          <div class="product-actions">
-            <button class="btn-primary" style="font-size:12px; padding:8px 16px;">+ Koszyk</button>
-          </div>
-        </div>
-        <div class="product-body">
-          <div class="product-stars">
-            <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
-            <span style="font-size:11px;color:var(--muted);margin-left:6px;">4.9 (33)</span>
-          </div>
-          <div class="product-meta">Kurtki</div>
-          <div class="product-name">Kurtka Reprezentacyjna AO Windbreaker</div>
-          <div class="product-sizes">
-            <div class="size-dot out">XS</div><div class="size-dot out">S</div><div class="size-dot">M</div><div class="size-dot">L</div><div class="size-dot out">XL</div>
-          </div>
-          <div class="product-footer">
-            <div class="product-price"><span class="product-price-old">319 zł</span>239 zł</div>
-            <button class="cart-btn">Dodaj do koszyka</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Product 8 — Skarpetki -->
-      <div class="product-card hover-image fade-up" data-product-id="8">
-        <div class="product-img">
-          <div class="product-img-bg" style="background-image: url('01%20-%20Produkty/03%20-%20Skarpetki/Skarpetki_01.png');"></div>
-          <div class="product-img-hover" style="background-image: url('01%20-%20Produkty/03%20-%20Skarpetki/Skarpetki_02.png');"></div>
-          <span class="product-badge badge-new">Nowość</span>
-          <div class="product-actions">
-            <button class="btn-primary" style="font-size:12px; padding:8px 16px;">+ Koszyk</button>
-          </div>
-        </div>
-        <div class="product-body">
-          <div class="product-stars">
-            <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
-            <span style="font-size:11px;color:var(--muted);margin-left:6px;">4.8 (32)</span>
-          </div>
-          <div class="product-meta">Akcesoria Meczowe</div>
-          <div class="product-name">Skarpetki AO — Białe</div>
-          <div class="product-sizes">
-            <div class="size-dot">S</div><div class="size-dot">M</div><div class="size-dot">L</div>
-          </div>
-          <div class="product-footer">
-            <div class="product-price">29 zł</div>
-            <button class="cart-btn">Dodaj do koszyka</button>
-          </div>
-        </div>
-      </div>
-
-    </div><!-- /products-grid -->
-  </div>
-</section>
-
-<!-- FEATURED BANNER -->
-<div class="section" style="padding-top:0;padding-bottom:80px;">
-<div class="featured-banner">
-  <img class="featured-banner-img" src="00%20-%20Assets/banner-jubileusz.jpg" alt="Kolekcja Jubileuszowa 2025">
-  <div class="featured-banner-content">
-    <h2 class="featured-banner-title">
-      <span class="line-white">Kolekcja</span>
-      <span class="line-gold">Jubileuszowa</span>
-      <span class="line-white">2025</span>
-    </h2>
-    <a href="#" class="featured-banner-btn">Dowiedz się więcej</a>
-  </div>
-</div>
-</div>
-
-<div class="divider"></div>
-
-<!-- TESTIMONIALS -->
-<section>
-  <div class="section">
-    <div class="section-header">
-      <div>
-        <div class="section-eyebrow">Opinie Klientów</div>
-        <h2 class="section-title">Co Mówią Kibice</h2>
+    <div class="cart-body" id="cart-items">
+      <div class="cart-empty-msg" id="cart-empty">
+        <svg viewBox="0 0 24 24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <p>Twoj koszyk jest pusty</p>
       </div>
     </div>
-    <div class="testimonials-grid">
-      <div class="testimonial-card fade-up">
-        <div class="testimonial-stars">
-          <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
-        </div>
-        <p class="testimonial-text">"Zamawiałem koszulkę meczową dla syna — jakość rewelacyjna, materiał oddychający i nadruk super wyraźny. Dostawa następnego dnia! Polecam każdemu kibicowi Akademii."</p>
-        <div class="testimonial-author">
-          <div class="author-avatar" style="background: var(--gold);">M</div>
-          <div class="author-info">
-            <div class="author-name">Marek Wiśniewski</div>
-            <div class="author-role">Rodzic zawodnika</div>
-          </div>
-        </div>
+    <div class="cart-footer" id="cart-footer" style="display:none;">
+      <div class="cart-ship-info" id="cart-ship-info"></div>
+      <div class="cart-total-row">
+        <span class="cart-total-label">Razem</span>
+        <span class="cart-total-price" id="cart-total">0 zl</span>
       </div>
-      <div class="testimonial-card fade-up">
-        <div class="testimonial-stars">
-          <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
-        </div>
-        <p class="testimonial-text">"Komplet treningowy naprawdę profesjonalny. Widać, że tworzony z myślą o piłkarzach — odprowadza pot, nie ogranicza ruchów. Zamówię jeszcze zimową kurtkę."</p>
-        <div class="testimonial-author">
-          <div class="author-avatar" style="background: var(--g300);">K</div>
-          <div class="author-info">
-            <div class="author-name">Kamil Nowak</div>
-            <div class="author-role">Zawodnik U17</div>
-          </div>
-        </div>
-      </div>
-      <div class="testimonial-card fade-up">
-        <div class="testimonial-stars">
-          <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
-        </div>
-        <p class="testimonial-text">"Kupiłam zestaw kibica jako prezent — szalik i kubek z logo Akademii. Mąż był zachwycony! Świetne wykonanie, piękne opakowanie. Będę tu wracać na każdy sezon."</p>
-        <div class="testimonial-author">
-          <div class="author-avatar" style="background: #7B5EA7;">A</div>
-          <div class="author-info">
-            <div class="author-name">Anna Kowalska</div>
-            <div class="author-role">Kibic od 8 lat</div>
-          </div>
-        </div>
+      <a href="checkout.html" class="cart-checkout-btn">Przejdz do kasy</a>
+    </div>
+  </aside>
+
+  <!-- ═══════════════════════════════════════
+       SIZE PICKER MODAL
+  ═══════════════════════════════════════ -->
+  <div class="size-picker-backdrop" id="size-picker-backdrop">
+    <div class="size-picker">
+      <h3>Wybierz rozmiar</h3>
+      <div class="sp-product-name" id="sp-product-name"></div>
+      <div class="sp-options" id="sp-options"></div>
+      <div class="sp-actions">
+        <button id="sp-cancel">Anuluj</button>
+        <button id="sp-confirm" disabled>Dodaj do koszyka</button>
       </div>
     </div>
   </div>
-</section>
 
-<div class="divider"></div>
+  <!-- ═══════════════════════════════════════
+       FLOATING CART PILL
+  ═══════════════════════════════════════ -->
+  <div class="floating-cart" id="floating-cart">
+    <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+    <span>Koszyk</span>
+    <span class="fc-count" id="fc-count">0</span>
+  </div>
 
-<!-- NEWSLETTER -->
-<div class="section" style="padding-top:0;">
-<div class="newsletter" style="margin-left:0;margin-right:0;">
-  <div>
-    <h2 class="nl-title">Bądź<br><span>Pierwszy</span></h2>
-    <p class="nl-desc" style="margin-top:12px;">Zapisz się do newslettera i otrzymuj informacje o nowościach, promocjach i wydarzeniach Akademii Okocimskiego. Dla nowych subskrybentów: <strong style="color:var(--gold)">-10% na pierwsze zamówienie.</strong></p>
-  </div>
-  <div>
-    <p style="font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;">Dołącz do społeczności</p>
-    <div class="nl-form" style="margin-bottom:12px;">
-      <input class="nl-input" type="email" placeholder="Twój adres e-mail" />
-      <button class="btn-primary">Zapisz się</button>
-    </div>
-    <p style="font-size:12px;color:var(--muted);">Bez spamu. Możesz się wypisać w dowolnym momencie.</p>
-  </div>
-</div>
-</div>
+  <!-- ═══════════════════════════════════════
+       BACK TO TOP
+  ═══════════════════════════════════════ -->
+  <button class="back-to-top" id="back-to-top" aria-label="Powrot na gore">
+    <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
+  </button>
 
-<!-- FOOTER -->
-<footer>
-  <div class="footer-main">
-    <div class="footer-brand">
-      <a href="#" class="logo">
-        <img src="00%20-%20Assets/Logo.png" alt="Logo Akademii Okocimskiego" style="height:44px;width:auto;display:block;">
-      </a>
-      <p>Oficjalny sklep Akademii Piłkarskiej Okocimskiego. Odzież, gadżety i akcesoria najwyższej jakości dla każdego kibica i zawodnika.</p>
-      <div class="footer-socials">
-        <a href="#" class="social-btn" aria-label="Facebook">
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
-        </a>
-        <a href="#" class="social-btn" aria-label="Instagram">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
-        </a>
-        <a href="#" class="social-btn" aria-label="YouTube">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 0 0-1.95 1.96A29 29 0 0 0 1 12a29 29 0 0 0 .46 5.58A2.78 2.78 0 0 0 3.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 0 0 1.95-1.95A29 29 0 0 0 23 12a29 29 0 0 0-.46-5.58z"/><polygon points="9.75 15.02 15.5 12 9.75 8.98 9.75 15.02" fill="currentColor"/></svg>
-        </a>
-      </div>
-    </div>
-    <div class="footer-col">
-      <h4>Sklep</h4>
-      <ul>
-        <li><a href="#">Koszulki & Stroje</a></li>
-        <li><a href="#">Bluzy & Kurtki</a></li>
-        <li><a href="#">Spodenki & Spodnie</a></li>
-        <li><a href="#">Czapki & Akcesoria</a></li>
-        <li><a href="#">Torby & Sprzęt</a></li>
-        <li><a href="#">Gadżety Kibica</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Akademia</h4>
-      <ul>
-        <li><a href="#">O Akademii</a></li>
-        <li><a href="#">Sekcje Wiekowe</a></li>
-        <li><a href="#">Terminarz</a></li>
-        <li><a href="#">Wyniki</a></li>
-        <li><a href="#">Kadra trenerska</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Pomoc</h4>
-      <ul>
-        <li><a href="#">Rozmiarówka</a></li>
-        <li><a href="#">Wysyłka & Zwroty</a></li>
-        <li><a href="#">FAQ</a></li>
-        <li><a href="#">Kontakt</a></li>
-        <li><a href="#">Regulamin</a></li>
-        <li><a href="#">Polityka prywatności</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <p>© 2025 Akademia Okocimskiego — Wszelkie prawa zastrzeżone</p>
-    <div class="footer-payments">
-      <span class="payment-badge">VISA</span>
-      <span class="payment-badge">Mastercard</span>
-      <span class="payment-badge">BLIK</span>
-      <span class="payment-badge">Przelewy24</span>
-    </div>
-  </div>
-</footer>
-
-<!-- CART OVERLAY + DRAWER -->
-<div class="cart-overlay" id="cart-overlay"></div>
-<div class="cart-drawer" id="cart-drawer" role="dialog" aria-label="Koszyk">
-  <div class="cart-drawer-header">
-    <h3>Koszyk &nbsp;<span id="cart-count-drawer" style="font-size:16px;color:var(--muted);font-family:'Barlow Condensed',sans-serif;font-weight:600;letter-spacing:0.06em;">(0)</span></h3>
-    <button class="cart-close-btn" id="cart-close" aria-label="Zamknij koszyk">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
-    </button>
-  </div>
-  <div class="cart-items" id="cart-items">
-    <div class="cart-empty" id="cart-empty">
-      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-      Koszyk jest pusty
-    </div>
-  </div>
-  <div class="cart-drawer-footer" id="cart-footer" style="display:none;">
-    <div class="cart-subtotal">
-      <span class="cart-subtotal-label">Suma</span>
-      <span class="cart-subtotal-val" id="cart-total">0 zł</span>
-    </div>
-    <p class="cart-free-ship" id="cart-ship-info"></p>
-    <a href="checkout.html" class="btn-primary cart-checkout-btn">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
-      Przejdź do kasy
-    </a>
-  </div>
-</div>
-
-<!-- SIZE PICKER MODAL -->
-<div class="size-picker-backdrop" id="size-picker-backdrop">
-  <div class="size-picker-box">
-    <h4>Wybierz rozmiar</h4>
-    <p class="size-picker-product-name" id="sp-product-name"></p>
-    <div class="size-picker-options" id="sp-options"></div>
-    <div class="size-picker-actions">
-      <button class="size-picker-cancel" id="sp-cancel">Anuluj</button>
-      <button class="btn-primary size-picker-confirm" id="sp-confirm" disabled>Dodaj do koszyka</button>
-    </div>
-  </div>
-</div>
-
-<button class="back-to-top" id="back-to-top" aria-label="Wróć na górę">
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 15l-6-6-6 6"/></svg>
-</button>
 
 <script>
-  /* ═══════════════════════════════════════════
+  /* ===========================================================
      PRODUCT CATALOGUE
-  ═══════════════════════════════════════════ */
+  =========================================================== */
   const PRODUCTS = {
     1: {
-      id: 1, name: 'Koszulka Meczowa AO — Zielona', category: 'Stroje Meczowe',
-      price: 149, oldPrice: 187,
-      image: '00%20-%20Assets/generowane/freepik_commercial-sportswear-product-photography-photorealistic.-clean-light-grey-studio-backdrop-d4d4d4-soft-diffused-overhead-light-subtle-even-shadows-no-harsh-lines.-a-boy-approximately-8-ye_0002.png',
+      id: 1, name: 'Bluza Kangurka AO', category: 'Bluzy Treningowe',
+      price: 229, oldPrice: null,
+      image: '01%20-%20Produkty/01%20-%20Bluza/Bluza_01.png',
       sizes: ['XS','S','M','L','XL'], outSizes: []
     },
     2: {
-      id: 2, name: 'Koszulka Wyjazdowa AO — Biała', category: 'Stroje Meczowe',
-      price: 149, oldPrice: null,
-      image: '00%20-%20Assets/generowane/freepik_clean-ecommerce-product-photography-upper-body-shot-photorealistic.-pure-white-seamless-studio-backdrop-f2f2f2-soft-even-diffused-overhead-light.-same-model-as-master-shot-white-european-_0005.png',
-      sizes: ['S','M','L','XL'], outSizes: ['XL']
+      id: 2, name: 'Kurtka Windbreaker AO', category: 'Kurtki',
+      price: 239, oldPrice: 319,
+      image: '01%20-%20Produkty/04%20-%20Kurtka/kurtka_01.png',
+      sizes: ['XS','S','M','L','XL'], outSizes: []
     },
     3: {
-      id: 3, name: 'Bluza Kangurka AO — Zielona', category: 'Bluzy Treningowe',
+      id: 3, name: 'Bluza Kangurka AO', category: 'Bluzy Treningowe',
       price: 229, oldPrice: null,
       image: '01%20-%20Produkty/01%20-%20Bluza/Bluza_01.png',
       sizes: ['XS','S','M','L','XL'], outSizes: []
     },
     4: {
-      id: 4, name: 'Getry Meczowe AO — Zielone', category: 'Akcesoria Meczowe',
+      id: 4, name: 'Getry Meczowe AO', category: 'Akcesoria Meczowe',
       price: 49, oldPrice: null,
       image: '01%20-%20Produkty/02%20-%20Getry/Getry_01.png',
       sizes: ['S','M','L'], outSizes: []
     },
     5: {
-      id: 5, name: 'Torba Sportowa AO Pro 30L', category: 'Torby & Sprzęt',
-      price: 189, oldPrice: null,
-      image: '00%20-%20Assets/generowane/freepik_clean-ecommerce-product-photography-photorealistic.-pure-white-seamless-studio-backdrop-f2f2f2-soft-even-diffused-overhead-light-minimal-flat-shadows-no-gradients.-same-model-as-master-sh_0003.png',
-      sizes: [], outSizes: []
+      id: 5, name: 'Getry Meczowe AO', category: 'Akcesoria Meczowe',
+      price: 49, oldPrice: null,
+      image: '01%20-%20Produkty/02%20-%20Getry/Getry_01.png',
+      sizes: ['S','M','L'], outSizes: []
     },
     6: {
-      id: 6, name: 'Spodenki Treningowe AO Dry-Fit', category: 'Spodenki',
+      id: 6, name: 'Spodenki Treningowe AO', category: 'Spodenki',
       price: 89, oldPrice: null,
       image: '01%20-%20Produkty/05%20-%20Spodenki/spodenki_01.png',
       sizes: ['XS','S','M','L','XL'], outSizes: []
     },
     7: {
-      id: 7, name: 'Kurtka Reprezentacyjna AO Windbreaker', category: 'Kurtki',
+      id: 7, name: 'Kurtka Windbreaker AO', category: 'Kurtki',
       price: 239, oldPrice: 319,
       image: '01%20-%20Produkty/04%20-%20Kurtka/kurtka_01.png',
       sizes: ['XS','S','M','L','XL'], outSizes: []
     },
     8: {
-      id: 8, name: 'Skarpetki AO — Białe', category: 'Akcesoria Meczowe',
+      id: 8, name: 'Skarpetki AO', category: 'Akcesoria Meczowe',
       price: 29, oldPrice: null,
       image: '01%20-%20Produkty/03%20-%20Skarpetki/Skarpetki_01.png',
       sizes: ['S','M','L'], outSizes: []
     }
   };
 
-  /* ═══════════════════════════════════════════
+  /* ===========================================================
      CART STATE
-  ═══════════════════════════════════════════ */
+  =========================================================== */
   const FREE_SHIP_THRESHOLD = 199;
 
   function loadCart() {
@@ -1934,6 +2160,8 @@
     saveCart(cart);
     renderCart();
     updateBadge();
+    updateFloatingCart();
+    pulseFloatingCart();
     openDrawer();
   }
 
@@ -1942,6 +2170,7 @@
     saveCart(cart);
     renderCart();
     updateBadge();
+    updateFloatingCart();
   }
 
   function changeQty(key, delta) {
@@ -1951,11 +2180,12 @@
     saveCart(cart);
     renderCart();
     updateBadge();
+    updateFloatingCart();
   }
 
-  /* ═══════════════════════════════════════════
-     RENDER
-  ═══════════════════════════════════════════ */
+  /* ===========================================================
+     RENDER CART
+  =========================================================== */
   function updateBadge() {
     const count = cartCount();
     document.querySelectorAll('.cart-badge').forEach(el => {
@@ -1973,7 +2203,6 @@
     const totalEl = document.getElementById('cart-total');
     const shipInfo = document.getElementById('cart-ship-info');
 
-    // Remove previous items (keep empty message node)
     container.querySelectorAll('.cart-item').forEach(el => el.remove());
 
     if (cart.length === 0) {
@@ -1997,15 +2226,15 @@
           <div class="cart-item-name">${item.name}</div>
           ${item.size ? `<div class="cart-item-size">Rozmiar: <strong>${item.size}</strong></div>` : ''}
           <div class="cart-item-bottom">
-            <div class="cart-item-price">${item.price * item.qty} zł</div>
+            <div class="cart-item-price">${item.price * item.qty} zl</div>
             <div style="display:flex;align-items:center;gap:4px;">
               <div class="qty-ctrl">
-                <button class="qty-btn" data-key="${item.key}" data-delta="-1">−</button>
+                <button class="qty-btn" data-key="${item.key}" data-delta="-1">&minus;</button>
                 <span class="qty-val">${item.qty}</span>
                 <button class="qty-btn" data-key="${item.key}" data-delta="1">+</button>
               </div>
-              <button class="cart-item-remove" data-key="${item.key}" aria-label="Usuń">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6"/></svg>
+              <button class="cart-item-remove" data-key="${item.key}" aria-label="Usun">
+                <svg viewBox="0 0 24 24" stroke-linecap="round"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6"/></svg>
               </button>
             </div>
           </div>
@@ -2014,17 +2243,17 @@
     });
 
     const total = cartTotal();
-    totalEl.textContent = `${total} zł`;
+    totalEl.textContent = `${total} zl`;
 
     const diff = FREE_SHIP_THRESHOLD - total;
     if (diff > 0) {
-      shipInfo.innerHTML = `Dodaj jeszcze <span>${diff} zł</span>, aby otrzymać darmową dostawę.`;
+      shipInfo.innerHTML = `Dodaj jeszcze <span>${diff} zl</span>, aby otrzymac darmowa dostawe.`;
     } else {
-      shipInfo.innerHTML = `<span>Masz darmową dostawę! 🎉</span>`;
+      shipInfo.innerHTML = `<span>Masz darmowa dostawe!</span>`;
     }
   }
 
-  // Event delegation — qty buttons + remove
+  // Event delegation for cart items
   document.getElementById('cart-items').addEventListener('click', e => {
     const qtyBtn = e.target.closest('.qty-btn');
     const removeBtn = e.target.closest('.cart-item-remove');
@@ -2032,9 +2261,9 @@
     if (removeBtn) removeFromCart(removeBtn.dataset.key);
   });
 
-  /* ═══════════════════════════════════════════
+  /* ===========================================================
      DRAWER OPEN / CLOSE
-  ═══════════════════════════════════════════ */
+  =========================================================== */
   function openDrawer() {
     document.getElementById('cart-drawer').classList.add('open');
     document.getElementById('cart-overlay').classList.add('open');
@@ -2050,9 +2279,9 @@
   document.getElementById('cart-overlay').addEventListener('click', closeDrawer);
   document.getElementById('cart-icon-btn').addEventListener('click', openDrawer);
 
-  /* ═══════════════════════════════════════════
+  /* ===========================================================
      SIZE PICKER
-  ═══════════════════════════════════════════ */
+  =========================================================== */
   let _pendingProductId = null;
 
   function openSizePicker(productId) {
@@ -2093,9 +2322,9 @@
     closeSizePicker();
   });
 
-  /* ═══════════════════════════════════════════
+  /* ===========================================================
      ADD TO CART — BUTTON HANDLERS
-  ═══════════════════════════════════════════ */
+  =========================================================== */
   document.querySelectorAll('.cart-btn').forEach(btn => {
     btn.addEventListener('click', e => {
       e.stopPropagation();
@@ -2110,16 +2339,16 @@
       } else {
         addToCart(id, null);
         const orig = btn.textContent;
-        btn.textContent = 'Dodano ✓';
+        btn.textContent = 'Dodano!';
         btn.style.background = 'var(--g300)';
         setTimeout(() => { btn.textContent = orig; btn.style.background = ''; }, 1200);
       }
     });
   });
 
-  /* ═══════════════════════════════════════════
-     FILTER CHIPS
-  ═══════════════════════════════════════════ */
+  /* ===========================================================
+     FILTER CHIPS (visual only)
+  =========================================================== */
   document.querySelectorAll('.filter-chip').forEach(chip => {
     chip.addEventListener('click', () => {
       document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
@@ -2127,36 +2356,113 @@
     });
   });
 
-  /* ═══════════════════════════════════════════
-     SCROLL FADE-IN
-  ═══════════════════════════════════════════ */
+  /* ===========================================================
+     INTERSECTION OBSERVER — FADE UP
+  =========================================================== */
   const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
   }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
   document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
 
-  /* ═══════════════════════════════════════════
-     HOVER VIDEO
-  ═══════════════════════════════════════════ */
+  /* ===========================================================
+     VIDEO HOVER PLAY/PAUSE
+  =========================================================== */
   document.querySelectorAll('.product-card').forEach(card => {
     const video = card.querySelector('.product-img-video');
     if (!video) return;
-    card.addEventListener('mouseenter', () => video.play());
-    card.addEventListener('mouseleave', () => { video.pause(); video.currentTime = 0; });
+    card.addEventListener('mouseenter', () => { video.currentTime = 0; video.play(); });
+    card.addEventListener('mouseleave', () => { video.pause(); });
   });
 
-  /* ═══════════════════════════════════════════
-     BACK TO TOP
-  ═══════════════════════════════════════════ */
-  const btt = document.getElementById('back-to-top');
-  window.addEventListener('scroll', () => btt.classList.toggle('visible', window.scrollY > 400));
-  btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+  /* ===========================================================
+     HAMBURGER MOBILE NAV
+  =========================================================== */
+  const hamburgerBtn = document.getElementById('hamburger-btn');
+  const mobileNav = document.getElementById('mobile-nav');
 
-  /* ═══════════════════════════════════════════
+  hamburgerBtn.addEventListener('click', () => {
+    hamburgerBtn.classList.toggle('open');
+    mobileNav.classList.toggle('open');
+    document.body.style.overflow = mobileNav.classList.contains('open') ? 'hidden' : '';
+  });
+
+  function closeMobileNav() {
+    hamburgerBtn.classList.remove('open');
+    mobileNav.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  /* ===========================================================
+     BACK TO TOP
+  =========================================================== */
+  const backToTopBtn = document.getElementById('back-to-top');
+  window.addEventListener('scroll', () => {
+    backToTopBtn.classList.toggle('show', window.scrollY > 600);
+  }, { passive: true });
+  backToTopBtn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+
+  /* ===========================================================
+     FLOATING CART PILL
+  =========================================================== */
+  const floatingCart = document.getElementById('floating-cart');
+  const fcCount = document.getElementById('fc-count');
+
+  function updateFloatingCart() {
+    const count = cartCount();
+    fcCount.textContent = count;
+    floatingCart.classList.toggle('show', count > 0);
+  }
+
+  function pulseFloatingCart() {
+    floatingCart.classList.remove('pulse');
+    void floatingCart.offsetWidth; // reflow
+    floatingCart.classList.add('pulse');
+  }
+
+  floatingCart.addEventListener('click', openDrawer);
+
+  /* ===========================================================
+     ANIMATED STATS COUNTERS
+  =========================================================== */
+  const statsObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const el = entry.target;
+        const target = parseInt(el.dataset.count);
+        const suffix = el.dataset.suffix || '';
+        let current = 0;
+        const step = Math.max(1, Math.floor(target / 60));
+        const interval = setInterval(() => {
+          current += step;
+          if (current >= target) {
+            current = target;
+            clearInterval(interval);
+          }
+          el.textContent = current + (suffix ? suffix : '+');
+        }, 25);
+        statsObserver.unobserve(el);
+      }
+    });
+  }, { threshold: 0.5 });
+
+  document.querySelectorAll('.hero-stat-number[data-count]').forEach(el => {
+    statsObserver.observe(el);
+  });
+
+  /* ===========================================================
      INIT
-  ═══════════════════════════════════════════ */
-  renderCart();
+  =========================================================== */
   updateBadge();
+  renderCart();
+  updateFloatingCart();
 </script>
+
 </body>
 </html>
