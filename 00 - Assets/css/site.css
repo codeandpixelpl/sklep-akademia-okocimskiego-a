@@ -946,6 +946,51 @@ footer { background: var(--bg-deep); border-top: 1px solid rgba(240,235,227,0.06
   .footer-bottom { flex-direction: column; text-align: center; }
 }
 
+/* ── NEWSLETTER FORM — zgoda RODO + klauzula ── */
+.newsletter-form { flex-wrap: wrap; }
+.newsletter-consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  width: 100%;
+  margin-top: 12px;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  color: rgba(255,255,255,0.75);
+  line-height: 1.5;
+  text-align: left;
+}
+.newsletter-consent input[type="checkbox"] {
+  width: 16px; height: 16px;
+  accent-color: var(--gold);
+  flex-shrink: 0;
+  margin-top: 2px;
+  cursor: pointer;
+}
+.newsletter-req { color: var(--gold); }
+.newsletter-fineprint {
+  width: 100%;
+  margin-top: 8px;
+  font-size: 11px;
+  line-height: 1.5;
+  color: rgba(255,255,255,0.55);
+  text-align: left;
+}
+.newsletter-fineprint a {
+  color: var(--gold);
+  text-decoration: underline;
+}
+.newsletter-msg {
+  width: 100%;
+  margin-top: 10px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 13px;
+}
+.newsletter-msg.ok { background: rgba(61,160,95,0.12); color: var(--g200); }
+.newsletter-msg.err { background: rgba(224,82,82,0.12); color: #ff8888; }
+
 /* ── NEWSLETTER POP-UP ── */
 .np-overlay {
   position: fixed; inset: 0;

@@ -205,14 +205,30 @@
     });
   }
 
-  /* Newsletter — walidacja + stub fetch */
+  /* Newsletter — walidacja + stub fetch + auto-injection zgody RODO */
   function bindNewsletter() {
     document.querySelectorAll('.newsletter-form').forEach(form => {
       // Usuń stary onsubmit attribute jeśli był
       form.removeAttribute('onsubmit');
+
+      // Wstrzyknij checkbox zgody + klauzulę informacyjną RODO (jeśli jeszcze ich nie ma)
+      if (!form.querySelector('.newsletter-consent')) {
+        const formId = 'nl-consent-' + Math.random().toString(36).slice(2, 8);
+        const consentHTML = `
+          <label class="newsletter-consent">
+            <input type="checkbox" id="${formId}" name="consent" required>
+            <span>Wyrażam zgodę na otrzymywanie newslettera (informacji handlowych) drogą elektroniczną. Zgoda jest dobrowolna i mogę ją wycofać w każdej chwili. <span class="newsletter-req">*</span></span>
+          </label>
+          <p class="newsletter-fineprint">
+            Administrator: Akademia Piłkarska Okocimski Brzesko. Podstawa: art. 6 ust. 1 lit. a RODO. Szczegóły: <a href="polityka-prywatnosci.html" target="_blank" rel="noopener">Polityka prywatności</a>.
+          </p>`;
+        form.insertAdjacentHTML('beforeend', consentHTML);
+      }
+
       form.addEventListener('submit', async e => {
         e.preventDefault();
         const input = form.querySelector('input[type="email"]');
+        const consent = form.querySelector('input[name="consent"]');
         const button = form.querySelector('button[type="submit"]');
         const origLabel = button.textContent;
         let msgEl = form.querySelector('.newsletter-msg');
@@ -228,18 +244,25 @@
           msgEl.textContent = 'Wpisz poprawny adres e-mail.';
           return;
         }
+        if (consent && !consent.checked) {
+          msgEl.className = 'newsletter-msg err';
+          msgEl.textContent = 'Zaznacz zgodę na otrzymywanie newslettera.';
+          consent.focus();
+          return;
+        }
 
         button.disabled = true;
         button.textContent = 'Zapisuję…';
 
         try {
           // TODO(backend): podmień na właściwy endpoint
-          // const res = await fetch('/api/newsletter', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ email }) });
+          // const res = await fetch('/api/newsletter', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ email, consent: true }) });
           // if (!res.ok) throw new Error('Network');
           await new Promise(r => setTimeout(r, 600)); // tymczasowy mock
           msgEl.className = 'newsletter-msg ok';
-          msgEl.textContent = 'Dziękujemy! Sprawdź skrzynkę, żeby potwierdzić zapis.';
+          msgEl.textContent = 'Dziękujemy! Sprawdź skrzynkę, żeby potwierdzić zapis (double opt-in).';
           input.value = '';
+          if (consent) consent.checked = false;
           button.textContent = 'Zapisano!';
           setTimeout(() => { button.textContent = origLabel; button.disabled = false; }, 2200);
         } catch {
