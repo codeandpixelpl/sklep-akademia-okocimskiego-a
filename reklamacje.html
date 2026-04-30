@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="canonical" href="https://sklep.akademia-okocim.pl/reklamacje.html" />
+  <title>Reklamacje — Akademia Okocimskiego</title>
+  <meta name="description" content="Złóż reklamację produktu kupionego w sklepie Akademii Okocimskiego. Termin rozpatrzenia: 14 dni.">
+  <meta name="robots" content="index,follow">
+  <link rel="icon" type="image/svg+xml" href="00%20-%20Assets/Logo.svg">
+  <link rel="stylesheet" href="00%20-%20Assets/fonts/fonts.css" />
+  <link rel="stylesheet" href="00%20-%20Assets/css/site.css" />
+  <style>
+    .doc-hero { background: linear-gradient(135deg, var(--g500) 0%, var(--g900) 100%); padding: 56px 32px 40px; }
+    .doc-hero-inner { max-width: 880px; margin: 0 auto; }
+    .doc-hero h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(36px, 5vw, 52px); color: #fff; letter-spacing: 0.04em; }
+    .doc-hero h1 em { font-style: normal; color: var(--gold); }
+    .doc-hero p { color: rgba(255,255,255,0.6); font-size: 14px; margin-top: 4px; font-family: 'Barlow Condensed', sans-serif; letter-spacing: 0.06em; text-transform: uppercase; }
+    .doc-page { max-width: 880px; margin: 40px auto 80px; padding: 0 32px; line-height: 1.75; }
+    .doc-page h2 { font-family: 'Bebas Neue', sans-serif; font-size: 28px; color: var(--text-primary); margin: 36px 0 14px; letter-spacing: 0.04em; }
+    .doc-page p { color: var(--text-secondary); margin-bottom: 14px; }
+    .doc-page ul { color: var(--text-secondary); padding-left: 22px; margin-bottom: 14px; }
+    .doc-page strong { color: var(--text-primary); }
+    .rek-form { background: var(--bg-card); border: 1px solid rgba(240,235,227,0.06); border-radius: 12px; padding: 28px; margin: 24px 0; }
+    .rek-row { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
+    .rek-row.cols-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .rek-row label { font-family: 'Barlow Condensed', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-secondary); }
+    .rek-row input, .rek-row textarea, .rek-row select { width: 100%; padding: 12px 14px; background: var(--surface); border: 1.5px solid rgba(240,235,227,0.1); border-radius: var(--r); color: var(--text-primary); font-family: inherit; font-size: 14px; outline: none; }
+    .rek-row input:focus, .rek-row textarea:focus, .rek-row select:focus { border-color: var(--gold); }
+    .rek-row textarea { min-height: 120px; resize: vertical; }
+    .rek-row .req { color: #e05252; }
+    .rek-submit { width: 100%; padding: 14px; background: var(--gold); color: var(--bg-deep); border: none; border-radius: var(--r); font-family: 'Barlow Condensed', sans-serif; font-size: 15px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; transition: background 0.2s; }
+    .rek-submit:hover { background: var(--gold-light); }
+    .rek-msg { margin-top: 14px; padding: 12px 16px; border-radius: var(--r); font-size: 14px; }
+    .rek-msg.ok { background: rgba(61,160,95,0.1); color: var(--g300); }
+    .rek-msg.err { background: rgba(224,82,82,0.1); color: #e05252; }
+    .file-input { padding: 10px 14px; }
+    @media (max-width: 600px) { .rek-row.cols-2 { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+<div data-ao-header></div>
+
+<div class="doc-hero">
+  <div class="doc-hero-inner">
+    <p>Pomoc</p>
+    <h1>Złóż <em>reklamację</em></h1>
+  </div>
+</div>
+
+<main id="main" class="doc-page">
+
+  <h2>Jak składać reklamację</h2>
+  <p>Jako Konsument masz <strong>2 lata</strong> od zakupu na zgłoszenie wady fizycznej lub prawnej. Reklamację rozpatrujemy w ciągu <strong>14 dni</strong> od jej otrzymania. Zgłoszenia można składać:</p>
+  <ul>
+    <li>przez poniższy formularz,</li>
+    <li>e-mailem na <a href="mailto:sklep@akademia-okocim.pl" style="color:var(--gold);">sklep@akademia-okocim.pl</a>,</li>
+    <li>pisemnie na adres sklepu (patrz <a href="dostawa-i-zwroty.html" style="color:var(--gold);">Dostawa i zwroty</a>).</li>
+  </ul>
+
+  <h2>Formularz reklamacyjny</h2>
+  <form class="rek-form" id="rek-form" novalidate>
+    <div class="rek-row cols-2">
+      <div class="rek-row" style="margin:0;">
+        <label for="rek-name">Imię i nazwisko <span class="req">*</span></label>
+        <input type="text" id="rek-name" name="name" required minlength="2" autocomplete="name" />
+      </div>
+      <div class="rek-row" style="margin:0;">
+        <label for="rek-email">E-mail <span class="req">*</span></label>
+        <input type="email" id="rek-email" name="email" required autocomplete="email" />
+      </div>
+    </div>
+    <div class="rek-row cols-2">
+      <div class="rek-row" style="margin:0;">
+        <label for="rek-order">Numer zamówienia <span class="req">*</span></label>
+        <input type="text" id="rek-order" name="order" required placeholder="AO-2026-0001" />
+      </div>
+      <div class="rek-row" style="margin:0;">
+        <label for="rek-product">Produkt</label>
+        <input type="text" id="rek-product" name="product" placeholder="np. Bluza Kangurka AO, rozmiar L" />
+      </div>
+    </div>
+    <div class="rek-row">
+      <label for="rek-defect">Opis wady / zgłoszenia <span class="req">*</span></label>
+      <textarea id="rek-defect" name="defect" required minlength="20" placeholder="Szczegółowo opisz wadę, kiedy ją zauważono, w jakich okolicznościach…"></textarea>
+    </div>
+    <div class="rek-row">
+      <label for="rek-claim">Roszczenie (czego oczekujesz) <span class="req">*</span></label>
+      <select id="rek-claim" name="claim" required>
+        <option value="">— wybierz —</option>
+        <option value="naprawa">Naprawa produktu</option>
+        <option value="wymiana">Wymiana na nowy</option>
+        <option value="obnizka">Obniżenie ceny</option>
+        <option value="odstapienie">Odstąpienie od umowy (zwrot pieniędzy)</option>
+      </select>
+    </div>
+    <div class="rek-row">
+      <label for="rek-files">Zdjęcia wady (opcjonalnie)</label>
+      <input type="file" id="rek-files" name="files" multiple accept="image/*" class="file-input" />
+    </div>
+    <p style="font-size:11px;color:var(--text-muted);line-height:1.5;margin-bottom:14px;">
+      Twoje dane przetwarzamy zgodnie z art. 6 ust. 1 lit. b RODO (rozpatrzenie reklamacji). Administrator: Akademia Piłkarska Okocimski Brzesko. Szczegóły w <a href="polityka-prywatnosci.html" style="color:var(--gold);">Polityce prywatności</a>.
+    </p>
+    <button class="rek-submit" type="submit">Wyślij reklamację</button>
+    <div class="rek-msg" id="rek-msg" hidden></div>
+  </form>
+
+</main>
+
+<div class="cart-overlay" id="cart-overlay"></div>
+<aside class="cart-drawer" id="cart-drawer" role="dialog" aria-label="Koszyk" aria-modal="true">
+  <div class="cart-drawer-header">
+    <h3>Koszyk <span id="cart-count-drawer">(0)</span></h3>
+    <button class="cart-close-btn" id="cart-close" aria-label="Zamknij koszyk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+  </div>
+  <div class="cart-items" id="cart-items"><div class="cart-empty" id="cart-empty"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>Koszyk jest pusty</div></div>
+  <div class="cart-drawer-footer" id="cart-footer" style="display:none;"><div class="cart-subtotal"><span class="cart-subtotal-label">Suma</span><span class="cart-subtotal-val" id="cart-total">0 zł</span></div><p class="cart-free-ship" id="cart-ship-info"></p><a href="checkout.html" class="cart-checkout-btn">Przejdź do kasy</a></div>
+</aside>
+
+<footer data-ao-footer></footer>
+
+<script src="00%20-%20Assets/js/products.js"></script>
+<script src="00%20-%20Assets/js/cart.js"></script>
+<script src="00%20-%20Assets/js/site.js"></script>
+<script>
+  document.getElementById('rek-form').addEventListener('submit', async e => {
+    e.preventDefault();
+    const f = e.target;
+    const msg = document.getElementById('rek-msg');
+    const name = f.name.value.trim();
+    const email = f.email.value.trim();
+    const order = f.order.value.trim();
+    const defect = f.defect.value.trim();
+    const claim = f.claim.value;
+    if (name.length < 2 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || order.length < 3 || defect.length < 20 || !claim) {
+      msg.hidden = false; msg.className = 'rek-msg err';
+      msg.textContent = 'Sprawdź wszystkie wymagane pola.';
+      return;
+    }
+    const btn = f.querySelector('button[type="submit"]');
+    btn.disabled = true; btn.textContent = 'Wysyłam…';
+
+    // TODO(backend): podmień na fetch('/api/complaints', { method:'POST', body: FormData(f) })
+    await new Promise(r => setTimeout(r, 800));
+    msg.hidden = false; msg.className = 'rek-msg ok';
+    msg.textContent = 'Reklamacja przyjęta. Numer zgłoszenia otrzymasz mailem w ciągu 24 godzin.';
+    f.reset();
+    btn.disabled = false; btn.textContent = 'Wyślij reklamację';
+  });
+</script>
+</body>
+</html>

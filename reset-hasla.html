@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="canonical" href="https://sklep.akademia-okocim.pl/reset-hasla.html" />
+  <title>Reset hasła — Akademia Okocimskiego</title>
+  <meta name="description" content="Reset hasła do konta w sklepie Akademii Okocimskiego.">
+  <meta name="robots" content="noindex,follow">
+  <link rel="stylesheet" href="00%20-%20Assets/fonts/fonts.css" />
+  <link rel="stylesheet" href="00%20-%20Assets/css/site.css" />
+  <style>
+    .doc-hero { background: linear-gradient(135deg, var(--g500) 0%, var(--g900) 100%); padding: 56px 32px 40px; }
+    .doc-hero-inner { max-width: 880px; margin: 0 auto; }
+    .doc-hero h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(36px, 5vw, 52px); color: #fff; letter-spacing: 0.04em; }
+    .doc-hero h1 em { font-style: normal; color: var(--gold); }
+    .doc-hero p { color: rgba(255,255,255,0.6); font-size: 14px; margin-top: 4px; font-family: 'Barlow Condensed', sans-serif; letter-spacing: 0.06em; text-transform: uppercase; }
+    .doc-page { max-width: 880px; margin: 40px auto 80px; padding: 0 32px; line-height: 1.75; }
+    .doc-page h2 { font-family: 'Bebas Neue', sans-serif; font-size: 28px; color: var(--text-primary); margin: 36px 0 14px; letter-spacing: 0.04em; }
+    .doc-page h3 { font-family: 'Barlow Condensed', sans-serif; font-size: 18px; font-weight: 700; color: var(--gold); margin: 24px 0 10px; letter-spacing: 0.04em; text-transform: uppercase; }
+    .doc-page p { color: var(--text-secondary); margin-bottom: 14px; }
+    .doc-page ul, .doc-page ol { color: var(--text-secondary); padding-left: 22px; margin-bottom: 14px; }
+    .doc-page li { margin-bottom: 6px; }
+    .doc-page strong { color: var(--text-primary); }
+    .doc-page a { color: var(--gold); }
+    .toc { background: var(--bg-card); border: 1px solid rgba(240,235,227,0.06); border-radius: 12px; padding: 24px; margin-bottom: 32px; }
+    .toc h4 { font-family: 'Barlow Condensed', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+    .toc ol { padding-left: 18px; margin-bottom: 0; }
+    .toc a { font-size: 14px; }
+    .placeholder-note { padding: 14px 18px; background: rgba(201,168,76,0.08); border-left: 3px solid var(--gold); border-radius: 4px; color: var(--text-secondary); font-size: 13px; margin: 24px 0; }
+  </style>
+</head>
+<body>
+
+<div data-ao-header></div>
+
+<div class="doc-hero">
+  <div class="doc-hero-inner">
+    <p>Konto</p>
+    <h1>Reset <em>hasła</em></h1>
+  </div>
+</div>
+
+<style>
+  .auth-form-card { max-width: 480px; margin: 0 auto; background: var(--bg-card); border: 1px solid rgba(240,235,227,0.06); border-radius: 12px; padding: 32px; }
+  .auth-form-card h2 { font-family: 'Bebas Neue', sans-serif; font-size: 26px; color: var(--text-primary); margin-bottom: 12px; letter-spacing: 0.04em; text-align: center; }
+  .auth-form-card .lead { color: var(--text-secondary); font-size: 14px; text-align: center; margin-bottom: 22px; line-height: 1.6; }
+  .auth-row { margin-bottom: 14px; }
+  .auth-row label { display: block; font-family: 'Barlow Condensed', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-secondary); margin-bottom: 6px; }
+  .auth-row input { width: 100%; padding: 12px 14px; background: var(--surface); border: 1.5px solid rgba(240,235,227,0.1); border-radius: var(--r); color: var(--text-primary); font-family: 'DM Sans', sans-serif; font-size: 14px; outline: none; }
+  .auth-row input:focus { border-color: var(--gold); }
+  .auth-submit { width: 100%; padding: 14px; background: var(--gold); color: var(--bg-deep); border: none; border-radius: var(--r); font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 15px; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; }
+  .auth-submit:hover { background: var(--gold2); }
+  .auth-bottom { text-align: center; margin-top: 18px; color: var(--text-secondary); font-size: 14px; }
+  .auth-bottom a { color: var(--gold); }
+  .auth-msg { font-size: 14px; margin-top: 12px; padding: 10px 14px; border-radius: var(--r); }
+  .auth-msg.ok { background: rgba(61,160,95,0.1); color: var(--g300); }
+  .auth-msg.err { background: rgba(224,82,82,0.1); color: #e05252; }
+</style>
+
+<main id="main" class="doc-page">
+  <form class="auth-form-card" id="reset-form" novalidate>
+    <h2>Zapomniałeś hasła?</h2>
+    <p class="lead">Podaj adres e-mail przypisany do konta. Wyślemy link do zresetowania hasła.</p>
+
+    <div class="auth-row">
+      <label for="reset-email">Adres e-mail</label>
+      <input type="email" id="reset-email" name="email" required autocomplete="email">
+    </div>
+
+    <button type="submit" class="auth-submit" id="reset-btn">Wyślij link do resetu</button>
+    <div class="auth-msg" id="reset-msg" hidden></div>
+
+    <p class="auth-bottom"><a href="logowanie.html">← Wróć do logowania</a></p>
+  </form>
+</main>
+
+<script>
+  document.getElementById('reset-form').addEventListener('submit', async e => {
+    e.preventDefault();
+    const email = document.getElementById('reset-email');
+    const btn = document.getElementById('reset-btn');
+    const msg = document.getElementById('reset-msg');
+
+    const ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim());
+    if (!ok) {
+      msg.hidden = false;
+      msg.className = 'auth-msg err';
+      msg.textContent = 'Wpisz poprawny adres e-mail.';
+      return;
+    }
+
+    btn.disabled = true;
+    btn.textContent = 'Wysyłam…';
+    msg.hidden = true;
+
+    try {
+      // TODO(backend): podmień na POST /api/auth/password-reset { email }
+      await new Promise(r => setTimeout(r, 700));
+      msg.hidden = false;
+      msg.className = 'auth-msg ok';
+      msg.textContent = 'Jeśli adres istnieje w systemie, wysłaliśmy link do resetu. Sprawdź skrzynkę.';
+      btn.disabled = true;
+      btn.textContent = 'Wysłano';
+    } catch {
+      msg.hidden = false;
+      msg.className = 'auth-msg err';
+      msg.textContent = 'Coś poszło nie tak. Spróbuj ponownie.';
+      btn.disabled = false;
+      btn.textContent = 'Wyślij link do resetu';
+    }
+  });
+</script>
+
+<div class="cart-overlay" id="cart-overlay"></div>
+<aside class="cart-drawer" id="cart-drawer" role="dialog" aria-label="Koszyk" aria-modal="true">
+  <div class="cart-drawer-header">
+    <h3>Koszyk <span id="cart-count-drawer">(0)</span></h3>
+    <button class="cart-close-btn" id="cart-close" aria-label="Zamknij koszyk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+  </div>
+  <div class="cart-items" id="cart-items"><div class="cart-empty" id="cart-empty"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>Koszyk jest pusty</div></div>
+  <div class="cart-drawer-footer" id="cart-footer" style="display:none;"><div class="cart-subtotal"><span class="cart-subtotal-label">Suma</span><span class="cart-subtotal-val" id="cart-total">0 zł</span></div><p class="cart-free-ship" id="cart-ship-info"></p><a href="checkout.html" class="cart-checkout-btn">Przejdź do kasy</a></div>
+</aside>
+
+<footer data-ao-footer></footer>
+
+<script src="00%20-%20Assets/js/products.js"></script>
+<script src="00%20-%20Assets/js/cart.js"></script>
+<script src="00%20-%20Assets/js/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="canonical" href="https://sklep.akademia-okocim.pl/404.html" />
+  <title>Strona nie znaleziona — Akademia Okocimskiego</title>
+  <meta name="description" content="Strona, której szukasz, nie istnieje lub została przeniesiona. Wróć do sklepu Akademii Okocimskiego.">
+  <meta name="robots" content="noindex,follow">
+  <link rel="stylesheet" href="00%20-%20Assets/fonts/fonts.css" />
+  <link rel="stylesheet" href="00%20-%20Assets/css/site.css" />
+  <style>
+    .err-page { min-height: 70vh; display: flex; align-items: center; justify-content: center; padding: 60px 32px; text-align: center; }
+    .err-inner { max-width: 540px; }
+    .err-code { font-family: 'Bebas Neue', sans-serif; font-size: clamp(120px, 18vw, 220px); color: var(--gold); line-height: 1; letter-spacing: 0.02em; text-shadow: 0 0 80px var(--gold-glow); }
+    .err-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(28px, 4vw, 44px); color: var(--text-primary); margin: 12px 0 16px; letter-spacing: 0.04em; }
+    .err-desc { color: var(--text-secondary); margin-bottom: 32px; line-height: 1.7; }
+    .err-actions { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    .err-actions a { padding: 14px 28px; border-radius: var(--r); font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 14px; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; transition: all 0.2s; }
+    .btn-home { background: var(--gold); color: var(--bg-deep); border: 2px solid var(--gold); }
+    .btn-home:hover { background: transparent; color: var(--gold); }
+    .btn-shop { border: 2px solid rgba(240,235,227,0.2); color: var(--text-primary); }
+    .btn-shop:hover { border-color: var(--gold); color: var(--gold); }
+    .err-cats { margin-top: 48px; }
+    .err-cats h3 { font-family: 'Barlow Condensed', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 14px; }
+    .err-cat-list { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+    .err-cat-list a { padding: 8px 16px; border: 1.5px solid rgba(201,168,76,0.3); border-radius: 100px; color: var(--gold); font-family: 'Barlow Condensed', sans-serif; font-size: 13px; font-weight: 600; text-decoration: none; transition: all 0.2s; }
+    .err-cat-list a:hover { background: rgba(201,168,76,0.1); }
+  </style>
+</head>
+<body>
+
+<div data-ao-header></div>
+
+<main id="main" class="err-page">
+  <div class="err-inner">
+    <div class="err-code">404</div>
+    <h1 class="err-title">Tej strony już nie ma</h1>
+    <p class="err-desc">Strona, której szukasz, mogła zostać przeniesiona albo zmieniła nazwę. Wróć na stronę główną lub przejrzyj nasze kategorie.</p>
+    <div class="err-actions">
+      <a href="index.html" class="btn-home">Wróć na stronę główną</a>
+      <a href="kategoria.html?kat=koszulki" class="btn-shop">Przejdź do sklepu</a>
+    </div>
+    <div class="err-cats">
+      <h3>Najpopularniejsze kategorie</h3>
+      <div class="err-cat-list">
+        <a href="kategoria.html?kat=koszulki">Koszulki</a>
+        <a href="kategoria.html?kat=bluzy">Bluzy</a>
+        <a href="kategoria.html?kat=spodenki">Spodenki</a>
+        <a href="kategoria.html?kat=czapki">Akcesoria</a>
+        <a href="kategoria.html?kat=gadgety">Gadżety</a>
+      </div>
+    </div>
+  </div>
+</main>
+
+<div class="cart-overlay" id="cart-overlay"></div>
+<aside class="cart-drawer" id="cart-drawer" role="dialog" aria-label="Koszyk" aria-modal="true">
+  <div class="cart-drawer-header">
+    <h3>Koszyk <span id="cart-count-drawer">(0)</span></h3>
+    <button class="cart-close-btn" id="cart-close" aria-label="Zamknij koszyk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+  </div>
+  <div class="cart-items" id="cart-items">
+    <div class="cart-empty" id="cart-empty"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>Koszyk jest pusty</div>
+  </div>
+  <div class="cart-drawer-footer" id="cart-footer" style="display:none;">
+    <div class="cart-subtotal"><span class="cart-subtotal-label">Suma</span><span class="cart-subtotal-val" id="cart-total">0 zł</span></div>
+    <p class="cart-free-ship" id="cart-ship-info"></p>
+    <a href="checkout.html" class="cart-checkout-btn">Przejdź do kasy</a>
+  </div>
+</aside>
+
+<footer data-ao-footer></footer>
+
+<script defer src="00%20-%20Assets/js/products.js"></script>
+<script defer src="00%20-%20Assets/js/cart.js"></script>
+<script defer src="00%20-%20Assets/js/site.js"></script>
+</body>
+</html>

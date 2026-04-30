@@ -1,0 +1,16 @@
+User-agent: *
+Allow: /
+
+# Strony wymagające zalogowania — nie indeksować
+Disallow: /moje-konto.html
+Disallow: /logowanie.html
+Disallow: /rejestracja.html
+Disallow: /reset-hasla.html
+Disallow: /konto.html
+Disallow: /ulubione.html
+Disallow: /checkout.html
+Disallow: /dziekujemy.html
+Disallow: /wyniki-wyszukiwania.html
+
+# Sitemap
+Sitemap: https://akademia-okocim.pl/sitemap.xml

@@ -1,0 +1,107 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://sklep.akademia-okocim.pl/product.schema.json",
+  "title": "AO Product",
+  "description": "Schemat produktu w sklepie Akademii Okocimskiego. Backend musi zwracać dane w tej strukturze (GET /api/products lub /api/products/{id}), żeby front działał bez zmian.",
+  "type": "object",
+  "required": ["id", "slug", "kat", "cat", "name", "description", "price", "image", "sizes", "outSizes", "rating", "reviews"],
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "Unikalny ID produktu (numeric).",
+      "examples": [11, 23]
+    },
+    "slug": {
+      "type": "string",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$",
+      "description": "URL-friendly slug. Po przepięciu friendly URLs: /produkt/<slug>/.",
+      "examples": ["bluza-kangurka-ao-zielona"]
+    },
+    "kat": {
+      "type": "string",
+      "enum": ["koszulki", "bluzy", "spodenki", "czapki", "torby", "gadgety"],
+      "description": "Klucz kategorii (używany w filtrach/URL ?kat=)."
+    },
+    "cat": {
+      "type": "string",
+      "description": "Wyświetlana nazwa pod-kategorii (display label).",
+      "examples": ["Bluzy Treningowe", "Stroje Meczowe"]
+    },
+    "name": {
+      "type": "string",
+      "minLength": 3,
+      "description": "Pełna nazwa produktu."
+    },
+    "description": {
+      "type": "string",
+      "description": "Opis produktu (skład, fason, instrukcja prania itp). Może zawierać podstawowy markdown / HTML."
+    },
+    "price": {
+      "type": "number",
+      "minimum": 0,
+      "description": "Cena obecna w PLN (liczba, bez waluty, bez separatora tysięcy)."
+    },
+    "oldPrice": {
+      "type": ["number", "null"],
+      "description": "Cena przed obniżką (przekreślona). null gdy brak promocji.",
+      "minimum": 0
+    },
+    "lowest30dPrice": {
+      "type": ["number", "null"],
+      "description": "OMNIBUS: najniższa cena z 30 dni przed obniżką. WYMAGANE prawem zawsze gdy oldPrice != null. Wartość ≤ oldPrice.",
+      "minimum": 0
+    },
+    "image": {
+      "type": "string",
+      "description": "URL głównego zdjęcia (URL-encoded jeśli ścieżka zawiera spacje)."
+    },
+    "imgHover": {
+      "type": ["string", "null"],
+      "description": "URL alt-zdjęcia pokazywanego na hover."
+    },
+    "video": {
+      "type": ["string", "null"],
+      "description": "URL wideo (mp4, max 6MB, muted, loop). Pokazywane na hover karty produktu."
+    },
+    "gallery": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Dodatkowe zdjęcia w galerii PDP (oprócz image i imgHover)."
+    },
+    "sizes": {
+      "type": "array",
+      "items": { "type": "string", "enum": ["XS","S","M","L","XL","XXL"] },
+      "description": "Dostępne rozmiary. [] gdy produkt one-size (czapki, gadżety)."
+    },
+    "outSizes": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Rozmiary aktualnie wyprzedane (klikalne, otwierają formularz 'Powiadom o dostępności')."
+    },
+    "badge": {
+      "type": ["string", "null"],
+      "enum": ["new", "hot", "sale", null],
+      "description": "Etykieta na karcie: nowość / bestseller / wyprzedaż."
+    },
+    "rating": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 5,
+      "description": "Średnia ocena 0-5."
+    },
+    "reviews": {
+      "type": "integer",
+      "minimum": 0,
+      "description": "Liczba recenzji."
+    },
+    "stock": {
+      "type": ["integer", "null"],
+      "minimum": 0,
+      "description": "Liczba sztuk w magazynie. null = nieznane / nieograniczone. < 5 → komunikat 'Ostatnie X sztuk'. = 0 → 'Brak'."
+    },
+    "featured": {
+      "type": "boolean",
+      "description": "Czy pokazać w sekcji 'Wyróżnione' na stronie głównej."
+    }
+  }
+}

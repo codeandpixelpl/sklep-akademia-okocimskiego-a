@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="canonical" href="https://sklep.akademia-okocim.pl/ulubione.html" />
+  <title>Ulubione — Akademia Okocimskiego</title>
+  <meta name="description" content="Twoja lista ulubionych produktów w sklepie Akademii Okocimskiego.">
+  <meta name="robots" content="noindex,follow">
+  <link rel="stylesheet" href="00%20-%20Assets/fonts/fonts.css" />
+  <link rel="stylesheet" href="00%20-%20Assets/css/site.css" />
+  <style>
+    .wishlist-hero { background: linear-gradient(135deg, var(--g500) 0%, var(--g900) 100%); padding: 56px 32px 40px; text-align: center; }
+    .wishlist-hero h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(36px, 5vw, 52px); color: #fff; letter-spacing: 0.04em; margin-bottom: 8px; }
+    .wishlist-hero h1 em { font-style: normal; color: var(--gold); }
+    .wishlist-hero p { color: rgba(255,255,255,0.6); font-size: 15px; }
+    .wl-page { max-width: 1360px; margin: 32px auto 80px; padding: 0 32px; }
+    .wl-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+    .wl-card { background: var(--bg-card); border: 1px solid rgba(240,235,227,0.06); border-radius: 12px; overflow: hidden; transition: all 0.3s; position: relative; }
+    .wl-card:hover { transform: translateY(-4px); border-color: rgba(201,168,76,0.3); }
+    .wl-img { aspect-ratio: 3/4; background: var(--surface); overflow: hidden; }
+    .wl-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
+    .wl-card:hover .wl-img img { transform: scale(1.04); }
+    .wl-body { padding: 14px 16px 18px; }
+    .wl-cat { font-family: 'Barlow Condensed', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 4px; }
+    .wl-name { font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--text-primary); margin-bottom: 8px; line-height: 1.3; text-decoration: none; display: block; }
+    .wl-price { font-family: 'Oswald', sans-serif; font-size: 18px; font-weight: 600; color: var(--text-primary); margin-bottom: 12px; }
+    .wl-actions { display: flex; gap: 8px; }
+    .wl-add { flex: 1; padding: 10px; background: var(--gold); color: var(--bg-deep); border: none; border-radius: var(--r); font-family: 'Barlow Condensed', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; cursor: pointer; }
+    .wl-add:hover { background: var(--gold2); }
+    .wl-remove { width: 36px; height: 36px; border: 1.5px solid rgba(240,235,227,0.1); background: transparent; border-radius: var(--r); cursor: pointer; color: var(--text-muted); display: grid; place-items: center; transition: all 0.2s; }
+    .wl-remove:hover { color: #e05252; border-color: #e05252; }
+    .wl-empty { text-align: center; padding: 80px 20px; }
+    .wl-empty-icon { width: 80px; height: 80px; margin: 0 auto 20px; opacity: 0.3; color: var(--text-primary); }
+    .wl-empty h2 { font-family: 'Bebas Neue', sans-serif; font-size: 32px; color: var(--text-primary); margin-bottom: 12px; letter-spacing: 0.04em; }
+    .wl-empty p { color: var(--text-secondary); margin-bottom: 28px; }
+    .wl-empty a { display: inline-block; padding: 14px 28px; background: var(--gold); color: var(--bg-deep); border-radius: var(--r); font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 14px; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; }
+    .wl-empty a:hover { background: var(--gold2); }
+    @media (max-width: 1024px) { .wl-grid { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 768px) { .wl-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; } }
+  </style>
+</head>
+<body>
+
+<div data-ao-header></div>
+
+<div class="wishlist-hero">
+  <h1>Twoje <em>Ulubione</em></h1>
+  <p>Produkty zapisane do późniejszych zakupów.</p>
+</div>
+
+<main id="main" class="wl-page">
+  <div class="wl-grid" id="wl-grid"></div>
+  <div class="wl-empty" id="wl-empty" hidden>
+    <svg class="wl-empty-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+    <h2>Brak ulubionych produktów</h2>
+    <p>Klikaj serce na karcie produktu, żeby zapisać go na później.</p>
+    <a href="kategoria.html?kat=koszulki">Przeglądaj sklep</a>
+  </div>
+</main>
+
+<div class="cart-overlay" id="cart-overlay"></div>
+<aside class="cart-drawer" id="cart-drawer" role="dialog" aria-label="Koszyk" aria-modal="true">
+  <div class="cart-drawer-header">
+    <h3>Koszyk <span id="cart-count-drawer">(0)</span></h3>
+    <button class="cart-close-btn" id="cart-close" aria-label="Zamknij koszyk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+  </div>
+  <div class="cart-items" id="cart-items">
+    <div class="cart-empty" id="cart-empty"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>Koszyk jest pusty</div>
+  </div>
+  <div class="cart-drawer-footer" id="cart-footer" style="display:none;">
+    <div class="cart-subtotal"><span class="cart-subtotal-label">Suma</span><span class="cart-subtotal-val" id="cart-total">0 zł</span></div>
+    <p class="cart-free-ship" id="cart-ship-info"></p>
+    <a href="checkout.html" class="cart-checkout-btn">Przejdź do kasy</a>
+  </div>
+</aside>
+
+<footer data-ao-footer></footer>
+
+<script src="00%20-%20Assets/js/products.js"></script>
+<script src="00%20-%20Assets/js/cart.js"></script>
+<script src="00%20-%20Assets/js/site.js"></script>
+<script>
+  function render() {
+    const ids = AO_Site.Wishlist.all();
+    const grid = document.getElementById('wl-grid');
+    const empty = document.getElementById('wl-empty');
+
+    const products = ids.map(id => AO_Catalog.findById(id)).filter(Boolean);
+
+    if (products.length === 0) {
+      grid.style.display = 'none';
+      empty.hidden = false;
+      return;
+    }
+
+    grid.style.display = '';
+    empty.hidden = true;
+
+    grid.innerHTML = products.map(p => `
+      <div class="wl-card" data-product-id="${p.id}">
+        <a href="produkt.html?id=${p.id}" style="text-decoration:none;color:inherit;">
+          <div class="wl-img"><img src="${p.image}" width="600" height="800" alt="${AO_Site.escapeHtml(p.name)}" loading="lazy"></div>
+        </a>
+        <div class="wl-body">
+          <div class="wl-cat">${AO_Site.escapeHtml(p.cat)}</div>
+          <a href="produkt.html?id=${p.id}" class="wl-name">${AO_Site.escapeHtml(p.name)}</a>
+          <div class="wl-price">${p.oldPrice ? `<span style="text-decoration:line-through;color:var(--text-muted);font-size:0.75em;margin-right:6px;">${p.oldPrice} zł</span>` : ''}${p.price} zł</div>
+          ${AO_Site.omnibusHTML(p)}
+          <div class="wl-actions">
+            <button class="wl-add" type="button" data-action="cart">${(p.sizes || []).length > 0 ? 'Wybierz rozmiar' : 'Dodaj do koszyka'}</button>
+            <button class="wl-remove" type="button" data-action="remove" aria-label="Usuń z ulubionych">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>`).join('');
+
+    grid.querySelectorAll('[data-action="remove"]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const id = Number(btn.closest('.wl-card').dataset.productId);
+        AO_Site.Wishlist.toggle(id);
+        AO_Site.toast('Usunięto z ulubionych');
+        render();
+      });
+    });
+
+    grid.querySelectorAll('[data-action="cart"]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const id = Number(btn.closest('.wl-card').dataset.productId);
+        const p = AO_Catalog.findById(id);
+        if (!p) return;
+        if ((p.sizes || []).length > 0) {
+          // przekieruj na stronę produktu (z size pickerem)
+          location.href = `produkt.html?id=${id}`;
+        } else {
+          AO_Cart.add(id, null, 1);
+          AO_Cart.openDrawer();
+        }
+      });
+    });
+  }
+
+  render();
+  document.addEventListener('ao:wishlist-changed', render);
+</script>
+
+</body>
+</html>

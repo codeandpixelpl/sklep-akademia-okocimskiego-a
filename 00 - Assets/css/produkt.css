@@ -1,0 +1,213 @@
+/* ============================================================
+   Style unikalne dla strony produkt.html
+   Wyodrębnione z inline <style> dla lepszego cache.
+============================================================ */
+
+/* Style unikalne dla strony produktu */
+
+    /* ── BREADCRUMB ── */
+    .breadcrumb { max-width: 1360px; margin: 0 auto; padding: 16px 32px; display: flex; gap: 8px; align-items: center; font-family: 'Barlow Condensed', sans-serif; font-size: 13px; color: var(--text-muted); }
+    .breadcrumb a { color: var(--text-muted); text-decoration: none; }
+    .breadcrumb a:hover { color: var(--gold); }
+    .breadcrumb span { color: var(--gold); font-weight: 600; }
+
+    /* ── PRODUCT LAYOUT ── */
+    .product-page { max-width: 1360px; margin: 0 auto; padding: 0 32px 80px; display: grid; grid-template-columns: 1fr 480px; gap: 60px; align-items: start; }
+
+    /* ── GALLERY ── */
+    .gallery { display: grid; grid-template-columns: 80px 1fr; gap: 12px; position: sticky; top: 120px; }
+    .thumbs { display: flex; flex-direction: column; gap: 10px; }
+    .thumb { width: 80px; height: 80px; border-radius: 8px; overflow: hidden; cursor: pointer; border: 2px solid transparent; transition: border-color 0.2s; position: relative; background: #0e2216; }
+    .thumb img { width: 100%; height: 100%; object-fit: cover; }
+    .thumb.active { border-color: var(--gold); }
+    .thumb.video-thumb { background: #162b1d; display: flex; align-items: center; justify-content: center; }
+    .thumb.video-thumb svg { color: var(--gold); width: 28px; height: 28px; }
+    .main-display { aspect-ratio: 3/4; border-radius: 14px; overflow: hidden; background: #0e2216; position: relative; }
+    .main-display img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .main-display video { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .main-display .media-item { position: absolute; inset: 0; opacity: 0; transition: opacity 0.3s; pointer-events: none; }
+    .main-display .media-item.active { opacity: 1; pointer-events: auto; }
+
+    /* ── PRODUCT INFO ── */
+    .product-info { padding-top: 8px; }
+    .product-badge-row { display: flex; gap: 8px; margin-bottom: 12px; }
+    .badge { font-family: 'Barlow Condensed', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 10px; border-radius: 4px; }
+    .badge-new { background: var(--g300); color: #fff; }
+    .product-category { font-family: 'Barlow Condensed', sans-serif; font-size: 13px; font-weight: 600; color: var(--gold); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 8px; }
+    .product-title { font-family: 'Bebas Neue', sans-serif; font-size: 38px; letter-spacing: 0.03em; color: var(--text-primary); line-height: 1.1; margin-bottom: 12px; }
+    .product-stars { display: flex; align-items: center; gap: 6px; margin-bottom: 20px; }
+    .star { color: var(--gold); font-size: 16px; }
+    .product-price-big { font-family: 'Barlow Condensed', sans-serif; font-size: 32px; font-weight: 700; color: var(--gold); margin-bottom: 24px; }
+    .product-desc { font-size: 15px; line-height: 1.6; color: var(--text-secondary); margin-bottom: 28px; }
+    .product-desc ul { padding-left: 20px; margin-top: 8px; }
+    .product-desc li { margin-bottom: 4px; }
+
+    /* Size picker */
+    .label-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+    .size-label { font-family: 'Barlow Condensed', sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-secondary); }
+    .size-guide { font-family: 'Barlow Condensed', sans-serif; font-size: 13px; color: var(--gold); text-decoration: underline; cursor: pointer; }
+    .sizes-grid { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 28px; }
+    .size-btn { font-family: 'Barlow Condensed', sans-serif; font-size: 14px; font-weight: 600; padding: 10px 20px; border: 1.5px solid rgba(240,235,227,0.25); border-radius: 8px; background: rgba(240,235,227,0.06); cursor: pointer; transition: all 0.15s; color: rgba(240,235,227,0.85); }
+    .size-btn:hover { border-color: var(--gold); color: var(--gold); background: rgba(201,168,76,0.08); }
+    .size-btn.selected { border-color: var(--gold); background: rgba(201,168,76,0.18); color: var(--gold); }
+    .size-btn.out { opacity: 0.45; cursor: pointer; text-decoration: line-through; position: relative; }
+    .size-btn.out:hover { opacity: 0.7; border-color: var(--gold); }
+    .notify-stock { background: rgba(201,168,76,0.06); border: 1px solid rgba(201,168,76,0.2); border-radius: 10px; padding: 16px 18px; margin: 0 0 28px; }
+    .notify-stock-title { font-family: 'Barlow Condensed', sans-serif; font-size: 14px; letter-spacing: 0.04em; color: var(--text-primary); margin-bottom: 10px; }
+    .notify-stock-title strong { color: var(--gold); }
+    .notify-stock-form { display: flex; gap: 8px; }
+    .notify-stock-form input { flex: 1; padding: 10px 14px; background: rgba(240,235,227,0.06); border: 1px solid rgba(240,235,227,0.15); border-radius: 6px; color: var(--text-primary); font-family: inherit; font-size: 14px; }
+    .notify-stock-form input:focus { outline: none; border-color: var(--gold); }
+    .notify-stock-form button { padding: 10px 18px; background: var(--gold); color: var(--g900); border-radius: 6px; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; font-size: 13px; }
+    .notify-stock-form button:hover { background: var(--gold-light); }
+    .notify-stock-msg { margin-top: 10px; font-size: 13px; color: var(--g200); }
+    .notify-stock-msg.err { color: #e07b7b; }
+    .size-error { font-size: 13px; color: #e05c5c; margin-top: -20px; margin-bottom: 16px; display: none; }
+    .size-error.visible { display: block; }
+
+    /* ── STICKY ADD-TO-CART (mobile) ── */
+    .sticky-cta {
+      position: fixed;
+      left: 0; right: 0; bottom: 0;
+      background: rgba(7,15,9,0.95);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-top: 1px solid rgba(201,168,76,0.2);
+      padding: 10px 14px;
+      display: none;
+      z-index: 900;
+      gap: 10px;
+      align-items: center;
+      box-shadow: 0 -8px 24px rgba(0,0,0,0.3);
+      transform: translateY(100%);
+      transition: transform 0.3s cubic-bezier(.4,0,.2,1);
+    }
+    .sticky-cta.show { transform: translateY(0); }
+    .sticky-cta-img { width: 48px; height: 48px; border-radius: 6px; overflow: hidden; flex-shrink: 0; background: var(--bg-card); }
+    .sticky-cta-img img { width: 100%; height: 100%; object-fit: cover; }
+    .sticky-cta-info { flex: 1; min-width: 0; }
+    .sticky-cta-name { font-family: 'DM Sans', sans-serif; font-size: 13px; color: var(--text-primary); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .sticky-cta-price { font-family: 'Oswald', sans-serif; font-size: 16px; font-weight: 700; color: var(--gold); }
+    .sticky-cta-btn { padding: 12px 18px; background: var(--gold); color: var(--bg-deep); border: none; border-radius: 6px; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; flex-shrink: 0; }
+    .sticky-cta-btn:hover { background: var(--gold-light); }
+    @media (max-width: 768px) {
+      .sticky-cta { display: flex; }
+      body.has-sticky-cta { padding-bottom: 80px; }
+    }
+
+    /* CTA */
+    .cta-row { display: flex; gap: 12px; margin-bottom: 20px; }
+    .btn-cart { flex: 1; padding: 16px 24px; background: var(--gold); color: var(--bg-deep); border: none; border-radius: var(--r); font-family: 'Barlow Condensed', sans-serif; font-size: 16px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; transition: background 0.2s; }
+    .btn-cart:hover { background: var(--gold-light); }
+    .btn-wish { width: 52px; height: 52px; border: 1.5px solid rgba(240,235,227,0.12); border-radius: var(--r); background: #0e2216; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: border-color 0.2s; color: var(--text-secondary); }
+    .btn-wish:hover { border-color: var(--gold); color: var(--gold); }
+
+    /* Trust */
+    .trust-mini { display: flex; flex-direction: column; gap: 8px; padding: 16px; background: #162b1d; border-radius: var(--r); border: 1px solid rgba(240,235,227,0.06); }
+    .trust-mini-item { display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--text-secondary); }
+    .trust-mini-item svg { color: var(--gold); flex-shrink: 0; }
+
+    /* Stock info */
+    .stock-info { font-family: 'Barlow Condensed', sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 24px; display: inline-block; padding: 5px 12px; border-radius: 4px; }
+    .stock-info:empty { display: none; }
+    .stock-info.ok { background: rgba(61,160,95,0.15); color: var(--g300); }
+    .stock-info.low { background: rgba(201,168,76,0.15); color: var(--gold); }
+    .stock-info.out { background: rgba(224,82,82,0.15); color: #e05252; }
+
+    .btn-wish.active { border-color: var(--gold); color: var(--gold); background: rgba(201,168,76,0.1); }
+    .btn-wish.active svg { fill: var(--gold); }
+
+    .size-btn[disabled] { opacity: 0.3; cursor: not-allowed; text-decoration: line-through; }
+
+    /* ── RELATED PRODUCTS ── */
+    .related-section { max-width: 1360px; margin: 40px auto 80px; padding: 0 32px; }
+    .related-title { font-family: 'Bebas Neue', sans-serif; font-size: 32px; letter-spacing: 0.04em; color: var(--text-primary); margin-bottom: 24px; }
+    .related-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+    .related-card { background: var(--bg-card); border: 1px solid rgba(240,235,227,0.06); border-radius: 10px; overflow: hidden; transition: transform 0.3s, border-color 0.3s; text-decoration: none; color: inherit; display: block; }
+    .related-card:hover { transform: translateY(-4px); border-color: rgba(201,168,76,0.25); }
+    .related-card-img { aspect-ratio: 3/4; background: var(--surface); }
+    .related-card-img img { width: 100%; height: 100%; object-fit: cover; }
+    .related-card-body { padding: 14px 16px 18px; }
+    .related-card-cat { font-family: 'Barlow Condensed', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 4px; }
+    .related-card-name { font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--text-primary); margin-bottom: 8px; line-height: 1.3; }
+    .related-card-price { font-family: 'Oswald', sans-serif; font-size: 18px; font-weight: 600; color: var(--text-primary); }
+    @media (max-width: 900px) { .related-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 480px) { .related-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; } }
+
+    /* ── REVIEWS ── */
+    .reviews-section { max-width: 1360px; margin: 40px auto; padding: 0 32px; }
+    .reviews-section h2 { font-family: 'Bebas Neue', sans-serif; font-size: 32px; color: var(--text-primary); margin-bottom: 24px; letter-spacing: 0.04em; }
+    .reviews-summary { display: flex; align-items: center; gap: 24px; margin-bottom: 32px; padding: 20px 24px; background: var(--bg-card); border-radius: 12px; border: 1px solid rgba(240,235,227,0.06); flex-wrap: wrap; }
+    .reviews-rating { font-family: 'Bebas Neue', sans-serif; font-size: 56px; color: var(--gold); line-height: 1; }
+    .reviews-stars { display: flex; gap: 2px; color: var(--gold); font-size: 18px; }
+    .reviews-count { color: var(--text-secondary); font-size: 14px; }
+    .review-list { display: flex; flex-direction: column; gap: 16px; margin-bottom: 28px; }
+    .review-item { padding: 18px 22px; background: var(--bg-card); border: 1px solid rgba(240,235,227,0.06); border-radius: 10px; }
+    .review-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; flex-wrap: wrap; gap: 8px; }
+    .review-author { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 15px; color: var(--text-primary); letter-spacing: 0.02em; }
+    .review-date { font-size: 12px; color: var(--text-muted); }
+    .review-stars { color: var(--gold); font-size: 14px; }
+    .review-text { font-size: 14px; color: var(--text-secondary); line-height: 1.6; }
+    .review-form { padding: 20px 24px; background: var(--bg-card); border-radius: 12px; border: 1px solid rgba(240,235,227,0.06); }
+    .review-form h3 { font-family: 'Bebas Neue', sans-serif; font-size: 22px; color: var(--text-primary); margin-bottom: 16px; letter-spacing: 0.04em; }
+    .review-form-row { margin-bottom: 14px; }
+    .review-form label { display: block; font-family: 'Barlow Condensed', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-secondary); margin-bottom: 6px; }
+    .review-form input, .review-form textarea { width: 100%; padding: 10px 14px; background: var(--surface); border: 1.5px solid rgba(240,235,227,0.1); border-radius: var(--r); color: var(--text-primary); font-family: 'DM Sans', sans-serif; font-size: 14px; outline: none; transition: border-color 0.2s; }
+    .review-form input:focus, .review-form textarea:focus { border-color: var(--gold); }
+    .review-form textarea { resize: vertical; min-height: 80px; }
+    .review-rating-pick { display: flex; gap: 4px; }
+    .review-rating-pick button { background: transparent; border: none; color: var(--text-muted); font-size: 24px; cursor: pointer; transition: color 0.2s; padding: 0 2px; }
+    .review-rating-pick button.active, .review-rating-pick button:hover { color: var(--gold); }
+    .review-submit { padding: 12px 24px; background: var(--gold); color: var(--bg-deep); border: none; border-radius: var(--r); font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 14px; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; }
+    .review-submit:hover { background: var(--gold2); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .product-page { grid-template-columns: 1fr; gap: 24px; padding: 0 14px 60px; }
+      /* Galeria w pionie: main image NA GÓRZE, thumbs pod */
+      .gallery {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto;
+        gap: 10px;
+        position: static;
+      }
+      .gallery .main-display {
+        order: 1;
+        /* Mniejsze proporcje + max-height żeby nie zdominowało ekranu */
+        aspect-ratio: 4/5;
+        max-height: 55vh;
+        width: 100%;
+        margin: 0 auto;
+      }
+      .gallery .main-display img,
+      .gallery .main-display video { object-fit: contain; background: #0e2216; }
+      .gallery .thumbs {
+        order: 2;
+        flex-direction: row;
+        gap: 8px;
+        overflow-x: auto;
+        scrollbar-width: thin;
+        padding-bottom: 4px;
+      }
+      .thumb { width: 64px; height: 64px; flex-shrink: 0; }
+    }
+    @media (max-width: 768px) {
+      .breadcrumb { padding: 12px 14px; }
+      .product-title { font-size: 28px; }
+      .product-price-big { font-size: 24px; margin-bottom: 16px; }
+      .product-desc { font-size: 14px; margin-bottom: 22px; }
+      .cta-row { gap: 8px; }
+      .btn-cart { font-size: 14px; padding: 14px 16px; }
+      .reviews-section, .related-section { padding: 0 14px; margin: 24px auto 56px; }
+      .related-grid { gap: 10px; }
+      .reviews-summary { padding: 16px 18px; gap: 16px; }
+      .reviews-rating { font-size: 44px; }
+      .gallery .main-display { max-height: 50vh; aspect-ratio: 4/5; }
+    }
+    @media (max-width: 480px) {
+      .product-page { padding: 0 12px 48px; gap: 20px; }
+      .thumb { width: 56px; height: 56px; }
+      .sizes-grid { gap: 6px; }
+      .size-btn { padding: 8px 14px; font-size: 13px; }
+      .gallery .main-display { max-height: 45vh; aspect-ratio: 1/1; }
+    }

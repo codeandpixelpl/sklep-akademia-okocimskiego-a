@@ -3,419 +3,24 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="canonical" href="https://sklep.akademia-okocim.pl/kategoria.html" />
   <title>Kategoria — Akademia Okocimskiego</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;500;600;700&family=DM+Sans:wght@300;400;500;600&family=Oswald:wght@400;500;600&display=swap" rel="stylesheet" />
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    :root {
-      --g900: #0D3B1F; --g800: #f4f7f5; --g700: #e8ede9;
-      --g500: #1E5630; --g400: #286B3E; --g300: #3B8C58;
-      --gold: #C9A84C; --gold2: #b8922e; --gold3: #F0D68A;
-      --white: #FFFFFF; --muted: rgba(20,45,25,0.55);
-      --border: rgba(30,86,48,0.15); --r: 6px;
-      --transition: 0.28s cubic-bezier(.4,0,.2,1);
-      --bg-deep: #070f09; --bg-dark: #0a1a10;
-      --text-primary: #f0ebe3;
-      --text-secondary: rgba(240,235,227,0.6);
-      --text-muted: rgba(240,235,227,0.35);
-      --gold-glow: rgba(201,168,76,0.3);
-    }
-    .container { max-width: 1360px; margin: 0 auto; padding: 0 32px; }
-    html { scroll-behavior: smooth; }
-    body { background: #070f09; color: #f0ebe3; font-family: 'DM Sans', sans-serif; font-size: 15px; line-height: 1.6; overflow-x: hidden; }
-
-    /* ── TOPBAR ── */
-    .topbar { background: linear-gradient(90deg, #b8922e, var(--gold), #dcc16e, var(--gold), #b8922e); background-size: 200% 100%; color: var(--bg-deep); text-align: center; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: 0.12em; padding: 10px 20px; text-transform: uppercase; position: relative; overflow: hidden; }
-    .topbar::before { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.25) 50%, transparent 100%); animation: shimmer 3s ease-in-out infinite; }
-    @keyframes shimmer { 0%,100%{transform:translateX(-100%)} 50%{transform:translateX(100%)} }
-
-    /* ── HEADER ── */
-    header { position: sticky; top: 0; z-index: 1000; background: rgba(7,15,9,0.9); backdrop-filter: blur(24px) saturate(140%); -webkit-backdrop-filter: blur(24px) saturate(140%); border-bottom: 1px solid rgba(201,168,76,0.12); transition: background 0.3s; }
-    .header-inner { max-width: 1360px; margin: 0 auto; padding: 0 32px; display: flex; align-items: center; gap: 40px; height: 72px; }
-    .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; flex-shrink: 0; }
-    .logo img { height: 56px; width: auto; }
-    header nav { display: flex; gap: 8px; flex: 1; align-items: center; }
-    header nav a { font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 14px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-secondary); padding: 8px 14px; border-radius: var(--r); transition: color var(--transition), background var(--transition); position: relative; text-decoration: none; }
-    header nav a:hover { color: var(--gold); }
-    header nav a.active { color: var(--gold); }
-    .header-actions { display: flex; align-items: center; gap: 6px; }
-    .header-actions button { width: 42px; height: 42px; display: grid; place-items: center; border-radius: 50%; transition: background var(--transition); position: relative; border: none; background: none; cursor: pointer; }
-    .header-actions button:hover { background: rgba(201,168,76,0.1); }
-    .header-actions button svg { width: 20px; height: 20px; stroke: var(--text-secondary); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
-    .header-actions button:hover svg { stroke: var(--gold); }
-    .cart-badge { position: absolute; top: 4px; right: 2px; background: var(--gold); color: var(--bg-deep); font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 10px; width: 18px; height: 18px; border-radius: 50%; display: grid; place-items: center; line-height: 1; }
-
-    /* ── BREADCRUMB ── */
-    .breadcrumb { background: #0a1a10; border-bottom: 1px solid rgba(240,235,227,0.06); padding: 12px 0; }
-    .breadcrumb-inner { max-width: 1360px; margin: 0 auto; padding: 0 32px; display: flex; align-items: center; gap: 8px; font-family: 'Barlow Condensed', sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; }
-    .breadcrumb a { color: var(--text-muted); text-decoration: none; transition: color var(--transition); }
-    .breadcrumb a:hover { color: var(--gold); }
-    .breadcrumb-sep { color: rgba(240,235,227,0.2); }
-    .breadcrumb-current { color: var(--gold); }
-
-    /* ── CATEGORY HERO ── */
-    .cat-hero { background: linear-gradient(135deg, var(--g500) 0%, var(--g900) 100%); padding: 40px 32px; }
-    .cat-hero-inner { max-width: 1360px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
-    .cat-hero-label { font-family: 'Barlow Condensed', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold3); margin-bottom: 8px; }
-    .cat-hero-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(36px, 4vw, 56px); letter-spacing: 0.04em; color: #fff; line-height: 0.95; }
-    .cat-hero-title span { color: var(--gold); }
-    .cat-hero-count { font-family: 'Barlow Condensed', sans-serif; font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.55); margin-top: 8px; letter-spacing: 0.06em; text-transform: uppercase; }
-
-    /* ── LAYOUT ── */
-    .listing-layout { max-width: 1360px; margin: 0 auto; padding: 32px 32px 80px; display: grid; grid-template-columns: 240px 1fr; gap: 32px; align-items: start; }
-
-    /* ── SIDEBAR ── */
-    .sidebar { position: sticky; top: 90px; }
-    .filter-section { background: #0e2216; border: 1px solid rgba(240,235,227,0.08); border-radius: 12px; padding: 20px; margin-bottom: 16px; }
-    .filter-section:last-child { margin-bottom: 0; }
-    .filter-title { font-family: 'Barlow Condensed', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; display: flex; align-items: center; justify-content: space-between; cursor: pointer; }
-    .filter-title svg { width: 14px; height: 14px; transition: transform var(--transition); stroke: var(--text-secondary); }
-    .filter-title.collapsed svg { transform: rotate(-90deg); }
-    .filter-body { }
-    .size-grid { display: flex; flex-wrap: wrap; gap: 8px; }
-    .size-chip { width: 44px; height: 36px; border: 1.5px solid rgba(240,235,227,0.12); border-radius: 6px; background: #162b1d; cursor: pointer; font-family: 'Barlow Condensed', sans-serif; font-size: 13px; font-weight: 700; color: var(--text-secondary); display: grid; place-items: center; transition: all var(--transition); }
-    .size-chip:hover { border-color: var(--gold); color: var(--gold); }
-    .size-chip.active { border-color: var(--gold); background: rgba(201,168,76,0.15); color: var(--gold); }
-    .price-range { display: flex; flex-direction: column; gap: 10px; }
-    .price-inputs { display: flex; align-items: center; gap: 8px; }
-    .price-input { width: 80px; padding: 8px 10px; border: 1.5px solid rgba(201,168,76,0.2); border-radius: var(--r); font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--text-primary); background: #0e2216; outline: none; transition: border-color var(--transition); }
-    .price-input:focus { border-color: var(--gold); }
-    .price-sep { color: rgba(30,46,32,0.45); font-size: 13px; }
-    .price-apply { width: 100%; padding: 9px; background: rgba(201,168,76,0.08); border: 1.5px solid rgba(201,168,76,0.2); border-radius: var(--r); font-family: 'Barlow Condensed', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold); cursor: pointer; transition: all var(--transition); }
-    .price-apply:hover { background: rgba(201,168,76,0.15); border-color: var(--gold); }
-    .badge-filter { display: flex; flex-direction: column; gap: 8px; }
-    .badge-chip { display: flex; align-items: center; gap: 10px; cursor: pointer; padding: 4px 0; }
-    .badge-chip input[type="checkbox"] { display: none; }
-    .badge-checkbox { width: 16px; height: 16px; border: 1.5px solid rgba(240,235,227,0.2); border-radius: 4px; flex-shrink: 0; display: grid; place-items: center; transition: all var(--transition); }
-    .badge-chip.active .badge-checkbox { background: var(--gold); border-color: var(--gold); }
-    .badge-chip.active .badge-checkbox::after { content: '✓'; font-size: 10px; color: #070f09; font-weight: 700; }
-    .badge-chip-label { font-family: 'Barlow Condensed', sans-serif; font-size: 13px; font-weight: 600; color: var(--text-secondary); letter-spacing: 0.04em; }
-    .filter-clear { font-family: 'Barlow Condensed', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); cursor: pointer; text-align: center; padding: 8px; display: block; transition: color var(--transition); }
-    .filter-clear:hover { color: var(--gold); }
-
-    /* ── TOOLBAR ── */
-    .products-toolbar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; flex-wrap: wrap; gap: 12px; }
-    .products-count { font-family: 'Barlow Condensed', sans-serif; font-size: 14px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-muted); }
-    .sort-select-wrap { display: flex; align-items: center; gap: 10px; }
-    .sort-label { font-family: 'Barlow Condensed', sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); }
-    .sort-select { padding: 8px 32px 8px 12px; border: 1.5px solid rgba(201,168,76,0.2); border-radius: var(--r); font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--text-primary); background: #0e2216; outline: none; cursor: pointer; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23C9A84C' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 10px center; }
-    .view-btns { display: flex; gap: 4px; }
-    .view-btn { width: 32px; height: 32px; border: 1.5px solid rgba(240,235,227,0.1); border-radius: 6px; background: #0e2216; cursor: pointer; display: grid; place-items: center; transition: all var(--transition); }
-    .view-btn.active { border-color: var(--gold); background: rgba(201,168,76,0.1); }
-    .view-btn svg { width: 14px; height: 14px; color: var(--text-secondary); }
-
-    /* ── ACTIVE FILTERS ── */
-    .active-filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
-    .active-filter-tag { display: flex; align-items: center; gap: 6px; padding: 4px 10px; background: rgba(201,168,76,0.1); border: 1.5px solid rgba(201,168,76,0.3); border-radius: 100px; font-family: 'Barlow Condensed', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--gold); }
-    .active-filter-tag button { border: none; background: none; cursor: pointer; color: var(--gold); padding: 0; display: grid; place-items: center; opacity: 0.6; transition: opacity var(--transition); }
-    .active-filter-tag button:hover { opacity: 1; }
-    .active-filter-tag button svg { width: 12px; height: 12px; }
-
-    /* ── PRODUCT GRID ── */
-    .products-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
-    .products-grid.list-view { grid-template-columns: 1fr; }
-    .product-card { background: #0e2216; border: 1px solid rgba(240,235,227,0.08); border-radius: 12px; overflow: hidden; cursor: pointer; transition: border-color var(--transition), transform var(--transition), box-shadow var(--transition); display: flex; flex-direction: column; }
-    .product-card:hover { border-color: rgba(201,168,76,0.3); transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,0.3); }
-    .products-grid.list-view .product-card { flex-direction: row; height: 160px; transform: none !important; }
-    .product-img { aspect-ratio: 3/4; position: relative; overflow: hidden; }
-    .products-grid.list-view .product-img { width: 160px; aspect-ratio: unset; height: 100%; flex-shrink: 0; }
-    .product-img-bg { width: 100%; height: 100%; background-size: cover; background-position: center top; transition: transform 0.5s cubic-bezier(.4,0,.2,1); }
-    .product-card:hover .product-img-bg { transform: scale(1.04); }
-    .product-img-hover { position:absolute;inset:0;opacity:0;transition:opacity 0.4s ease; }
-    .product-card.hover-image:hover .product-img-hover { opacity:1; }
-    .product-badge { position: absolute; top: 12px; left: 12px; font-family: 'Barlow Condensed', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 4px 10px; border-radius: 4px; }
-    .badge-new { background: var(--g300); color: #fff; }
-    .badge-hot { background: var(--gold); color: var(--bg-deep); }
-    .badge-sale2 { background: #e05252; color: #fff; }
-    .badge-last { background: rgba(13,59,31,0.75); color: var(--gold3); }
-    .product-body { padding: 16px 18px 20px; }
-    .products-grid.list-view .product-body { display: flex; flex-direction: column; justify-content: center; padding: 16px 20px; }
-    .product-meta { font-family: 'Barlow Condensed', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 6px; }
-    .product-name { font-family: 'DM Sans', sans-serif; font-weight: 500; font-size: 15px; color: var(--text-primary); margin-bottom: 10px; line-height: 1.3; text-decoration: none; display: block; }
-    .product-footer { margin-top: 0; }
-    .product-price { font-family: 'Oswald', sans-serif; font-weight: 600; font-size: 20px; color: var(--text-primary); letter-spacing: 0.01em; }
-    .product-price-old { font-size: 13px; font-family: 'DM Sans', sans-serif; color: var(--text-muted); text-decoration: line-through; margin-right: 6px; }
-    .product-card-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, transparent 40%, rgba(7,15,9,0.93) 100%); opacity: 0; transition: opacity 0.35s; z-index: 3; display: flex; flex-direction: column; align-items: stretch; justify-content: flex-end; padding: 14px; gap: 8px; }
-    .product-card:hover .product-card-overlay { opacity: 1; }
-    .product-card-overlay .see-btn { display: block; text-align: center; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-primary); border: 1.5px solid rgba(240,235,227,0.45); border-radius: var(--r); padding: 9px; text-decoration: none; transform: translateY(6px); opacity: 0; transition: all 0.3s 0.05s, color var(--transition), border-color var(--transition); }
-    .product-card:hover .product-card-overlay .see-btn { transform: translateY(0); opacity: 1; }
-    .product-card-overlay .see-btn:hover { border-color: var(--gold); color: var(--gold); }
-    .cart-btn { width: 100%; background: var(--gold); color: var(--bg-deep); border: none; border-radius: var(--r); font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; padding: 10px 14px; cursor: pointer; transition: background var(--transition); white-space: nowrap; transform: translateY(6px); opacity: 0; transition: all 0.3s 0.1s, background var(--transition); }
-    .product-card:hover .cart-btn { transform: translateY(0); opacity: 1; }
-    .cart-btn:hover { background: var(--gold2); }
-    .no-results { grid-column: 1/-1; text-align: center; padding: 60px 20px; color: var(--text-muted); }
-    .no-results svg { opacity: 0.2; margin-bottom: 16px; }
-    .no-results p { font-family: 'Barlow Condensed', sans-serif; font-size: 16px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; }
-
-    /* ── CART DRAWER ── */
-    .cart-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 2000; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
-    .cart-overlay.open { opacity: 1; pointer-events: all; }
-    .cart-drawer { position: fixed; top: 0; right: 0; bottom: 0; width: 420px; max-width: 100vw; background: #0a1a10; z-index: 2001; display: flex; flex-direction: column; transform: translateX(100%); transition: transform 0.35s cubic-bezier(.4,0,.2,1); box-shadow: -8px 0 40px rgba(0,0,0,0.4); }
-    .cart-drawer.open { transform: translateX(0); }
-    .cart-drawer-header { display: flex; align-items: center; justify-content: space-between; padding: 20px 24px; border-bottom: 1px solid rgba(240,235,227,0.08); flex-shrink: 0; }
-    .cart-drawer-header h3 { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 0.04em; color: var(--text-primary); }
-    .cart-close-btn { width: 36px; height: 36px; border: none; background: rgba(240,235,227,0.06); border-radius: 50%; cursor: pointer; display: grid; place-items: center; color: var(--text-secondary); transition: background var(--transition); }
-    .cart-close-btn:hover { background: rgba(240,235,227,0.12); }
-    .cart-close-btn svg { width: 18px; height: 18px; }
-    .cart-items { flex: 1; overflow-y: auto; padding: 16px 24px; display: flex; flex-direction: column; gap: 16px; }
-    .cart-empty { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100%; gap: 16px; color: var(--text-muted); font-family: 'Barlow Condensed', sans-serif; font-size: 16px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; }
-    .cart-empty svg { opacity: 0.25; }
-    .cart-item { display: flex; gap: 14px; align-items: flex-start; padding: 14px; border: 1px solid rgba(240,235,227,0.08); border-radius: 10px; background: #162b1d; }
-    .cart-item-img { width: 72px; height: 72px; border-radius: 8px; overflow: hidden; flex-shrink: 0; background: #0e2216; }
-    .cart-item-img img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
-    .cart-item-info { flex: 1; min-width: 0; }
-    .cart-item-meta { font-family: 'Barlow Condensed', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 3px; }
-    .cart-item-name { font-family: 'Barlow Condensed', sans-serif; font-size: 15px; font-weight: 600; color: var(--text-primary); line-height: 1.2; margin-bottom: 4px; }
-    .cart-item-size { font-size: 12px; color: var(--text-muted); margin-bottom: 10px; }
-    .cart-item-bottom { display: flex; align-items: center; justify-content: space-between; }
-    .cart-item-price { font-family: 'Bebas Neue', sans-serif; font-size: 20px; color: var(--gold); }
-    .qty-ctrl { display: flex; align-items: center; gap: 8px; }
-    .qty-btn { width: 28px; height: 28px; border: 1.5px solid rgba(240,235,227,0.12); border-radius: 6px; background: #0e2216; cursor: pointer; display: grid; place-items: center; font-size: 16px; color: var(--text-primary); line-height: 1; transition: border-color var(--transition), background var(--transition); font-family: 'DM Sans', sans-serif; padding: 0; }
-    .qty-btn:hover { border-color: var(--gold); background: rgba(201,168,76,0.08); }
-    .qty-val { font-family: 'Barlow Condensed', sans-serif; font-size: 16px; font-weight: 700; color: var(--text-primary); min-width: 20px; text-align: center; }
-    .cart-item-remove { width: 28px; height: 28px; border: none; background: transparent; cursor: pointer; display: grid; place-items: center; color: var(--text-muted); border-radius: 6px; transition: color var(--transition), background var(--transition); margin-left: 6px; flex-shrink: 0; }
-    .cart-item-remove:hover { color: #e05252; background: rgba(224,82,82,0.08); }
-    .cart-item-remove svg { width: 14px; height: 14px; }
-    .cart-drawer-footer { padding: 20px 24px; border-top: 1px solid rgba(240,235,227,0.08); flex-shrink: 0; background: #0a1a10; }
-    .cart-subtotal { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 6px; }
-    .cart-subtotal-label { font-family: 'Barlow Condensed', sans-serif; font-size: 14px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-secondary); }
-    .cart-subtotal-val { font-family: 'Bebas Neue', sans-serif; font-size: 28px; color: var(--text-primary); }
-    .cart-free-ship { font-size: 12px; color: var(--text-muted); margin-bottom: 16px; line-height: 1.4; }
-    .cart-free-ship span { color: var(--gold); font-weight: 600; }
-    .cart-checkout-btn { width: 100%; padding: 14px; text-align: center; justify-content: center; font-size: 15px; background: var(--gold); color: var(--bg-deep); border: none; border-radius: var(--r); font-family: 'Barlow Condensed', sans-serif; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; display: flex; align-items: center; gap: 8px; text-decoration: none; transition: background var(--transition); }
-    .cart-checkout-btn:hover { background: var(--gold2); }
-
-    /* ── SIZE PICKER ── */
-    .size-picker-backdrop { position: fixed; inset: 0; background: rgba(0,0,0,0.65); z-index: 3000; display: none; align-items: center; justify-content: center; }
-    .size-picker-backdrop.open { display: flex; }
-    .size-picker-box { background: #0e2216; border: 1px solid rgba(240,235,227,0.1); border-radius: 16px; padding: 28px; width: 320px; max-width: calc(100vw - 32px); box-shadow: 0 24px 60px rgba(0,0,0,0.5); animation: popIn 0.2s cubic-bezier(.34,1.56,.64,1); }
-    @keyframes popIn { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
-    .size-picker-box h4 { font-family: 'Bebas Neue', sans-serif; font-size: 20px; letter-spacing: 0.04em; color: var(--text-primary); margin-bottom: 4px; }
-    .size-picker-product-name { font-family: 'Barlow Condensed', sans-serif; font-size: 14px; color: var(--text-secondary); margin-bottom: 20px; font-weight: 600; }
-    .size-picker-options { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; }
-    .size-opt { width: 52px; height: 44px; border: 1.5px solid rgba(240,235,227,0.12); border-radius: 8px; background: #162b1d; cursor: pointer; font-family: 'Barlow Condensed', sans-serif; font-size: 14px; font-weight: 700; color: var(--text-secondary); transition: all var(--transition); display: grid; place-items: center; }
-    .size-opt:hover { border-color: var(--gold); background: rgba(201,168,76,0.08); }
-    .size-opt.selected { border-color: var(--gold); background: rgba(201,168,76,0.15); color: var(--gold); }
-    .size-opt.out { opacity: 0.35; cursor: not-allowed; text-decoration: line-through; }
-    .size-picker-actions { display: flex; gap: 10px; }
-    .size-picker-cancel { flex: 1; padding: 11px; border: 1.5px solid rgba(240,235,227,0.12); border-radius: var(--r); background: transparent; cursor: pointer; font-family: 'Barlow Condensed', sans-serif; font-size: 14px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-secondary); transition: border-color var(--transition); }
-    .size-picker-cancel:hover { border-color: rgba(240,235,227,0.3); }
-    .size-picker-confirm { flex: 2; background: var(--gold); color: var(--bg-deep); border: none; border-radius: var(--r); font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 14px; letter-spacing: 0.08em; text-transform: uppercase; cursor: pointer; transition: background var(--transition); padding: 11px; }
-    .size-picker-confirm:hover:not(:disabled) { background: var(--gold2); }
-    .size-picker-confirm:disabled { opacity: 0.4; cursor: not-allowed; }
-
-    /* ── BACK TO TOP ── */
-    .back-to-top { position: fixed; bottom: 28px; right: 28px; width: 44px; height: 44px; background: var(--g500); color: #fff; border: none; border-radius: 50%; cursor: pointer; display: grid; place-items: center; z-index: 900; opacity: 0; transform: translateY(10px); pointer-events: none; transition: opacity var(--transition), transform var(--transition), background var(--transition); }
-    .back-to-top.visible { opacity: 1; transform: translateY(0); pointer-events: auto; }
-    .back-to-top:hover { background: var(--g400); }
-    .back-to-top svg { width: 18px; height: 18px; }
-
-    /* ── HAMBURGER & MOBILE NAV ── */
-    .nav-hamburger { display: none; flex-direction: column; justify-content: center; gap: 5px; width: 40px; height: 40px; background: transparent; border: none; cursor: pointer; padding: 8px; border-radius: var(--r); transition: background var(--transition); flex-shrink: 0; }
-    .nav-hamburger:hover { background: rgba(30,86,48,0.08); }
-    .nav-hamburger span { display: block; height: 2px; background: var(--text-primary); border-radius: 2px; transition: transform 0.3s ease, opacity 0.3s ease, width 0.3s ease; transform-origin: center; }
-    .nav-hamburger span:nth-child(2) { width: 70%; }
-    .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
-    .nav-hamburger.open span:nth-child(2) { opacity: 0; width: 100%; }
-    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
-    .mobile-nav { display: none; position: fixed; top: 72px; left: 0; right: 0; bottom: 0; z-index: 999; background: rgba(7,15,9,0.97); backdrop-filter: blur(16px); flex-direction: column; padding: 32px 32px 40px; transform: translateX(100%); transition: transform 0.35s cubic-bezier(.4,0,.2,1); }
-    .mobile-nav.open { transform: translateX(0); }
-    .mobile-nav a { font-family: 'Bebas Neue', sans-serif; font-size: 42px; letter-spacing: 0.04em; color: var(--text-primary); text-decoration: none; padding: 12px 0; border-bottom: 1px solid rgba(240,235,227,0.08); transition: color var(--transition); }
-    .mobile-nav a:hover, .mobile-nav a.active { color: var(--gold); }
-    .mobile-nav a:last-of-type { border-bottom: none; }
-
-    @media (max-width: 1024px) {
-      .listing-layout { grid-template-columns: 1fr; }
-      .sidebar { position: static; display: flex; gap: 12px; flex-wrap: wrap; }
-      .filter-section { flex: 1; min-width: 200px; }
-      .products-grid { grid-template-columns: repeat(2, 1fr); }
-    }
-    @media (max-width: 768px) {
-      nav { display: none; }
-      .nav-hamburger { display: flex; }
-      .mobile-nav { display: flex; }
-      .header-inner { padding: 0 16px; gap: 12px; }
-      .cat-hero { padding: 28px 16px; }
-      .cat-hero-inner { flex-direction: column; align-items: flex-start; gap: 12px; }
-      .breadcrumb-inner { padding: 0 16px; }
-      .listing-layout { padding: 16px 16px 60px; gap: 16px; }
-      .sidebar { gap: 8px; }
-      .filter-section { min-width: 160px; padding: 14px; }
-      .products-toolbar { gap: 8px; }
-      .sort-label { display: none; }
-    }
-    @media (max-width: 600px) {
-      .listing-layout { padding: 16px 12px 60px; }
-      .products-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
-      .product-name { font-size: 15px; }
-      .product-price { font-size: 22px; }
-      .product-body { padding: 10px 12px 14px; }
-      .cart-btn { font-size: 12px; padding: 9px 10px; }
-    }
-
-    /* ── NEWSLETTER ── */
-    .newsletter {
-      background: var(--bg-dark);
-      padding: 80px 0;
-      position: relative;
-      overflow: hidden;
-    }
-    .newsletter::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -10%;
-      width: 400px;
-      height: 400px;
-      background: radial-gradient(circle, var(--gold-glow) 0%, transparent 70%);
-      opacity: 0.3;
-      pointer-events: none;
-    }
-    .newsletter-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 48px;
-      position: relative;
-      z-index: 1;
-    }
-    .newsletter-text { max-width: 480px; }
-    .newsletter-text h3 {
-      font-family: 'Bebas Neue', cursive;
-      font-size: 40px;
-      letter-spacing: 0.03em;
-      line-height: 1;
-      margin-bottom: 8px;
-      color: var(--text-primary);
-    }
-    .newsletter-text h3 em { font-style: normal; color: var(--gold); }
-    .newsletter-text p {
-      font-size: 15px;
-      color: var(--text-secondary);
-    }
-    .newsletter-form {
-      display: flex;
-      gap: 12px;
-      flex: 1;
-      max-width: 480px;
-    }
-    .newsletter-form input {
-      flex: 1;
-      padding: 16px 20px;
-      background: #0e2216;
-      border: 1.5px solid rgba(240,235,227,0.08);
-      border-radius: var(--r);
-      color: var(--text-primary);
-      font-family: 'DM Sans', sans-serif;
-      font-size: 14px;
-      outline: none;
-      transition: border-color 0.3s;
-    }
-    .newsletter-form input::placeholder { color: var(--text-muted); }
-    .newsletter-form input:focus { border-color: var(--gold); }
-    .newsletter-form button {
-      padding: 16px 28px;
-      background: var(--gold);
-      color: var(--bg-deep);
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 700;
-      font-size: 14px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      border: none;
-      border-radius: var(--r);
-      white-space: nowrap;
-      cursor: pointer;
-      transition: all var(--transition);
-    }
-    .newsletter-form button:hover { background: var(--text-primary); }
-
-    /* ── FOOTER ── */
-    footer { background: var(--bg-deep); border-top: 1px solid rgba(240,235,227,0.06); padding: 64px 0 0; }
-    .footer-top { display: grid; grid-template-columns: 1.5fr repeat(3, 1fr); gap: 48px; padding-bottom: 48px; border-bottom: 1px solid rgba(240,235,227,0.06); }
-    .footer-brand .logo { margin-bottom: 16px; display: flex; }
-    .footer-brand p { font-size: 14px; color: var(--text-secondary); line-height: 1.7; max-width: 300px; margin-bottom: 20px; }
-    .footer-social { display: flex; gap: 10px; }
-    .footer-social a { width: 40px; height: 40px; border-radius: 50%; border: 1.5px solid rgba(240,235,227,0.1); display: grid; place-items: center; transition: all 0.3s; text-decoration: none; }
-    .footer-social a:hover { border-color: var(--gold); background: rgba(201,168,76,0.1); }
-    .footer-social a svg { width: 18px; height: 18px; fill: var(--text-secondary); }
-    .footer-social a:hover svg { fill: var(--gold); }
-    .footer-col h4 { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 13px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 20px; }
-    .footer-col ul { list-style: none; }
-    .footer-col li { margin-bottom: 10px; }
-    .footer-col a { font-size: 14px; color: var(--text-secondary); transition: color 0.3s; text-decoration: none; }
-    .footer-col a:hover { color: var(--gold); }
-    .footer-bottom { padding: 28px 0; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
-    .footer-bottom p { font-size: 13px; color: var(--text-muted); }
-    .payment-badges { display: flex; gap: 12px; align-items: center; }
-    .payment-badge { font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; padding: 6px 14px; border: 1px solid rgba(240,235,227,0.08); border-radius: 4px; color: var(--text-muted); }
-    @media (max-width: 900px) {
-      .newsletter-inner { flex-direction: column; text-align: center; }
-      .newsletter-form { width: 100%; max-width: 100%; }
-      .footer-main { grid-template-columns: 1fr 1fr; }
-    }
-    @media (max-width: 560px) {
-      .newsletter-form { flex-direction: column; }
-      .newsletter-form button { width: 100%; }
-      .footer-main { grid-template-columns: 1fr; }
-      .footer-bottom { flex-direction: column; text-align: center; }
-    }
-
-    /* ── LIGHT FILTER THEME ── */
-    .filter-section { background: #f5f7f5; border-color: rgba(0,0,0,0.08); }
-    .filter-title svg { stroke: rgba(30,46,32,0.45); }
-    .badge-chip-label { color: rgba(30,46,32,0.7); }
-    .badge-checkbox { border-color: rgba(0,0,0,0.2); }
-    .size-chip { background: #e0e8e2; border-color: rgba(0,0,0,0.1); color: rgba(30,46,32,0.7); }
-    .size-chip:hover, .size-chip.active { border-color: var(--gold); color: var(--gold); background: rgba(201,168,76,0.1); }
-    .price-input { background: #f5f7f5; border-color: rgba(0,0,0,0.12); color: #1a2e1f; }
-    .price-input::placeholder { color: rgba(30,46,32,0.4); }
-    .filter-clear { color: rgba(30,46,32,0.45); }
-  </style>
+  <meta name="description" content="Przeglądaj kolekcje odzieży klubowej Akademii Okocimskiego — koszulki, bluzy, kurtki, spodenki, akcesoria.">
+  <meta name="robots" content="index,follow">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Akademia Okocimskiego">
+  <meta property="og:locale" content="pl_PL">
+  <meta property="og:title" content="Sklep — Akademia Okocimskiego">
+  <meta property="og:description" content="Odzież i akcesoria klubowe Akademii Piłkarskiej Okocimskiego w Brzesku.">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="icon" type="image/svg+xml" href="00%20-%20Assets/Logo.svg">
+  <link rel="stylesheet" href="00%20-%20Assets/fonts/fonts.css" />
+  <link rel="stylesheet" href="00%20-%20Assets/css/site.css" />
+  <link rel="stylesheet" href="00%20-%20Assets/css/kategoria.css" />
 </head>
 <body>
 
-<div class="topbar">Darmowa dostawa od 199 zl &nbsp;&bull;&nbsp; Odbiór osobisty w Brzesku</div>
-
-<header>
-  <div class="header-inner">
-    <a href="index.html" class="logo">
-      <img src="00%20-%20Assets/image%201.png" alt="Akademia Okocimskiego">
-    </a>
-    <nav>
-      <a href="index.html">Sklep</a>
-      <a href="index.html#kategorie" class="active">Kategorie</a>
-      <a href="index.html#produkty">Produkty</a>
-      <a href="index.html#opinie">Opinie</a>
-      <a href="index.html#kontakt">Kontakt</a>
-    </nav>
-    <div class="header-actions">
-      <button aria-label="Szukaj">
-        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-      </button>
-      <button aria-label="Konto">
-        <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-      </button>
-      <button id="cart-icon-btn" aria-label="Koszyk">
-        <svg viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-        <span class="cart-badge" style="display:none;">0</span>
-      </button>
-    </div>
-    <button class="nav-hamburger" id="hamburger-btn" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
-  </div>
-</header>
-
-<div class="mobile-nav" id="mobile-nav">
-  <a href="index.html">Sklep</a>
-  <a href="index.html#kategorie">Kategorie</a>
-  <a href="index.html#produkty">Produkty</a>
-  <a href="index.html#opinie">Opinie</a>
-  <a href="index.html#kontakt">Kontakt</a>
-</div>
+<div data-ao-header></div>
 
 <!-- BREADCRUMB -->
 <div class="breadcrumb">
@@ -437,18 +42,18 @@
   </div>
 </div>
 
-<!-- CART OVERLAY + DRAWER -->
+<!-- CART OVERLAY + DRAWER (markup z site.css) -->
 <div class="cart-overlay" id="cart-overlay"></div>
-<div class="cart-drawer" id="cart-drawer" role="dialog" aria-label="Koszyk">
+<aside class="cart-drawer" id="cart-drawer" role="dialog" aria-label="Koszyk" aria-modal="true">
   <div class="cart-drawer-header">
-    <h3>Koszyk &nbsp;<span id="cart-count-drawer" style="font-size:16px;color:var(--text-muted);font-family:'Barlow Condensed',sans-serif;font-weight:600;letter-spacing:0.06em;">(0)</span></h3>
+    <h3>Koszyk <span id="cart-count-drawer">(0)</span></h3>
     <button class="cart-close-btn" id="cart-close" aria-label="Zamknij koszyk">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
     </button>
   </div>
   <div class="cart-items" id="cart-items">
     <div class="cart-empty" id="cart-empty">
-      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
       Koszyk jest pusty
     </div>
   </div>
@@ -459,11 +64,11 @@
     </div>
     <p class="cart-free-ship" id="cart-ship-info"></p>
     <a href="checkout.html" class="cart-checkout-btn">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
       Przejdź do kasy
     </a>
   </div>
-</div>
+</aside>
 
 <!-- SIZE PICKER MODAL -->
 <div class="size-picker-backdrop" id="size-picker-backdrop">
@@ -479,10 +84,13 @@
 </div>
 
 <!-- MAIN LISTING -->
-<div class="listing-layout">
+<div id="main" class="listing-layout">
 
   <!-- SIDEBAR -->
-  <aside class="sidebar">
+  <button type="button" class="filters-toggle" id="filters-toggle" aria-expanded="false" aria-controls="filters-sidebar">
+    <span>Filtruj <span class="ft-count" id="filters-active-count" hidden>0</span></span>
+  </button>
+  <aside class="sidebar" id="filters-sidebar">
 
     <div class="filter-section">
       <div class="filter-title" id="toggle-sizes">
@@ -521,7 +129,7 @@
 
     <div class="filter-section">
       <div class="filter-title" id="toggle-badges">
-        Dostępność
+        Status
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
       </div>
       <div class="filter-body" id="body-badges">
@@ -537,6 +145,21 @@
           <label class="badge-chip" data-badge="sale">
             <input type="checkbox" /><div class="badge-checkbox"></div>
             <span class="badge-chip-label">Wyprzedaż</span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div class="filter-section">
+      <div class="filter-title" id="toggle-instock">
+        Dostępność
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 9l6 6 6-6"/></svg>
+      </div>
+      <div class="filter-body" id="body-instock">
+        <div class="badge-filter">
+          <label class="badge-chip" id="instock-chip">
+            <input type="checkbox" id="instock-input" /><div class="badge-checkbox"></div>
+            <span class="badge-chip-label">Tylko dostępne</span>
           </label>
         </div>
       </div>
@@ -575,8 +198,15 @@
     <div class="active-filters" id="active-filters"></div>
 
     <div class="products-grid" id="products-grid">
+      <!-- Skeleton placeholders (zastąpione przez JS render) -->
+      <div class="skeleton-card"><div class="skeleton-img"></div><div class="skeleton-body"><div class="skeleton-line short"></div><div class="skeleton-line medium"></div><div class="skeleton-line price"></div></div></div>
+      <div class="skeleton-card"><div class="skeleton-img"></div><div class="skeleton-body"><div class="skeleton-line short"></div><div class="skeleton-line medium"></div><div class="skeleton-line price"></div></div></div>
+      <div class="skeleton-card"><div class="skeleton-img"></div><div class="skeleton-body"><div class="skeleton-line short"></div><div class="skeleton-line medium"></div><div class="skeleton-line price"></div></div></div>
+      <div class="skeleton-card"><div class="skeleton-img"></div><div class="skeleton-body"><div class="skeleton-line short"></div><div class="skeleton-line medium"></div><div class="skeleton-line price"></div></div></div>
       <!-- rendered by JS -->
     </div>
+
+    <nav class="pagination" id="pagination" aria-label="Strony" hidden></nav>
   </div>
 
 </div>
@@ -597,190 +227,91 @@
   </div>
 </section>
 
-<footer>
-  <div class="container">
-    <div class="footer-top">
-      <div class="footer-brand">
-        <a href="index.html" class="logo">
-          <img src="00%20-%20Assets/image%201.png" alt="Akademia Okocimskiego" style="height:44px;">
-        </a>
-        <p>Oficjalny sklep Akademii Piłkarskiej Okocimskiego w Brzesku. Reprezentuj swój klub z dumą i stylem.</p>
-        <div class="footer-social">
-          <a href="#" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
-          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5" ry="5" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="12" cy="12" r="5" fill="none" stroke="currentColor" stroke-width="1.5"/><circle cx="17.5" cy="6.5" r="1.5"/></svg></a>
-          <a href="#" aria-label="YouTube"><svg viewBox="0 0 24 24"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19.1c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" fill="#fff"/></svg></a>
-        </div>
-      </div>
-      <div class="footer-col">
-        <h4>Sklep</h4>
-        <ul>
-          <li><a href="#">Wszystkie produkty</a></li>
-          <li><a href="#">Stroje meczowe</a></li>
-          <li><a href="#">Bluzy treningowe</a></li>
-          <li><a href="#">Kurtki</a></li>
-          <li><a href="#">Akcesoria</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Akademia</h4>
-        <ul>
-          <li><a href="#">O akademii</a></li>
-          <li><a href="#">Drużyny</a></li>
-          <li><a href="#">Harmonogram</a></li>
-          <li><a href="#">Kontakt</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Pomoc</h4>
-        <ul>
-          <li><a href="#">Dostawa i zwroty</a></li>
-          <li><a href="#">Tabela rozmiarów</a></li>
-          <li><a href="#">FAQ</a></li>
-          <li><a href="#">Regulamin</a></li>
-          <li><a href="#">Polityka prywatnosci</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p>&copy; 2026 Akademia Okocimskiego. Wszelkie prawa zastrzeżone.</p>
-      <div class="payment-badges">
-        <span class="payment-badge">Visa</span>
-        <span class="payment-badge">Mastercard</span>
-        <span class="payment-badge">Blik</span>
-        <span class="payment-badge">Przelewy24</span>
-      </div>
-    </div>
-  </div>
-</footer>
+<footer data-ao-footer></footer>
 
 <button class="back-to-top" id="back-to-top" aria-label="Wróć na górę">
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 15l-6-6-6 6"/></svg>
 </button>
 
+<!-- Shared scripts -->
+<script src="00%20-%20Assets/js/products.js"></script>
+<script src="00%20-%20Assets/js/cart.js"></script>
+<script src="00%20-%20Assets/js/site.js"></script>
+
 <script>
   /* ═══════════════════════════════════════════
-     PRODUCT CATALOGUE
+     KATEGORIA — używa AO_Catalog (z products.js) i AO_Cart (z cart.js)
   ═══════════════════════════════════════════ */
-  const IMG = {
-    a: '01%20-%20Produkty/01%20-%20Bluza/Bluza_01.png',
-    b: '01%20-%20Produkty/02%20-%20Getry/Getry_01.png',
-    c: '01%20-%20Produkty/03%20-%20Skarpetki/Skarpetki_01.png',
-    d: '01%20-%20Produkty/04%20-%20Kurtka/kurtka_01.png',
-    e: '01%20-%20Produkty/05%20-%20Spodenki/spodenki_01.png',
-    bluza1:  '01%20-%20Produkty/01%20-%20Bluza/Bluza_01.png',
-    getry1:  '01%20-%20Produkty/02%20-%20Getry/Getry_01.png',
-    getry2:  '01%20-%20Produkty/02%20-%20Getry/Getry_02.png',
-    skarp1:  '01%20-%20Produkty/03%20-%20Skarpetki/Skarpetki_01.png',
-    skarp2:  '01%20-%20Produkty/03%20-%20Skarpetki/Skarpetki_02.png',
-    kurtka1: '01%20-%20Produkty/04%20-%20Kurtka/kurtka_01.png',
-    kurtka2: '01%20-%20Produkty/04%20-%20Kurtka/kurtka_02.png',
-    spod1:   '01%20-%20Produkty/05%20-%20Spodenki/spodenki_01.png',
-    spod2:   '01%20-%20Produkty/05%20-%20Spodenki/spodenki_02.png',
-  };
 
-  const ALL_PRODUCTS = [
-    // ── KOSZULKI ──
-    { id:1,  kat:'koszulki', name:'Koszulka Meczowa AO — Zielona',     cat:'Stroje Meczowe',   price:149, oldPrice:187, img:IMG.a, sizes:['XS','S','M','L','XL'], outSizes:[],        badge:'hot',  rating:4.9, reviews:128 },
-    { id:2,  kat:'koszulki', name:'Koszulka Wyjazdowa AO — Biała',      cat:'Stroje Meczowe',   price:149, oldPrice:null,img:IMG.b, sizes:['S','M','L','XL'],     outSizes:['XL'],     badge:'new',  rating:4.7, reviews:56  },
-    { id:3,  kat:'koszulki', name:'Koszulka Treningowa AO Dry-Fit',     cat:'Treningi',         price:99,  oldPrice:null,img:IMG.c, sizes:['XS','S','M','L','XL'], outSizes:[],        badge:'new',  rating:4.8, reviews:34  },
-    { id:4,  kat:'koszulki', name:'Koszulka Polo AO Classic',           cat:'Casual',           price:119, oldPrice:null,img:IMG.d, sizes:['S','M','L','XL'],     outSizes:['S'],      badge:null,   rating:4.5, reviews:22  },
-    { id:5,  kat:'koszulki', name:'Koszulka Reprezentacyjna — Czarna',  cat:'Stroje Meczowe',   price:149, oldPrice:179, img:IMG.e, sizes:['XS','S','M','L','XL'], outSizes:['XS'],    badge:'sale', rating:4.6, reviews:44  },
-    { id:6,  kat:'koszulki', name:'Koszulka Kibica AO Retro',           cat:'Kolekcja Retro',   price:129, oldPrice:null,img:IMG.a, sizes:['S','M','L','XL','XXL'],outSizes:[],        badge:'new',  rating:5.0, reviews:12  },
-    // ── BLUZY ──
-    { id:11, kat:'bluzy',    name:'Bluza Kangurka AO — Zielona',        cat:'Bluzy Treningowe', price:229, oldPrice:null,img:IMG.bluza1, imgHover:null, link:'produkt.html', sizes:['XS','S','M','L','XL'], outSizes:[],  badge:'new',  rating:5.0, reviews:24  },
-    { id:12, kat:'bluzy',    name:'Bluza Polo AO',                      cat:'Bluzy Casual',     price:199, oldPrice:null,img:IMG.b, sizes:['S','M','L','XL'],     outSizes:[],         badge:null,   rating:4.6, reviews:18  },
-    { id:13, kat:'bluzy',    name:'Kurtka Reprezentacyjna Windbreaker', cat:'Kurtki',           price:239, oldPrice:319, img:IMG.kurtka1, imgHover:null, video:'01%20-%20Produkty/04%20-%20Kurtka/kurtka_05%20_hover.mp4', sizes:['XS','S','M','L','XL'], outSizes:[], badge:'sale', rating:4.9, reviews:33 },
-    { id:14, kat:'bluzy',    name:'Kurtka Zimowa AO Softshell',         cat:'Kurtki',           price:349, oldPrice:null,img:IMG.d, sizes:['S','M','L','XL'],     outSizes:[],         badge:'new',  rating:4.8, reviews:15  },
-    { id:15, kat:'bluzy',    name:'Bluza Kangurka AO — Zielona',        cat:'Bluzy Treningowe', price:179, oldPrice:null,img:IMG.a, sizes:['XS','S','M','L','XL','XXL'], outSizes:[], badge:null,   rating:4.7, reviews:41  },
-    { id:16, kat:'bluzy',    name:'Kamizelka AO Pro',                   cat:'Kurtki',           price:159, oldPrice:199, img:IMG.e, sizes:['S','M','L','XL'],     outSizes:['L'],      badge:'sale', rating:4.4, reviews:9   },
-    // ── SPODENKI ──
-    { id:21, kat:'spodenki', name:'Spodenki Treningowe Dry-Fit',        cat:'Spodenki',         price:89,  oldPrice:null,img:IMG.spod1, imgHover:IMG.spod2, sizes:['XS','S','M','L','XL'], outSizes:[],        badge:null,   rating:4.5, reviews:67  },
-    { id:22, kat:'spodenki', name:'Spodenki Meczowe AO — Zielone',      cat:'Stroje Meczowe',   price:99,  oldPrice:null,img:IMG.e, sizes:['S','M','L','XL'],     outSizes:[],         badge:'new',  rating:4.7, reviews:29  },
-    { id:23, kat:'spodenki', name:'Spodnie Dresowe AO Comfort',         cat:'Spodnie',          price:149, oldPrice:179, img:IMG.d, sizes:['XS','S','M','L','XL','XXL'], outSizes:[], badge:'sale', rating:4.6, reviews:38  },
-    { id:24, kat:'spodenki', name:'Spodenki Bramkarskie AO',            cat:'Stroje Bramkarskie',price:109,oldPrice:null,img:IMG.c, sizes:['S','M','L','XL'],     outSizes:['S'],      badge:null,   rating:4.3, reviews:11  },
-    { id:25, kat:'spodenki', name:'Legginsy Treningowe AO',             cat:'Odzież Damska',    price:119, oldPrice:null,img:IMG.b, sizes:['XS','S','M','L'],     outSizes:[],         badge:'new',  rating:4.8, reviews:20  },
-    // ── CZAPKI ──
-    { id:31, kat:'czapki',   name:'Czapka Z Daszkiem AO Snapback',      cat:'Czapki',           price:69,  oldPrice:null,img:IMG.d, sizes:[],                    outSizes:[],         badge:null,   rating:4.6, reviews:89  },
-    { id:32, kat:'czapki',   name:'Czapka Zimowa AO — Zielona',         cat:'Czapki Zimowe',    price:49,  oldPrice:null,img:IMG.e, sizes:[],                    outSizes:[],         badge:'new',  rating:4.8, reviews:44  },
-    { id:33, kat:'czapki',   name:'Szalik AO Classic',                  cat:'Akcesoria',        price:59,  oldPrice:null,img:IMG.a, sizes:[],                    outSizes:[],         badge:'hot',  rating:4.9, reviews:112 },
-    { id:34, kat:'czapki',   name:'Opaska Treningowa AO',               cat:'Akcesoria',        price:29,  oldPrice:null,img:IMG.b, sizes:[],                    outSizes:[],         badge:null,   rating:4.4, reviews:23  },
-    { id:35, kat:'czapki',   name:'Rękawiczki AO Zima',                 cat:'Akcesoria',        price:39,  oldPrice:49,  img:IMG.c, sizes:[],                    outSizes:[],         badge:'sale', rating:4.5, reviews:17  },
-    // ── TORBY ──
-    { id:41, kat:'torby',    name:'Torba Sportowa AO Pro 30L',          cat:'Torby Sportowe',   price:189, oldPrice:null,img:IMG.e, sizes:[],                    outSizes:[],         badge:'hot',  rating:4.8, reviews:42  },
-    { id:42, kat:'torby',    name:'Torba Na Ramię AO Mini',             cat:'Torby Casual',     price:99,  oldPrice:null,img:IMG.d, sizes:[],                    outSizes:[],         badge:'new',  rating:4.7, reviews:28  },
-    { id:43, kat:'torby',    name:'Plecak AO 20L',                      cat:'Plecaki',          price:159, oldPrice:199, img:IMG.a, sizes:[],                    outSizes:[],         badge:'sale', rating:4.6, reviews:35  },
-    { id:44, kat:'torby',    name:'Worek Sportowy AO',                  cat:'Torby Sportowe',   price:49,  oldPrice:null,img:IMG.c, sizes:[],                    outSizes:[],         badge:null,   rating:4.3, reviews:14  },
-    { id:45, kat:'torby',    name:'Torba Sprzętowa XL',                 cat:'Sprzęt',           price:249, oldPrice:null,img:IMG.b, sizes:[],                    outSizes:[],         badge:'new',  rating:4.9, reviews:8   },
-    // ── GADŻETY ──
-    { id:51, kat:'gadgety',  name:'Zestaw Kibica AO — Szalik + Kubek',  cat:'Zestawy',          price:99,  oldPrice:null,img:IMG.c, sizes:[],                    outSizes:[],         badge:'new',  rating:5.0, reviews:12  },
-    { id:52, kat:'gadgety',  name:'Kubek AO 350ml',                     cat:'Gadżety',          price:49,  oldPrice:null,img:IMG.e, sizes:[],                    outSizes:[],         badge:null,   rating:4.7, reviews:56  },
-    { id:53, kat:'gadgety',  name:'Flaga Akademii 90×60cm',             cat:'Gadżety Kibica',   price:39,  oldPrice:null,img:IMG.a, sizes:[],                    outSizes:[],         badge:'hot',  rating:4.8, reviews:88  },
-    { id:54, kat:'gadgety',  name:'Brelok AO z Logo',                   cat:'Gadżety',          price:19,  oldPrice:null,img:IMG.d, sizes:[],                    outSizes:[],         badge:null,   rating:4.5, reviews:34  },
-    { id:55, kat:'gadgety',  name:'Bidon AO 750ml',                     cat:'Akcesoria Sportowe',price:59, oldPrice:null,img:IMG.b, sizes:[],                    outSizes:[],         badge:'new',  rating:4.6, reviews:21  },
-    { id:56, kat:'gadgety',  name:'Zestaw Podarunkowy Premium AO',      cat:'Zestawy',          price:149, oldPrice:null,img:IMG.c, sizes:[],                    outSizes:[],         badge:'hot',  rating:4.9, reviews:19  },
-    // ── AKCESORIA ──
-    { id:61, kat:'czapki',   name:'Getry Meczowe AO — Zielone',         cat:'Akcesoria Meczowe',price:49,  oldPrice:null,img:IMG.getry1, imgHover:IMG.getry2,       sizes:['S','M','L'],  outSizes:[],  badge:'new',  rating:5.0, reviews:18  },
-    { id:62, kat:'czapki',   name:'Skarpetki AO — Białe',               cat:'Akcesoria Meczowe',price:29,  oldPrice:null,img:IMG.skarp1, imgHover:IMG.skarp2,       sizes:['S','M','L'],  outSizes:[],  badge:'new',  rating:4.8, reviews:32  },
-  ];
+  const PAGE_SIZE = 12;
 
-  const CATEGORY_META = {
-    koszulki: { title: 'Koszulki &amp; Stroje', label: 'Odzież' },
-    bluzy:    { title: 'Bluzy &amp; Kurtki',    label: 'Odzież' },
-    spodenki: { title: 'Spodenki &amp; Spodnie',label: 'Odzież' },
-    czapki:   { title: 'Czapki &amp; Akcesoria',label: 'Akcesoria' },
-    torby:    { title: 'Torby &amp; Sprzęt',    label: 'Sprzęt' },
-    gadgety:  { title: 'Gadżety Kibica',         label: 'Gadżety' },
-  };
-
-  /* ═══════════════════════════════════════════
-     ROUTING
-  ═══════════════════════════════════════════ */
+  /* Routing + meta */
   const params = new URLSearchParams(location.search);
   const currentKat = params.get('kat') || 'koszulki';
-  const meta = CATEGORY_META[currentKat] || CATEGORY_META.koszulki;
-  const katProducts = ALL_PRODUCTS.filter(p => p.kat === currentKat);
+  const meta = AO_Catalog.meta(currentKat) || AO_Catalog.meta('koszulki');
+  const katProducts = AO_Catalog.byCategory(currentKat);
 
-  // Set page title
-  document.title = meta.title.replace(/&amp;/g,'&') + ' — Akademia Okocimskiego';
+  /* ── Dynamiczne meta: title + OG image per kategoria ── */
+  (function updateMeta() {
+    if (!meta) return;
+    const ogImg = new URL(`00%20-%20Assets/cat-${currentKat}.jpg`, location.href).href;
+    document.title = `${meta.title} — Akademia Okocimskiego`;
+    function setMeta(sel, content) {
+      const tag = document.querySelector(sel);
+      if (tag) tag.setAttribute('content', content);
+    }
+    setMeta('meta[property="og:title"]', `${meta.title} — Akademia Okocimskiego`);
+    setMeta('meta[property="og:image"]', ogImg);
+  })();
+
+  document.title = meta.title.replace(/&amp;/g, '&') + ' — Akademia Okocimskiego';
   document.getElementById('bc-category').innerHTML = meta.title;
   document.getElementById('hero-title').innerHTML = meta.title;
 
-  /* ═══════════════════════════════════════════
-     FILTER STATE
-  ═══════════════════════════════════════════ */
-  let activeSizes = [];
-  let priceMin = null, priceMax = null;
-  let activeBadges = [];
-  let sortMode = 'popular';
+  /* Stan filtrów (init z URL) */
+  const state = {
+    sizes: (params.get('sizes') || '').split(',').filter(Boolean),
+    priceMin: params.get('priceMin') ? Number(params.get('priceMin')) : null,
+    priceMax: params.get('priceMax') ? Number(params.get('priceMax')) : null,
+    badges: (params.get('badges') || '').split(',').filter(Boolean),
+    inStock: params.get('inStock') === '1',
+    sort: params.get('sort') || 'popular',
+    page: Math.max(1, parseInt(params.get('page'), 10) || 1),
+  };
+
+  function syncUrl() {
+    AO_Site.setQueryParams({
+      kat: currentKat,
+      sizes: state.sizes.length > 0 ? state.sizes : null,
+      priceMin: state.priceMin,
+      priceMax: state.priceMax,
+      badges: state.badges.length > 0 ? state.badges : null,
+      inStock: state.inStock ? '1' : null,
+      sort: state.sort !== 'popular' ? state.sort : null,
+      page: state.page > 1 ? state.page : null,
+    }, { replace: true });
+  }
 
   function getFiltered() {
-    let list = [...katProducts];
-    if (activeSizes.length > 0)
-      list = list.filter(p => p.sizes.length === 0 || p.sizes.some(s => activeSizes.includes(s) && !p.outSizes.includes(s)));
-    if (priceMin !== null) list = list.filter(p => p.price >= priceMin);
-    if (priceMax !== null) list = list.filter(p => p.price <= priceMax);
-    if (activeBadges.includes('new'))  list = list.filter(p => p.badge === 'new');
-    if (activeBadges.includes('hot'))  list = list.filter(p => p.badge === 'hot');
-    if (activeBadges.includes('sale')) list = list.filter(p => p.badge === 'sale');
+    let list = katProducts.slice();
+    if (state.sizes.length > 0) {
+      list = list.filter(p => p.sizes.length === 0 || p.sizes.some(s => state.sizes.includes(s) && !p.outSizes.includes(s)));
+    }
+    if (state.priceMin !== null) list = list.filter(p => p.price >= state.priceMin);
+    if (state.priceMax !== null) list = list.filter(p => p.price <= state.priceMax);
+    if (state.badges.length > 0) list = list.filter(p => state.badges.includes(p.badge));
+    if (state.inStock) list = list.filter(p => (p.stock == null || p.stock > 0));
 
-    if (sortMode === 'price-asc')  list.sort((a,b) => a.price - b.price);
-    if (sortMode === 'price-desc') list.sort((a,b) => b.price - a.price);
-    if (sortMode === 'newest')     list.sort((a,b) => (b.badge === 'new' ? 1 : 0) - (a.badge === 'new' ? 1 : 0));
-    if (sortMode === 'name')       list.sort((a,b) => a.name.localeCompare(b.name, 'pl'));
-    if (sortMode === 'popular')    list.sort((a,b) => b.reviews - a.reviews);
+    if (state.sort === 'price-asc')  list.sort((a,b) => a.price - b.price);
+    if (state.sort === 'price-desc') list.sort((a,b) => b.price - a.price);
+    if (state.sort === 'newest')     list.sort((a,b) => (b.badge === 'new' ? 1 : 0) - (a.badge === 'new' ? 1 : 0));
+    if (state.sort === 'name')       list.sort((a,b) => a.name.localeCompare(b.name, 'pl'));
+    if (state.sort === 'popular')    list.sort((a,b) => (b.reviews || 0) - (a.reviews || 0));
     return list;
   }
 
-  /* ═══════════════════════════════════════════
-     RENDER PRODUCTS
-  ═══════════════════════════════════════════ */
+  /* Render produktów */
   const grid = document.getElementById('products-grid');
-
-  function starsHTML(rating) {
-    let s = '';
-    for (let i = 1; i <= 5; i++) s += `<span class="star${i <= Math.round(rating) ? '' : ' empty'}">★</span>`;
-    return s;
-  }
 
   function badgeHTML(p) {
     if (p.badge === 'hot')  return `<span class="product-badge badge-hot">Bestseller</span>`;
@@ -790,168 +321,286 @@
   }
 
   function renderProducts() {
-    const list = getFiltered();
+    const all = getFiltered();
+    const totalPages = Math.max(1, Math.ceil(all.length / PAGE_SIZE));
+    if (state.page > totalPages) state.page = totalPages;
+    const startIdx = (state.page - 1) * PAGE_SIZE;
+    const list = all.slice(startIdx, startIdx + PAGE_SIZE);
+
     document.getElementById('hero-count').textContent = `${katProducts.length} produktów`;
-    document.getElementById('products-count').textContent = `${list.length} ${list.length === 1 ? 'produkt' : list.length < 5 ? 'produkty' : 'produktów'}`;
+    document.getElementById('products-count').textContent = `${all.length} ${all.length === 1 ? 'produkt' : (all.length % 10 >= 2 && all.length % 10 <= 4 && (all.length % 100 < 12 || all.length % 100 > 14)) ? 'produkty' : 'produktów'}`;
 
     grid.innerHTML = '';
 
     if (list.length === 0) {
       grid.innerHTML = `<div class="no-results">
-        <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
         <p>Brak produktów spełniających kryteria</p>
       </div>`;
+      renderPagination(totalPages);
       return;
     }
 
     list.forEach(p => {
-      const sizesHTML = p.sizes.length > 0
-        ? `<div class="product-sizes">${p.sizes.map(s => `<div class="size-dot${p.outSizes.includes(s) ? ' out' : ''}">${s}</div>`).join('')}</div>`
-        : '';
       const priceHTML = p.oldPrice
-        ? `<div class="product-price"><span class="product-price-old">${p.oldPrice} zł</span>${p.price} zł</div>`
+        ? `<div class="product-price"><span class="product-price-old">${p.oldPrice} zł</span>${p.price} zł</div>${AO_Site.omnibusHTML(p)}`
         : `<div class="product-price">${p.price} zł</div>`;
 
       const card = document.createElement('div');
       card.className = 'product-card' + (p.imgHover ? ' hover-image' : '');
       card.dataset.productId = p.id;
-      const nameHTML = p.link
-        ? `<a href="${p.link}" class="product-name" style="text-decoration:none;color:inherit;">${p.name}</a>`
-        : `<div class="product-name">${p.name}</div>`;
+      const productUrl = `produkt.html?id=${p.id}`;
       card.innerHTML = `
-        <div class="product-img">
-          <div class="product-img-bg" style="background-image:url('${p.img}');"></div>
-          ${p.imgHover ? `<div class="product-img-hover" style="background-image:url('${p.imgHover}');background-size:cover;background-position:center;"></div>` : ''}
-          ${p.video ? `<video class="product-img-video" muted loop playsinline preload="none"><source src="${p.video}" type="video/mp4"></video>` : ''}
-          ${badgeHTML(p)}
-          <div class="product-card-overlay">
-            <a href="produkt.html" class="see-btn">Zobacz produkt</a>
-            <button class="cart-btn">Dodaj do koszyka</button>
+        <a href="${productUrl}" class="product-img-link" style="display:block;text-decoration:none;color:inherit;">
+          <div class="product-img">
+            <div class="product-img-bg" style="background-image:url('${p.image}');"></div>
+            ${p.imgHover ? `<div class="product-img-hover" style="background-image:url('${p.imgHover}');background-size:cover;background-position:center;"></div>` : ''}
+            ${p.video ? `<video class="product-img-video" muted loop playsinline preload="none" data-src="${p.video}"></video>` : ''}
+            ${badgeHTML(p)}
+            <div class="product-card-overlay">
+              <span class="see-btn">Zobacz produkt</span>
+              <button class="cart-btn" type="button">Dodaj do koszyka</button>
+            </div>
           </div>
-        </div>
+        </a>
         <div class="product-body">
-          <div class="product-meta">${p.cat}</div>
-          ${nameHTML}
+          <div class="product-meta">${AO_Site.escapeHtml(p.cat)}</div>
+          <a href="${productUrl}" class="product-name" style="text-decoration:none;color:inherit;">${AO_Site.escapeHtml(p.name)}</a>
           <div class="product-footer">
             ${priceHTML}
           </div>
+          ${(p.stock != null && p.stock > 0 && p.stock <= 5) ? `<div class="card-stock-low">Ostatnie ${p.stock} szt.</div>` : ''}
+          ${(p.stock === 0) ? `<div class="card-stock-out">Brak w magazynie</div>` : ''}
         </div>`;
       grid.appendChild(card);
     });
 
-    // video hover
+    // video hover — lazy load: src dopiero gdy karta wchodzi do viewportu (200px margin)
+    function attachVideoSrc(v) {
+      if (v.dataset.src && !v.src) {
+        v.src = v.dataset.src;
+        v.removeAttribute('data-src');
+      }
+    }
+    if ('IntersectionObserver' in window) {
+      const vio = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            const v = e.target.querySelector('.product-img-video');
+            if (v) attachVideoSrc(v);
+            vio.unobserve(e.target);
+          }
+        });
+      }, { rootMargin: '200px' });
+      grid.querySelectorAll('.product-card').forEach(card => {
+        if (card.querySelector('.product-img-video')) vio.observe(card);
+      });
+    } else {
+      grid.querySelectorAll('.product-img-video').forEach(attachVideoSrc);
+    }
     grid.querySelectorAll('.product-card').forEach(card => {
       const video = card.querySelector('.product-img-video');
       if (!video) return;
-      card.addEventListener('mouseenter', () => video.play());
+      card.addEventListener('mouseenter', () => { attachVideoSrc(video); video.play().catch(() => {}); });
       card.addEventListener('mouseleave', () => { video.pause(); video.currentTime = 0; });
     });
 
-    // re-bind cart buttons
+    // bind add-to-cart buttons
     grid.querySelectorAll('.cart-btn').forEach(btn => {
       btn.addEventListener('click', e => {
+        e.preventDefault();
         e.stopPropagation();
         const card = btn.closest('[data-product-id]');
-        const id = parseInt(card.dataset.productId);
-        const p = ALL_PRODUCTS.find(x => x.id === id);
+        const id = parseInt(card.dataset.productId, 10);
+        const p = AO_Catalog.findById(id);
         if (!p) return;
-        if (p.sizes.length > 0) {
+        if ((p.sizes || []).length > 0) {
           openSizePicker(p);
         } else {
-          addToCart(p, null);
-          const orig = btn.textContent;
-          btn.textContent = 'Dodano ✓';
-          btn.style.background = 'var(--g300)';
-          setTimeout(() => { btn.textContent = orig; btn.style.background = ''; }, 1200);
+          AO_Cart.add(p.id, null, 1);
+          AO_Cart.openDrawer();
         }
       });
     });
+
+    renderPagination(totalPages);
   }
 
-  /* ═══════════════════════════════════════════
-     ACTIVE FILTERS TAGS
-  ═══════════════════════════════════════════ */
+  function renderPagination(totalPages) {
+    const nav = document.getElementById('pagination');
+    if (totalPages <= 1) { nav.hidden = true; nav.innerHTML = ''; return; }
+    nav.hidden = false;
+    nav.innerHTML = '';
+
+    function pageBtn(label, page, opts = {}) {
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.textContent = label;
+      if (opts.arrow) b.className = 'pag-arrow';
+      if (opts.active) b.classList.add('active');
+      if (opts.disabled) b.disabled = true;
+      b.addEventListener('click', () => {
+        state.page = page;
+        syncUrl();
+        renderProducts();
+        document.querySelector('.products-toolbar')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+      return b;
+    }
+
+    nav.appendChild(pageBtn('‹', Math.max(1, state.page - 1), { arrow: true, disabled: state.page === 1 }));
+
+    for (let i = 1; i <= totalPages; i++) {
+      // wyświetl: 1, last, current ±2, kropki gdy luka
+      if (i === 1 || i === totalPages || Math.abs(i - state.page) <= 2) {
+        nav.appendChild(pageBtn(String(i), i, { active: i === state.page }));
+      } else if ((i === state.page - 3 && i > 1) || (i === state.page + 3 && i < totalPages)) {
+        const dots = document.createElement('span');
+        dots.textContent = '…';
+        dots.style.color = 'var(--text-muted)';
+        nav.appendChild(dots);
+      }
+    }
+
+    nav.appendChild(pageBtn('›', Math.min(totalPages, state.page + 1), { arrow: true, disabled: state.page === totalPages }));
+  }
+
+  /* Active filter tags */
   function renderActiveTags() {
     const container = document.getElementById('active-filters');
     container.innerHTML = '';
     const clearBtn = document.getElementById('filter-clear');
-    const hasFilters = activeSizes.length > 0 || priceMin !== null || priceMax !== null || activeBadges.length > 0;
+    const hasFilters = state.sizes.length > 0 || state.priceMin !== null || state.priceMax !== null || state.badges.length > 0;
     clearBtn.style.display = hasFilters ? '' : 'none';
 
-    activeSizes.forEach(s => {
+    state.sizes.forEach(s => {
       const tag = document.createElement('div');
       tag.className = 'active-filter-tag';
-      tag.innerHTML = `${s} <button><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button>`;
+      tag.innerHTML = `${s} <button type="button" aria-label="Usuń"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button>`;
       tag.querySelector('button').addEventListener('click', () => {
-        activeSizes = activeSizes.filter(x => x !== s);
+        state.sizes = state.sizes.filter(x => x !== s);
         document.querySelector(`.size-chip[data-size="${s}"]`)?.classList.remove('active');
-        renderActiveTags(); renderProducts();
+        state.page = 1;
+        syncUrl();
+        renderActiveTags();
+        renderProducts();
       });
       container.appendChild(tag);
     });
 
-    if (priceMin !== null || priceMax !== null) {
-      const label = `${priceMin ?? 0}–${priceMax ?? '∞'} zł`;
+    if (state.priceMin !== null || state.priceMax !== null) {
+      const label = `${state.priceMin ?? 0}–${state.priceMax ?? '∞'} zł`;
       const tag = document.createElement('div');
       tag.className = 'active-filter-tag';
-      tag.innerHTML = `${label} <button><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg></button>`;
+      tag.innerHTML = `${label} <button type="button" aria-label="Usuń"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button>`;
       tag.querySelector('button').addEventListener('click', () => {
-        priceMin = priceMax = null;
+        state.priceMin = state.priceMax = null;
         document.getElementById('price-min').value = '';
         document.getElementById('price-max').value = '';
-        renderActiveTags(); renderProducts();
+        state.page = 1;
+        syncUrl();
+        renderActiveTags();
+        renderProducts();
       });
       container.appendChild(tag);
     }
+
+    state.badges.forEach(b => {
+      const tag = document.createElement('div');
+      tag.className = 'active-filter-tag';
+      const labelMap = { new: 'Nowości', hot: 'Bestsellery', sale: 'Wyprzedaż' };
+      tag.innerHTML = `${labelMap[b] || b} <button type="button" aria-label="Usuń"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button>`;
+      tag.querySelector('button').addEventListener('click', () => {
+        state.badges = state.badges.filter(x => x !== b);
+        document.querySelector(`.badge-chip[data-badge="${b}"]`)?.classList.remove('active');
+        state.page = 1;
+        syncUrl();
+        renderActiveTags();
+        renderProducts();
+      });
+      container.appendChild(tag);
+    });
   }
 
-  /* ═══════════════════════════════════════════
-     FILTER INTERACTIONS
-  ═══════════════════════════════════════════ */
+  /* Filter interactions */
+  // Init UI z URL state
+  state.sizes.forEach(s => document.querySelector(`.size-chip[data-size="${s}"]`)?.classList.add('active'));
+  state.badges.forEach(b => document.querySelector(`.badge-chip[data-badge="${b}"]`)?.classList.add('active'));
+  if (state.priceMin !== null) document.getElementById('price-min').value = state.priceMin;
+  if (state.priceMax !== null) document.getElementById('price-max').value = state.priceMax;
+  document.getElementById('sort-select').value = state.sort;
+
   document.querySelectorAll('.size-chip').forEach(chip => {
     chip.addEventListener('click', () => {
       const s = chip.dataset.size;
       chip.classList.toggle('active');
-      if (activeSizes.includes(s)) activeSizes = activeSizes.filter(x => x !== s);
-      else activeSizes.push(s);
-      renderActiveTags(); renderProducts();
+      if (state.sizes.includes(s)) state.sizes = state.sizes.filter(x => x !== s);
+      else state.sizes.push(s);
+      state.page = 1;
+      syncUrl();
+      renderActiveTags();
+      renderProducts();
     });
   });
 
   document.getElementById('price-apply').addEventListener('click', () => {
-    const mn = parseInt(document.getElementById('price-min').value);
-    const mx = parseInt(document.getElementById('price-max').value);
-    priceMin = isNaN(mn) ? null : mn;
-    priceMax = isNaN(mx) ? null : mx;
-    renderActiveTags(); renderProducts();
+    const mn = parseInt(document.getElementById('price-min').value, 10);
+    const mx = parseInt(document.getElementById('price-max').value, 10);
+    state.priceMin = isNaN(mn) ? null : mn;
+    state.priceMax = isNaN(mx) ? null : mx;
+    state.page = 1;
+    syncUrl();
+    renderActiveTags();
+    renderProducts();
   });
 
-  document.querySelectorAll('.badge-chip').forEach(chip => {
+  document.querySelectorAll('.badge-chip[data-badge]').forEach(chip => {
     chip.addEventListener('click', () => {
       const b = chip.dataset.badge;
       chip.classList.toggle('active');
-      if (activeBadges.includes(b)) activeBadges = activeBadges.filter(x => x !== b);
-      else activeBadges.push(b);
-      renderActiveTags(); renderProducts();
+      if (state.badges.includes(b)) state.badges = state.badges.filter(x => x !== b);
+      else state.badges.push(b);
+      state.page = 1;
+      syncUrl();
+      renderActiveTags();
+      renderProducts();
     });
   });
 
+  // "Tylko dostępne" filter
+  const instockChip = document.getElementById('instock-chip');
+  if (instockChip) {
+    if (state.inStock) instockChip.classList.add('active');
+    instockChip.addEventListener('click', e => {
+      e.preventDefault();
+      state.inStock = !state.inStock;
+      instockChip.classList.toggle('active', state.inStock);
+      state.page = 1;
+      syncUrl();
+      renderActiveTags();
+      renderProducts();
+    });
+  }
+
   document.getElementById('filter-clear').addEventListener('click', e => {
     e.preventDefault();
-    activeSizes = []; priceMin = null; priceMax = null; activeBadges = [];
+    state.sizes = []; state.priceMin = null; state.priceMax = null; state.badges = []; state.inStock = false; state.page = 1;
     document.querySelectorAll('.size-chip').forEach(c => c.classList.remove('active'));
     document.querySelectorAll('.badge-chip').forEach(c => c.classList.remove('active'));
     document.getElementById('price-min').value = '';
     document.getElementById('price-max').value = '';
-    renderActiveTags(); renderProducts();
-  });
-
-  document.getElementById('sort-select').addEventListener('change', e => {
-    sortMode = e.target.value;
+    syncUrl();
+    renderActiveTags();
     renderProducts();
   });
 
-  // toggle filter sections
+  document.getElementById('sort-select').addEventListener('change', e => {
+    state.sort = e.target.value;
+    state.page = 1;
+    syncUrl();
+    renderProducts();
+  });
+
   ['sizes','price','badges'].forEach(key => {
     document.getElementById(`toggle-${key}`).addEventListener('click', function() {
       this.classList.toggle('collapsed');
@@ -960,9 +609,7 @@
     });
   });
 
-  /* ═══════════════════════════════════════════
-     VIEW TOGGLE
-  ═══════════════════════════════════════════ */
+  /* View toggle (grid/list) */
   document.getElementById('view-grid').addEventListener('click', () => {
     grid.classList.remove('list-view');
     document.getElementById('view-grid').classList.add('active');
@@ -974,94 +621,7 @@
     document.getElementById('view-grid').classList.remove('active');
   });
 
-  /* ═══════════════════════════════════════════
-     CART
-  ═══════════════════════════════════════════ */
-  const FREE_SHIP = 199;
-  let cart = [];
-  try { cart = JSON.parse(localStorage.getItem('ao_cart')) || []; } catch {}
-
-  function saveCart() { localStorage.setItem('ao_cart', JSON.stringify(cart)); }
-  function cartTotal() { return cart.reduce((s,i) => s + i.price * i.qty, 0); }
-  function cartCount() { return cart.reduce((s,i) => s + i.qty, 0); }
-
-  function addToCart(p, size) {
-    const key = size ? `${p.id}_${size}` : `${p.id}`;
-    const existing = cart.find(i => i.key === key);
-    if (existing) { existing.qty++; }
-    else { cart.push({ key, productId: p.id, name: p.name, category: p.cat, price: p.price, image: p.img, size, qty: 1 }); }
-    saveCart(); renderCart(); updateBadge(); openDrawer();
-  }
-
-  function removeFromCart(key) { cart = cart.filter(i => i.key !== key); saveCart(); renderCart(); updateBadge(); }
-  function changeQty(key, delta) {
-    const item = cart.find(i => i.key === key);
-    if (item) { item.qty = Math.max(1, item.qty + delta); saveCart(); renderCart(); updateBadge(); }
-  }
-
-  function updateBadge() {
-    const count = cartCount();
-    document.querySelectorAll('.cart-badge').forEach(el => { el.textContent = count; el.style.display = count === 0 ? 'none' : ''; });
-    const cd = document.getElementById('cart-count-drawer');
-    if (cd) cd.textContent = `(${count})`;
-  }
-
-  function renderCart() {
-    const container = document.getElementById('cart-items');
-    const emptyEl = document.getElementById('cart-empty');
-    const footer = document.getElementById('cart-footer');
-    container.querySelectorAll('.cart-item').forEach(el => el.remove());
-    if (cart.length === 0) { emptyEl.style.display = ''; footer.style.display = 'none'; return; }
-    emptyEl.style.display = 'none'; footer.style.display = '';
-    cart.forEach(item => {
-      const el = document.createElement('div');
-      el.className = 'cart-item';
-      el.innerHTML = `<div class="cart-item-img"><img src="${item.image}" alt="${item.name}" loading="lazy"></div>
-        <div class="cart-item-info">
-          <div class="cart-item-meta">${item.category}</div>
-          <div class="cart-item-name">${item.name}</div>
-          ${item.size ? `<div class="cart-item-size">Rozmiar: <strong>${item.size}</strong></div>` : ''}
-          <div class="cart-item-bottom">
-            <div class="cart-item-price">${item.price * item.qty} zł</div>
-            <div style="display:flex;align-items:center;gap:4px;">
-              <div class="qty-ctrl">
-                <button class="qty-btn" data-key="${item.key}" data-delta="-1">−</button>
-                <span class="qty-val">${item.qty}</span>
-                <button class="qty-btn" data-key="${item.key}" data-delta="1">+</button>
-              </div>
-              <button class="cart-item-remove" data-key="${item.key}" aria-label="Usuń">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M3 6h18M8 6V4h8v2M19 6l-1 14H6L5 6"/></svg>
-              </button>
-            </div>
-          </div>
-        </div>`;
-      container.appendChild(el);
-    });
-    const total = cartTotal();
-    document.getElementById('cart-total').textContent = `${total} zł`;
-    const diff = FREE_SHIP - total;
-    document.getElementById('cart-ship-info').innerHTML = diff > 0
-      ? `Dodaj jeszcze <span>${diff} zł</span>, aby otrzymać darmową dostawę.`
-      : `<span>Masz darmową dostawę! 🎉</span>`;
-  }
-
-  document.getElementById('cart-items').addEventListener('click', e => {
-    const qtyBtn = e.target.closest('.qty-btn');
-    const removeBtn = e.target.closest('.cart-item-remove');
-    if (qtyBtn) changeQty(qtyBtn.dataset.key, parseInt(qtyBtn.dataset.delta));
-    if (removeBtn) removeFromCart(removeBtn.dataset.key);
-  });
-
-  function openDrawer() { document.getElementById('cart-drawer').classList.add('open'); document.getElementById('cart-overlay').classList.add('open'); document.body.style.overflow = 'hidden'; }
-  function closeDrawer() { document.getElementById('cart-drawer').classList.remove('open'); document.getElementById('cart-overlay').classList.remove('open'); document.body.style.overflow = ''; }
-
-  document.getElementById('cart-close').addEventListener('click', closeDrawer);
-  document.getElementById('cart-overlay').addEventListener('click', closeDrawer);
-  document.getElementById('cart-icon-btn').addEventListener('click', openDrawer);
-
-  /* ═══════════════════════════════════════════
-     SIZE PICKER
-  ═══════════════════════════════════════════ */
+  /* Size picker (uses AO_Cart.add) */
   let _pendingProduct = null;
 
   function openSizePicker(p) {
@@ -1069,11 +629,12 @@
     document.getElementById('sp-product-name').textContent = p.name;
     const opts = document.getElementById('sp-options');
     opts.innerHTML = '';
-    p.sizes.forEach(s => {
+    (p.sizes || []).forEach(s => {
       const btn = document.createElement('button');
-      btn.className = 'size-opt' + (p.outSizes.includes(s) ? ' out' : '');
+      btn.type = 'button';
+      btn.className = 'size-opt' + ((p.outSizes || []).includes(s) ? ' out' : '');
       btn.textContent = s;
-      btn.disabled = p.outSizes.includes(s);
+      btn.disabled = (p.outSizes || []).includes(s);
       btn.addEventListener('click', () => {
         opts.querySelectorAll('.size-opt').forEach(b => b.classList.remove('selected'));
         btn.classList.add('selected');
@@ -1085,47 +646,94 @@
     document.getElementById('size-picker-backdrop').classList.add('open');
   }
 
-  function closeSizePicker() { document.getElementById('size-picker-backdrop').classList.remove('open'); _pendingProduct = null; }
+  function closeSizePicker() {
+    document.getElementById('size-picker-backdrop').classList.remove('open');
+    _pendingProduct = null;
+  }
 
   document.getElementById('sp-cancel').addEventListener('click', closeSizePicker);
-  document.getElementById('size-picker-backdrop').addEventListener('click', e => { if (e.target === e.currentTarget) closeSizePicker(); });
+  document.getElementById('size-picker-backdrop').addEventListener('click', e => {
+    if (e.target === e.currentTarget) closeSizePicker();
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && document.getElementById('size-picker-backdrop').classList.contains('open')) closeSizePicker();
+  });
   document.getElementById('sp-confirm').addEventListener('click', () => {
     const selected = document.querySelector('#sp-options .size-opt.selected');
     if (!selected || !_pendingProduct) return;
-    addToCart(_pendingProduct, selected.textContent.trim());
+    AO_Cart.add(_pendingProduct.id, selected.textContent.trim(), 1);
+    AO_Cart.openDrawer();
     closeSizePicker();
   });
 
-  /* ═══════════════════════════════════════════
-     BACK TO TOP
-  ═══════════════════════════════════════════ */
+  /* Back to top */
   const btt = document.getElementById('back-to-top');
-  window.addEventListener('scroll', () => btt.classList.toggle('visible', window.scrollY > 400));
-  btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+  if (btt) {
+    window.addEventListener('scroll', () => btt.classList.toggle('visible', window.scrollY > 400), { passive: true });
+    btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+  }
 
-  /* ═══════════════════════════════════════════
-     INIT
-  ═══════════════════════════════════════════ */
-  renderProducts();
-  renderCart();
-  updateBadge();
-
-  const hamburgerBtn = document.getElementById('hamburger-btn');
-  const mobileNav = document.getElementById('mobile-nav');
-  hamburgerBtn.addEventListener('click', () => {
-    const isOpen = mobileNav.classList.toggle('open');
-    hamburgerBtn.classList.toggle('open', isOpen);
-    hamburgerBtn.setAttribute('aria-expanded', isOpen);
-    document.body.style.overflow = isOpen ? 'hidden' : '';
-  });
-  mobileNav.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      mobileNav.classList.remove('open');
-      hamburgerBtn.classList.remove('open');
-      hamburgerBtn.setAttribute('aria-expanded', 'false');
-      document.body.style.overflow = '';
+  /* Toggle filtrów na mobile */
+  const filtersToggleBtn = document.getElementById('filters-toggle');
+  const sidebar = document.getElementById('filters-sidebar');
+  if (filtersToggleBtn && sidebar) {
+    filtersToggleBtn.addEventListener('click', () => {
+      const open = sidebar.classList.toggle('open');
+      filtersToggleBtn.classList.toggle('open', open);
+      filtersToggleBtn.setAttribute('aria-expanded', String(open));
     });
-  });
+  }
+  // Pokaż licznik aktywnych filtrów
+  function updateFiltersCounter() {
+    const count = state.sizes.length + state.badges.length + (state.priceMin !== null || state.priceMax !== null ? 1 : 0);
+    const el = document.getElementById('filters-active-count');
+    if (!el) return;
+    el.textContent = count;
+    el.hidden = count === 0;
+  }
+  // wywołaj raz po init i po każdej zmianie filtru (renderActiveTags i tak jest wołany)
+  const _origRenderActiveTags = renderActiveTags;
+  renderActiveTags = function () { _origRenderActiveTags.apply(this, arguments); updateFiltersCounter(); };
+
+  /* INIT */
+  renderActiveTags();
+  renderProducts();
+
+  /* ── Schema.org BreadcrumbList + ItemList ── */
+  (function injectCategorySchema() {
+    const meta = AO_Catalog.meta(currentKat);
+    if (!meta) return;
+    const baseUrl = location.origin + location.pathname.replace(/[^/]+$/, '');
+    const products = AO_Catalog.byCategory(currentKat);
+
+    const bc = document.createElement('script');
+    bc.type = 'application/ld+json';
+    bc.textContent = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Sklep", "item": baseUrl + "index.html" },
+        { "@type": "ListItem", "position": 2, "name": meta.title }
+      ]
+    });
+    document.head.appendChild(bc);
+
+    const il = document.createElement('script');
+    il.type = 'application/ld+json';
+    il.textContent = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      "name": meta.title,
+      "numberOfItems": products.length,
+      "itemListElement": products.map((p, i) => ({
+        "@type": "ListItem",
+        "position": i + 1,
+        "url": baseUrl + "produkt.html?id=" + p.id,
+        "name": p.name
+      }))
+    });
+    document.head.appendChild(il);
+  })();
 </script>
 
 </body>

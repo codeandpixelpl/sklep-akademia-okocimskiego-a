@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="canonical" href="https://sklep.akademia-okocim.pl/koszyk.html" />
+  <title>Koszyk — Akademia Okocimskiego</title>
+  <meta name="description" content="Twój koszyk zakupowy w sklepie Akademii Okocimskiego.">
+  <meta name="robots" content="noindex,follow">
+  <link rel="icon" type="image/svg+xml" href="00%20-%20Assets/Logo.svg">
+  <link rel="stylesheet" href="00%20-%20Assets/fonts/fonts.css" />
+  <link rel="stylesheet" href="00%20-%20Assets/css/site.css" />
+  <style>
+    .cart-hero { background: linear-gradient(135deg, var(--g500) 0%, var(--g900) 100%); padding: 56px 32px 40px; text-align: center; }
+    .cart-hero h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(36px, 5vw, 52px); color: #fff; letter-spacing: 0.04em; }
+    .cart-hero h1 em { font-style: normal; color: var(--gold); }
+
+    .cart-page { max-width: 1200px; margin: 32px auto 80px; padding: 0 32px; display: grid; grid-template-columns: 1fr 380px; gap: 32px; align-items: start; }
+    @media (max-width: 900px) { .cart-page { grid-template-columns: 1fr; } }
+
+    .cart-list { background: var(--bg-card); border: 1px solid rgba(240,235,227,0.06); border-radius: 12px; padding: 8px; }
+    .cart-line { display: grid; grid-template-columns: 100px 1fr auto; gap: 16px; padding: 16px; border-bottom: 1px solid rgba(240,235,227,0.06); align-items: center; }
+    .cart-line:last-child { border-bottom: none; }
+    .cart-line-img { width: 100px; height: 130px; border-radius: 8px; overflow: hidden; background: var(--surface); }
+    .cart-line-img img { width: 100%; height: 100%; object-fit: cover; }
+    .cart-line-info { min-width: 0; }
+    .cart-line-cat { font-family: 'Barlow Condensed', sans-serif; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); }
+    .cart-line-name { font-family: 'DM Sans', sans-serif; font-size: 16px; color: var(--text-primary); margin-top: 4px; }
+    .cart-line-name a { color: inherit; text-decoration: none; }
+    .cart-line-name a:hover { color: var(--gold); }
+    .cart-line-size { font-size: 13px; color: var(--text-muted); margin-top: 4px; }
+    .cart-line-size strong { color: var(--text-primary); }
+    .cart-line-actions { display: flex; align-items: center; gap: 12px; margin-top: 10px; flex-wrap: wrap; }
+    .cart-line-qty { display: flex; align-items: center; gap: 0; border: 1.5px solid rgba(240,235,227,0.12); border-radius: 6px; overflow: hidden; }
+    .cart-line-qty button { width: 32px; height: 32px; background: transparent; color: var(--text-primary); font-size: 16px; cursor: pointer; }
+    .cart-line-qty button:hover { background: rgba(201,168,76,0.1); color: var(--gold); }
+    .cart-line-qty .qty-val { width: 36px; text-align: center; font-family: 'Oswald', sans-serif; font-size: 14px; color: var(--text-primary); }
+    .cart-line-remove { background: transparent; color: var(--text-muted); cursor: pointer; padding: 6px 10px; font-size: 13px; transition: color 0.2s; }
+    .cart-line-remove:hover { color: #e05252; }
+    .cart-line-price { text-align: right; font-family: 'Oswald', sans-serif; font-size: 20px; font-weight: 600; color: var(--text-primary); white-space: nowrap; }
+
+    .cart-summary { background: var(--bg-card); border: 1px solid rgba(240,235,227,0.06); border-radius: 12px; padding: 28px; position: sticky; top: 120px; }
+    .cart-summary-title { font-family: 'Barlow Condensed', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 18px; }
+    .summary-row { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid rgba(240,235,227,0.06); font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--text-secondary); }
+    .summary-row.total { border-top: 1.5px solid rgba(201,168,76,0.3); border-bottom: none; padding: 16px 0 0; margin-top: 6px; font-family: 'Bebas Neue', sans-serif; font-size: 22px; color: var(--gold); letter-spacing: 0.04em; }
+    .summary-row strong { color: var(--text-primary); }
+    .summary-cta { display: block; width: 100%; padding: 14px; background: var(--gold); color: var(--bg-deep); border: none; border-radius: var(--r); font-family: 'Barlow Condensed', sans-serif; font-size: 15px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; text-decoration: none; text-align: center; margin-top: 18px; transition: background 0.2s; }
+    .summary-cta:hover { background: var(--gold-light); }
+    .summary-back { display: block; text-align: center; margin-top: 12px; font-family: 'Barlow Condensed', sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 0.06em; color: var(--text-muted); text-decoration: none; }
+    .summary-back:hover { color: var(--gold); }
+    .summary-ship { font-size: 12px; color: var(--text-muted); margin-top: 14px; line-height: 1.5; }
+    .summary-ship strong { color: var(--gold); }
+    .summary-trust { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 16px; padding-top: 16px; border-top: 1px solid rgba(240,235,227,0.06); }
+    .summary-trust-item { display: flex; align-items: center; gap: 6px; font-size: 11px; color: var(--text-muted); }
+    .summary-trust-item svg { color: var(--g300); }
+
+    .cart-empty-page { text-align: center; padding: 80px 20px; }
+    .cart-empty-page svg { width: 80px; height: 80px; opacity: 0.3; color: var(--text-primary); margin-bottom: 20px; }
+    .cart-empty-page h2 { font-family: 'Bebas Neue', sans-serif; font-size: 32px; color: var(--text-primary); margin-bottom: 12px; letter-spacing: 0.04em; }
+    .cart-empty-page p { color: var(--text-secondary); margin-bottom: 28px; }
+    .cart-empty-page a { display: inline-block; padding: 14px 28px; background: var(--gold); color: var(--bg-deep); border-radius: var(--r); font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 14px; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; }
+    .cart-empty-page a:hover { background: var(--gold-light); }
+
+    @media (max-width: 600px) {
+      .cart-line { grid-template-columns: 80px 1fr; }
+      .cart-line-img { width: 80px; height: 100px; }
+      .cart-line-price { grid-column: 1 / -1; text-align: left; padding-top: 8px; border-top: 1px dashed rgba(240,235,227,0.06); }
+    }
+  </style>
+</head>
+<body>
+
+<div data-ao-header></div>
+
+<div class="cart-hero">
+  <h1>Twój <em>koszyk</em></h1>
+</div>
+
+<main id="main" class="cart-page">
+
+  <div id="cart-content">
+    <div class="cart-list" id="cart-page-list" hidden></div>
+    <div class="cart-empty-page" id="cart-page-empty" hidden>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+      <h2>Koszyk jest pusty</h2>
+      <p>Dodaj swoje pierwsze produkty i wesprzyj klub.</p>
+      <a href="kategoria.html?kat=koszulki">Przejdź do sklepu</a>
+    </div>
+  </div>
+
+  <aside class="cart-summary" id="cart-summary-aside" hidden>
+    <div class="cart-summary-title">Podsumowanie</div>
+    <div class="summary-row"><span>Wartość produktów</span><span id="sum-subtotal">0 zł</span></div>
+    <div class="summary-row"><span>Dostawa (od)</span><span id="sum-ship">0 zł</span></div>
+    <div class="summary-row total"><span>Razem</span><span id="sum-total">0 zł</span></div>
+    <p class="summary-ship" id="summary-ship-info"></p>
+    <a class="summary-cta" href="checkout.html">Przejdź do kasy →</a>
+    <a class="summary-back" href="kategoria.html?kat=koszulki">Kontynuuj zakupy</a>
+    <div class="summary-trust">
+      <div class="summary-trust-item">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        Płatność SSL
+      </div>
+      <div class="summary-trust-item">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 11-2.12-9.36L23 10"/></svg>
+        30 dni na zwrot
+      </div>
+    </div>
+  </aside>
+
+</main>
+
+<div class="cart-overlay" id="cart-overlay"></div>
+<aside class="cart-drawer" id="cart-drawer" role="dialog" aria-label="Koszyk" aria-modal="true">
+  <div class="cart-drawer-header">
+    <h3>Koszyk <span id="cart-count-drawer">(0)</span></h3>
+    <button class="cart-close-btn" id="cart-close" aria-label="Zamknij koszyk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+  </div>
+  <div class="cart-items" id="cart-items"><div class="cart-empty" id="cart-empty"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>Koszyk jest pusty</div></div>
+  <div class="cart-drawer-footer" id="cart-footer" style="display:none;"><div class="cart-subtotal"><span class="cart-subtotal-label">Suma</span><span class="cart-subtotal-val" id="cart-total">0 zł</span></div><p class="cart-free-ship" id="cart-ship-info"></p><a href="checkout.html" class="cart-checkout-btn">Przejdź do kasy</a></div>
+</aside>
+
+<footer data-ao-footer></footer>
+
+<script src="00%20-%20Assets/js/products.js"></script>
+<script src="00%20-%20Assets/js/cart.js"></script>
+<script src="00%20-%20Assets/js/site.js"></script>
+<script>
+  const SHIP_THRESHOLD = AO_Cart.FREE_SHIP_THRESHOLD || 199;
+  const SHIP_BASE = 15;
+
+  function renderPage() {
+    const items = AO_Cart.all();
+    const listEl = document.getElementById('cart-page-list');
+    const emptyEl = document.getElementById('cart-page-empty');
+    const sumEl = document.getElementById('cart-summary-aside');
+
+    if (items.length === 0) {
+      listEl.hidden = true;
+      sumEl.hidden = true;
+      emptyEl.hidden = false;
+      return;
+    }
+    emptyEl.hidden = true;
+    listEl.hidden = false;
+    sumEl.hidden = false;
+
+    listEl.innerHTML = items.map(i => `
+      <div class="cart-line" data-key="${i.key}">
+        <div class="cart-line-img"><img src="${i.image}" alt="${AO_Site.escapeHtml(i.name)}" width="100" height="130" loading="lazy"></div>
+        <div class="cart-line-info">
+          <div class="cart-line-cat">${AO_Site.escapeHtml(i.category || '')}</div>
+          <div class="cart-line-name"><a href="produkt.html?id=${i.productId}">${AO_Site.escapeHtml(i.name)}</a></div>
+          ${i.size ? `<div class="cart-line-size">Rozmiar: <strong>${AO_Site.escapeHtml(i.size)}</strong></div>` : ''}
+          <div class="cart-line-actions">
+            <div class="cart-line-qty">
+              <button type="button" data-act="dec" aria-label="Zmniejsz">−</button>
+              <span class="qty-val">${i.qty}</span>
+              <button type="button" data-act="inc" aria-label="Zwiększ">+</button>
+            </div>
+            <button type="button" class="cart-line-remove" data-act="remove">Usuń</button>
+          </div>
+        </div>
+        <div class="cart-line-price">${i.price * i.qty} zł</div>
+      </div>
+    `).join('');
+
+    listEl.querySelectorAll('.cart-line').forEach(line => {
+      const key = line.dataset.key;
+      line.querySelector('[data-act="inc"]').addEventListener('click', () => AO_Cart.changeQty(key, 1));
+      line.querySelector('[data-act="dec"]').addEventListener('click', () => AO_Cart.changeQty(key, -1));
+      line.querySelector('[data-act="remove"]').addEventListener('click', () => AO_Cart.remove(key));
+    });
+
+    const sub = AO_Cart.total();
+    const ship = sub >= SHIP_THRESHOLD ? 0 : SHIP_BASE;
+    document.getElementById('sum-subtotal').textContent = `${sub} zł`;
+    document.getElementById('sum-ship').textContent = ship === 0 ? 'GRATIS' : `${ship} zł`;
+    document.getElementById('sum-total').textContent = `${sub + ship} zł`;
+    const shipInfo = document.getElementById('summary-ship-info');
+    const diff = SHIP_THRESHOLD - sub;
+    shipInfo.innerHTML = diff > 0
+      ? `Dodaj jeszcze <strong>${diff} zł</strong> i otrzymaj darmową dostawę.`
+      : `<strong>Masz darmową dostawę! 🎉</strong>`;
+  }
+
+  document.addEventListener('ao:cart-change', renderPage);
+  renderPage();
+</script>
+</body>
+</html>

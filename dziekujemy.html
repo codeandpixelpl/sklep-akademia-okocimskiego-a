@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="canonical" href="https://sklep.akademia-okocim.pl/dziekujemy.html" />
+  <title>Dziękujemy za zamówienie — Akademia Okocimskiego</title>
+  <meta name="description" content="Twoje zamówienie zostało przyjęte. Dziękujemy za zakupy w oficjalnym sklepie Akademii Okocimskiego.">
+  <meta name="robots" content="noindex,follow">
+  <link rel="stylesheet" href="00%20-%20Assets/fonts/fonts.css" />
+  <link rel="stylesheet" href="00%20-%20Assets/css/site.css" />
+  <style>
+    .ty-page { max-width: 720px; margin: 60px auto 80px; padding: 0 32px; text-align: center; }
+    .ty-icon { width: 88px; height: 88px; background: linear-gradient(135deg, var(--gold), var(--gold2)); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 28px; box-shadow: 0 12px 40px var(--gold-glow); }
+    .ty-icon svg { width: 44px; height: 44px; color: var(--bg-deep); }
+    .ty-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(36px, 5vw, 52px); color: var(--text-primary); margin-bottom: 12px; letter-spacing: 0.04em; }
+    .ty-title em { font-style: normal; color: var(--gold); }
+    .ty-desc { color: var(--text-secondary); font-size: 16px; line-height: 1.7; margin-bottom: 32px; }
+
+    .ty-card { background: var(--bg-card); border: 1px solid rgba(240,235,227,0.08); border-radius: 14px; padding: 28px 32px; margin: 0 auto 28px; text-align: left; }
+    .ty-card-title { font-family: 'Barlow Condensed', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
+    .ty-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid rgba(240,235,227,0.06); flex-wrap: wrap; gap: 12px; }
+    .ty-row:last-child { border-bottom: none; }
+    .ty-row-label { font-size: 13px; color: var(--text-muted); }
+    .ty-row-val { font-family: 'Barlow Condensed', sans-serif; font-size: 16px; font-weight: 700; color: var(--text-primary); letter-spacing: 0.02em; }
+    .ty-row-val.gold { color: var(--gold); }
+
+    .ty-items { display: flex; flex-direction: column; gap: 12px; margin-top: 12px; }
+    .ty-item { display: flex; gap: 14px; align-items: center; padding: 12px; background: var(--surface); border-radius: 10px; }
+    .ty-item-img { width: 56px; height: 56px; border-radius: 8px; overflow: hidden; flex-shrink: 0; background: var(--bg-card); }
+    .ty-item-img img { width: 100%; height: 100%; object-fit: cover; }
+    .ty-item-info { flex: 1; text-align: left; }
+    .ty-item-name { font-family: 'Barlow Condensed', sans-serif; font-size: 14px; font-weight: 600; color: var(--text-primary); }
+    .ty-item-meta { font-size: 12px; color: var(--text-muted); }
+    .ty-item-price { font-family: 'Bebas Neue', sans-serif; font-size: 18px; color: var(--gold); }
+
+    .ty-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 20px; }
+    .ty-actions a { padding: 14px 28px; border-radius: var(--r); font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 14px; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; transition: all 0.2s; }
+    .ty-actions .btn-primary { background: var(--gold); color: var(--bg-deep); border: 2px solid var(--gold); }
+    .ty-actions .btn-primary:hover { background: transparent; color: var(--gold); }
+    .ty-actions .btn-outline { background: transparent; color: var(--text-primary); border: 2px solid rgba(240,235,227,0.2); }
+    .ty-actions .btn-outline:hover { border-color: var(--gold); color: var(--gold); }
+
+    .ty-info { font-size: 13px; color: var(--text-muted); margin-top: 24px; line-height: 1.6; }
+    .ty-info a { color: var(--gold); text-decoration: underline; }
+
+    .ty-print-row { display: flex; gap: 12px; align-items: center; margin-top: 12px; }
+    .ty-print-link { font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--gold); cursor: pointer; background: none; border: none; padding: 0; }
+    .ty-print-link:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+<div data-ao-header></div>
+
+<main id="main" class="ty-page">
+  <div class="ty-icon">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+  </div>
+  <h1 class="ty-title">Zamówienie <em>złożone</em></h1>
+  <p class="ty-desc">Dziękujemy za zakupy! Wysłaliśmy potwierdzenie na podany adres e-mail. Status zamówienia możesz śledzić w sekcji <a href="moje-konto.html" style="color:var(--gold);">Moje konto</a>.</p>
+
+  <div class="ty-card">
+    <div class="ty-card-title">Szczegóły zamówienia</div>
+    <div class="ty-row"><span class="ty-row-label">Numer zamówienia</span><span class="ty-row-val gold" id="order-number">—</span></div>
+    <div class="ty-row"><span class="ty-row-label">Data</span><span class="ty-row-val" id="order-date">—</span></div>
+    <div class="ty-row"><span class="ty-row-label">E-mail kontaktowy</span><span class="ty-row-val" id="order-email">—</span></div>
+    <div class="ty-row"><span class="ty-row-label">Metoda dostawy</span><span class="ty-row-val" id="order-delivery">—</span></div>
+    <div class="ty-row"><span class="ty-row-label">Metoda płatności</span><span class="ty-row-val" id="order-payment">—</span></div>
+    <div class="ty-row"><span class="ty-row-label">Suma zamówienia</span><span class="ty-row-val gold" id="order-total">—</span></div>
+  </div>
+
+  <div class="ty-card" id="items-card" hidden>
+    <div class="ty-card-title">Zamówione produkty</div>
+    <div class="ty-items" id="ty-items"></div>
+  </div>
+
+  <div class="ty-actions">
+    <a href="index.html" class="btn-primary">Wróć do sklepu</a>
+    <a href="moje-konto.html" class="btn-outline">Moje zamówienia</a>
+  </div>
+
+  <div class="ty-print-row">
+    <button class="ty-print-link" onclick="window.print()">🖨 Wydrukuj potwierdzenie</button>
+  </div>
+
+  <p class="ty-info">
+    Masz pytania? Napisz na <a href="mailto:sklep@akademia-okocim.pl">sklep@akademia-okocim.pl</a> lub skorzystaj z <a href="kontakt.html">formularza kontaktowego</a>.
+  </p>
+</main>
+
+<!-- Cart drawer (mała dostępność z headera) -->
+<div class="cart-overlay" id="cart-overlay"></div>
+<aside class="cart-drawer" id="cart-drawer" role="dialog" aria-label="Koszyk" aria-modal="true">
+  <div class="cart-drawer-header">
+    <h3>Koszyk <span id="cart-count-drawer">(0)</span></h3>
+    <button class="cart-close-btn" id="cart-close" aria-label="Zamknij koszyk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+  </div>
+  <div class="cart-items" id="cart-items">
+    <div class="cart-empty" id="cart-empty"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>Koszyk jest pusty</div>
+  </div>
+  <div class="cart-drawer-footer" id="cart-footer" style="display:none;">
+    <div class="cart-subtotal"><span class="cart-subtotal-label">Suma</span><span class="cart-subtotal-val" id="cart-total">0 zł</span></div>
+    <p class="cart-free-ship" id="cart-ship-info"></p>
+    <a href="checkout.html" class="cart-checkout-btn">Przejdź do kasy</a>
+  </div>
+</aside>
+
+<footer data-ao-footer></footer>
+
+<script src="00%20-%20Assets/js/products.js"></script>
+<script src="00%20-%20Assets/js/cart.js"></script>
+<script src="00%20-%20Assets/js/site.js"></script>
+<script>
+  const params = new URLSearchParams(location.search);
+  const orderFromUrl = params.get('order');
+
+  let lastOrder = null;
+  try { lastOrder = JSON.parse(localStorage.getItem('ao_last_order')); } catch {}
+
+  const orderNum = orderFromUrl || (lastOrder && lastOrder.orderNumber) || '—';
+  document.getElementById('order-number').textContent = orderNum;
+
+  if (lastOrder) {
+    const ts = lastOrder.ts || Date.now();
+    document.getElementById('order-date').textContent = new Date(ts).toLocaleString('pl-PL');
+    const p = lastOrder.payload || {};
+    document.getElementById('order-email').textContent = (p.customer && p.customer.email) || '—';
+
+    const deliveryMethodMap = { inpost: 'InPost Paczkomat', courier: 'Kurier DPD', pickup: 'Odbiór osobisty' };
+    const paymentMethodMap = { blik: 'BLIK', przelewy24: 'Przelewy24', card: 'Karta', transfer: 'Przelew', cash: 'Przy odbiorze', bnpl: 'Kup teraz, zapłać później' };
+
+    document.getElementById('order-delivery').textContent = deliveryMethodMap[p.delivery && p.delivery.method] || '—';
+    document.getElementById('order-payment').textContent = paymentMethodMap[p.payment && p.payment.method] || '—';
+    document.getElementById('order-total').textContent = (lastOrder.total != null ? lastOrder.total : '—') + ' zł';
+
+    if (p.cart && p.cart.length > 0) {
+      const itemsCard = document.getElementById('items-card');
+      const itemsEl = document.getElementById('ty-items');
+      itemsCard.hidden = false;
+      itemsEl.innerHTML = p.cart.map(it => `
+        <div class="ty-item">
+          <div class="ty-item-img"><img src="${it.image}" width="600" height="800" alt="${AO_Site.escapeHtml(it.name)}" loading="lazy"></div>
+          <div class="ty-item-info">
+            <div class="ty-item-name">${AO_Site.escapeHtml(it.name)}</div>
+            <div class="ty-item-meta">${it.size ? `Rozmiar: ${AO_Site.escapeHtml(it.size)} · ` : ''}Ilość: ${it.qty}</div>
+          </div>
+          <div class="ty-item-price">${it.price * it.qty} zł</div>
+        </div>`).join('');
+    }
+  } else {
+    // Brak danych — pokaż minimalny stan
+    document.getElementById('order-date').textContent = new Date().toLocaleDateString('pl-PL');
+  }
+
+  // TODO(analytics): track('purchase', { transaction_id: orderNum, value: total, currency: 'PLN', items: cart })
+</script>
+
+</body>
+</html>
