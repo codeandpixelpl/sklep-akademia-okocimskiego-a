@@ -948,16 +948,20 @@ footer { background: var(--bg-deep); border-top: 1px solid rgba(240,235,227,0.06
 
 /* ── NEWSLETTER FORM — zgoda RODO + klauzula ── */
 .newsletter-form { flex-wrap: wrap; }
+/* Input + button trzymamy w jednej linii (flex: 1 / auto), consent i fineprint
+   wymuszamy do nowego wiersza przez flex-basis: 100% */
+.newsletter-consent,
+.newsletter-fineprint,
+.newsletter-msg { flex: 0 0 100%; }
 .newsletter-consent {
   display: flex;
   align-items: flex-start;
   gap: 10px;
-  width: 100%;
   margin-top: 12px;
   cursor: pointer;
   font-family: 'DM Sans', sans-serif;
   font-size: 12px;
-  color: rgba(255,255,255,0.75);
+  color: rgba(255,255,255,0.78);
   line-height: 1.5;
   text-align: left;
 }
@@ -970,7 +974,6 @@ footer { background: var(--bg-deep); border-top: 1px solid rgba(240,235,227,0.06
 }
 .newsletter-req { color: var(--gold); }
 .newsletter-fineprint {
-  width: 100%;
   margin-top: 8px;
   font-size: 11px;
   line-height: 1.5;
@@ -982,7 +985,6 @@ footer { background: var(--bg-deep); border-top: 1px solid rgba(240,235,227,0.06
   text-decoration: underline;
 }
 .newsletter-msg {
-  width: 100%;
   margin-top: 10px;
   padding: 8px 12px;
   border-radius: 6px;
