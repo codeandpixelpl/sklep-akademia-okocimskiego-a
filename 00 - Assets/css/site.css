@@ -956,6 +956,7 @@ footer { background: var(--bg-deep); border-top: 1px solid rgba(240,235,227,0.06
 .newsletter-consent {
   display: flex;
   align-items: flex-start;
+  justify-content: flex-start;
   gap: 10px;
   margin-top: 12px;
   cursor: pointer;
@@ -964,7 +965,9 @@ footer { background: var(--bg-deep); border-top: 1px solid rgba(240,235,227,0.06
   color: rgba(255,255,255,0.78);
   line-height: 1.5;
   text-align: left;
+  /* Nadpisanie text-align: center z .newsletter-inner w mobile */
 }
+.newsletter-consent span { text-align: left; }
 .newsletter-consent input[type="checkbox"] {
   width: 16px; height: 16px;
   accent-color: var(--gold);
