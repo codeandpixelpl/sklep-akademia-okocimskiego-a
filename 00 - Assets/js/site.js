@@ -347,10 +347,10 @@
           </a>
           <nav>
             <a href="index.html" data-nav="index">Sklep</a>
-            <a href="kategoria.html?kat=koszulki" data-nav="koszulki">Koszulki</a>
-            <a href="kategoria.html?kat=bluzy" data-nav="bluzy">Bluzy</a>
-            <a href="kategoria.html?kat=spodenki" data-nav="spodenki">Spodenki</a>
-            <a href="kategoria.html?kat=czapki" data-nav="czapki">Akcesoria</a>
+            <a href="kategoria.html?kat=stroje" data-nav="stroje">Stroje Meczowe</a>
+            <a href="kategoria.html?kat=treningi" data-nav="treningi">Treningowe</a>
+            <a href="kategoria.html?kat=ochrona" data-nav="ochrona">Ochraniacze</a>
+            <a href="kategoria.html?kat=akcesoria" data-nav="akcesoria">Akcesoria</a>
             <a href="kontakt.html" data-nav="kontakt">Kontakt</a>
           </nav>
           <div class="header-actions">
@@ -381,12 +381,10 @@
       </div>
       <div class="mobile-nav" id="mobile-nav">
         <a href="index.html">Sklep</a>
-        <a href="kategoria.html?kat=koszulki">Koszulki</a>
-        <a href="kategoria.html?kat=bluzy">Bluzy</a>
-        <a href="kategoria.html?kat=spodenki">Spodenki</a>
-        <a href="kategoria.html?kat=czapki">Akcesoria</a>
-        <a href="kategoria.html?kat=torby">Torby</a>
-        <a href="kategoria.html?kat=gadgety">Gadżety</a>
+        <a href="kategoria.html?kat=stroje">Stroje Meczowe</a>
+        <a href="kategoria.html?kat=treningi">Odzież Treningowa</a>
+        <a href="kategoria.html?kat=ochrona">Ochraniacze &amp; Skarpety</a>
+        <a href="kategoria.html?kat=akcesoria">Czapki &amp; Akcesoria</a>
         <a href="kontakt.html">Kontakt</a>
       </div>
     `;
@@ -426,11 +424,10 @@
           <div class="footer-col">
             <h4>Sklep</h4>
             <ul>
-              <li><a href="kategoria.html?kat=koszulki">Koszulki i stroje</a></li>
-              <li><a href="kategoria.html?kat=bluzy">Bluzy i kurtki</a></li>
-              <li><a href="kategoria.html?kat=spodenki">Spodenki i spodnie</a></li>
-              <li><a href="kategoria.html?kat=czapki">Akcesoria</a></li>
-              <li><a href="kategoria.html?kat=gadgety">Gadżety</a></li>
+              <li><a href="kategoria.html?kat=stroje">Stroje Meczowe</a></li>
+              <li><a href="kategoria.html?kat=treningi">Odzież Treningowa</a></li>
+              <li><a href="kategoria.html?kat=ochrona">Ochraniacze &amp; Skarpety</a></li>
+              <li><a href="kategoria.html?kat=akcesoria">Czapki &amp; Akcesoria</a></li>
               <li><a href="o-nas.html">O Akademii</a></li>
             </ul>
           </div>

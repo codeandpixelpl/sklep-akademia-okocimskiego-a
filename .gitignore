@@ -1,3 +1,21 @@
+# System
 .DS_Store
+Thumbs.db
+._*
+
+# Surowe materiały i generowane grafiki — zostają na dysku, nie w repo
 00 - Assets/generowane/
 00 - Assets/Zdjęcia/
+
+# Źródłowe packshoty (PNG/MP4) — serwis używa JPG z 00 - Assets/produkty/
+01 - Produkty/
+
+# Stare, nieużywane grafiki z poprzedniej wersji katalogu
+00 - Assets/cat-*.png
+00 - Assets/cat-*.jpg
+00 - Assets/hero-baner.jpg
+00 - Assets/Section*.jpg
+
+# Lokalne
+*.log
+.env

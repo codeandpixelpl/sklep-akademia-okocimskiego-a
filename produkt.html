@@ -25,7 +25,7 @@
 <div class="breadcrumb">
   <a href="index.html">Sklep</a>
   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
-  <a href="kategoria.html?kat=bluzy" data-bc-category>Kategoria</a>
+  <a href="kategoria.html?kat=akcesoria" data-bc-category>Kategoria</a>
   <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M9 18l6-6-6-6"/></svg>
   <span data-bc-current>Produkt</span>
 </div>
@@ -34,36 +34,9 @@
 
   <!-- GALLERY -->
   <div class="gallery" role="region" aria-roledescription="carousel" aria-label="Galeria zdjęć produktu">
-    <div class="thumbs" role="tablist" aria-label="Miniatury">
-      <button type="button" class="thumb active" data-index="0" role="tab" aria-selected="true" aria-label="Pokaż zdjęcie 1">
-        <img src="01%20-%20Produkty/01%20-%20Bluza/Bluza_01.png" width="600" height="800" alt="">
-      </button>
-      <button type="button" class="thumb" data-index="1" role="tab" aria-selected="false" aria-label="Pokaż zdjęcie 2">
-        <img src="01%20-%20Produkty/01%20-%20Bluza/Bluza_02.png" width="600" height="800" alt="">
-      </button>
-      <button type="button" class="thumb" data-index="2" role="tab" aria-selected="false" aria-label="Pokaż zdjęcie 3">
-        <img src="01%20-%20Produkty/01%20-%20Bluza/Bluza_03.png" width="600" height="800" alt="">
-      </button>
-      <button type="button" class="thumb video-thumb" data-index="3" role="tab" aria-selected="false" aria-label="Pokaż wideo produktu">
-        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-      </button>
-    </div>
-    <div class="main-display" tabindex="0" aria-live="polite" aria-atomic="true">
-      <div class="media-item active" data-index="0">
-        <img src="01%20-%20Produkty/01%20-%20Bluza/Bluza_01.png" width="600" height="800" alt="Bluza Kangurka AO — zdjęcie 1">
-      </div>
-      <div class="media-item" data-index="1">
-        <img src="01%20-%20Produkty/01%20-%20Bluza/Bluza_02.png" width="600" height="800" alt="Bluza Kangurka AO — zdjęcie 2">
-      </div>
-      <div class="media-item" data-index="2">
-        <img src="01%20-%20Produkty/01%20-%20Bluza/Bluza_03.png" width="600" height="800" alt="Bluza Kangurka AO — zdjęcie 3">
-      </div>
-      <div class="media-item" data-index="3">
-        <video id="product-video" muted loop playsinline controls style="width:100%;height:100%;object-fit:cover;">
-          <source src="01%20-%20Produkty/01%20-%20Bluza/Bluza_04%20%2B%20hover.mp4" type="video/mp4">
-        </video>
-      </div>
-    </div>
+    <!-- Miniatury i zdjęcia generowane z PRODUCT.gallery (products.js) -->
+    <div class="thumbs" role="tablist" aria-label="Miniatury"></div>
+    <div class="main-display" tabindex="0" aria-live="polite" aria-atomic="true"></div>
   </div>
 
   <!-- PRODUCT INFO -->
@@ -277,34 +250,18 @@
       else { stockEl.textContent = 'Na stanie'; stockEl.className = 'stock-info ok'; }
     }
 
-    // gallery (jeśli produkt ma galerię — podmień zdjęcia)
+    // gallery — miniatury i zdjęcia budowane z pełnej listy PRODUCT.gallery
     const gallery = PRODUCT.gallery && PRODUCT.gallery.length > 0 ? PRODUCT.gallery : [PRODUCT.image];
-    document.querySelectorAll('.thumb img').forEach((img, idx) => {
-      if (gallery[idx]) {
-        img.src = gallery[idx];
-        img.alt = `${PRODUCT.name} — zdjęcie ${idx + 1}`;
-      } else {
-        const thumb = img.closest('.thumb');
-        if (thumb && !thumb.classList.contains('video-thumb')) thumb.style.display = 'none';
-      }
-    });
-    document.querySelectorAll('.media-item img').forEach((img, idx) => {
-      if (gallery[idx]) { img.src = gallery[idx]; img.alt = `${PRODUCT.name} — zdjęcie ${idx + 1}`; }
-    });
-
-    // video
-    const productVideo = document.getElementById('product-video');
-    const videoSrc = productVideo ? productVideo.querySelector('source') : null;
-    if (PRODUCT.video && videoSrc) {
-      videoSrc.src = PRODUCT.video;
-      productVideo.load();
-    } else {
-      // ukryj ostatni thumb jeśli nie ma video
-      const videoThumb = document.querySelector('.thumb.video-thumb');
-      const videoMedia = document.querySelector('.media-item[data-index="3"]');
-      if (videoThumb) videoThumb.style.display = 'none';
-      if (videoMedia) videoMedia.style.display = 'none';
-    }
+    const thumbsWrap = document.querySelector('.thumbs');
+    const displayWrap = document.querySelector('.main-display');
+    thumbsWrap.innerHTML = gallery.map((src, i) => `
+      <button type="button" class="thumb${i === 0 ? ' active' : ''}" data-index="${i}" role="tab" aria-selected="${i === 0}" aria-label="Pokaż zdjęcie ${i + 1}">
+        <img src="${src}" width="600" height="800" alt="">
+      </button>`).join('');
+    displayWrap.innerHTML = gallery.map((src, i) => `
+      <div class="media-item${i === 0 ? ' active' : ''}" data-index="${i}">
+        <img src="${src}" width="600" height="800" alt="${AO_Site.escapeHtml(PRODUCT.name)} — zdjęcie ${i + 1}" loading="${i === 0 ? 'eager' : 'lazy'}">
+      </div>`).join('');
 
     // sizes — outSizes są klikalne (otwierają formularz "Powiadom"), nie disabled
     const sizesGrid = document.querySelector('.sizes-grid');

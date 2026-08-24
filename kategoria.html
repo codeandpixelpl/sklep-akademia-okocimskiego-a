@@ -247,8 +247,8 @@
 
   /* Routing + meta */
   const params = new URLSearchParams(location.search);
-  const currentKat = params.get('kat') || 'koszulki';
-  const meta = AO_Catalog.meta(currentKat) || AO_Catalog.meta('koszulki');
+  const currentKat = params.get('kat') || 'stroje';
+  const meta = AO_Catalog.meta(currentKat) || AO_Catalog.meta('stroje');
   const katProducts = AO_Catalog.byCategory(currentKat);
 
   /* ── Dynamiczne meta: title + OG image per kategoria ── */
