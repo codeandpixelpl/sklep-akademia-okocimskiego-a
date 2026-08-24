@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="canonical" href="https://sklep.akademia-okocim.pl/kontakt.html" />
+  <title>Kontakt — Akademia Okocimskiego</title>
+  <meta name="description" content="Skontaktuj się z obsługą sklepu Akademii Okocimskiego — formularz kontaktowy, e-mail, telefon.">
+  <link rel="stylesheet" href="00%20-%20Assets/fonts/fonts.css" />
+  <link rel="stylesheet" href="00%20-%20Assets/css/site.css" />
+  <style>
+    .doc-hero { background: linear-gradient(135deg, var(--g500) 0%, var(--g900) 100%); padding: 56px 32px 40px; }
+    .doc-hero-inner { max-width: 880px; margin: 0 auto; }
+    .doc-hero h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(36px, 5vw, 52px); color: #fff; letter-spacing: 0.04em; }
+    .doc-hero h1 em { font-style: normal; color: var(--gold); }
+    .doc-hero p { color: rgba(255,255,255,0.6); font-size: 14px; margin-top: 4px; font-family: 'Barlow Condensed', sans-serif; letter-spacing: 0.06em; text-transform: uppercase; }
+    .doc-page { max-width: 880px; margin: 40px auto 80px; padding: 0 32px; line-height: 1.75; }
+    .doc-page h2 { font-family: 'Bebas Neue', sans-serif; font-size: 28px; color: var(--text-primary); margin: 36px 0 14px; letter-spacing: 0.04em; }
+    .doc-page h3 { font-family: 'Barlow Condensed', sans-serif; font-size: 18px; font-weight: 700; color: var(--gold); margin: 24px 0 10px; letter-spacing: 0.04em; text-transform: uppercase; }
+    .doc-page p { color: var(--text-secondary); margin-bottom: 14px; }
+    .doc-page ul, .doc-page ol { color: var(--text-secondary); padding-left: 22px; margin-bottom: 14px; }
+    .doc-page li { margin-bottom: 6px; }
+    .doc-page strong { color: var(--text-primary); }
+    .doc-page a { color: var(--gold); }
+    .toc { background: var(--bg-card); border: 1px solid rgba(240,235,227,0.06); border-radius: 12px; padding: 24px; margin-bottom: 32px; }
+    .toc h4 { font-family: 'Barlow Condensed', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
+    .toc ol { padding-left: 18px; margin-bottom: 0; }
+    .toc a { font-size: 14px; }
+    .placeholder-note { padding: 14px 18px; background: rgba(201,168,76,0.08); border-left: 3px solid var(--gold); border-radius: 4px; color: var(--text-secondary); font-size: 13px; margin: 24px 0; }
+  </style>
+</head>
+<body>
+
+<div data-ao-header></div>
+
+<div class="doc-hero">
+  <div class="doc-hero-inner">
+    <p>Pomoc</p>
+    <h1>Skontaktuj się <em>z nami</em></h1>
+  </div>
+</div>
+
+<style>
+  .contact-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 32px; margin-top: 8px; }
+  .contact-form { background: var(--bg-card); border: 1px solid rgba(240,235,227,0.06); border-radius: 12px; padding: 28px; }
+  .contact-form h2 { font-family: 'Bebas Neue', sans-serif; font-size: 24px; color: var(--text-primary); margin: 0 0 18px; letter-spacing: 0.04em; }
+  .contact-row { margin-bottom: 14px; }
+  .contact-row label { display: block; font-family: 'Barlow Condensed', sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-secondary); margin-bottom: 6px; }
+  .contact-row input, .contact-row select, .contact-row textarea { width: 100%; padding: 12px 14px; background: var(--surface); border: 1.5px solid rgba(240,235,227,0.1); border-radius: var(--r); color: var(--text-primary); font-family: 'DM Sans', sans-serif; font-size: 14px; outline: none; transition: border-color 0.2s; }
+  .contact-row input:focus, .contact-row select:focus, .contact-row textarea:focus { border-color: var(--gold); }
+  .contact-row textarea { resize: vertical; min-height: 120px; }
+  .contact-submit { padding: 14px 28px; background: var(--gold); color: var(--bg-deep); border: none; border-radius: var(--r); font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 14px; letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer; }
+  .contact-submit:hover { background: var(--gold2); }
+  .contact-submit:disabled { opacity: 0.5; cursor: not-allowed; }
+  .contact-msg { font-size: 14px; margin-top: 12px; }
+  .contact-msg.ok { color: var(--g300); }
+  .contact-msg.err { color: #e05252; }
+
+  .contact-info { display: flex; flex-direction: column; gap: 16px; }
+  .contact-card { padding: 20px; background: var(--bg-card); border: 1px solid rgba(240,235,227,0.06); border-radius: 10px; }
+  .contact-card h3 { font-family: 'Barlow Condensed', sans-serif; font-size: 13px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 8px; }
+  .contact-card p { color: var(--text-secondary); margin: 0; font-size: 14px; line-height: 1.6; }
+  .contact-card a { color: var(--text-primary); }
+
+  .checkbox-row { display: flex; align-items: flex-start; gap: 10px; cursor: pointer; }
+  .checkbox-row input { width: 18px; height: 18px; accent-color: var(--gold); margin-top: 2px; flex-shrink: 0; }
+  .checkbox-row span { font-size: 13px; color: var(--text-secondary); line-height: 1.5; }
+  .checkbox-row a { color: var(--gold); }
+
+  @media (max-width: 768px) { .contact-grid { grid-template-columns: 1fr; gap: 20px; } }
+</style>
+
+<main id="main" class="doc-page">
+
+  <div class="contact-grid">
+    <form class="contact-form" id="contact-form" novalidate>
+      <h2>Napisz do nas</h2>
+
+      <div class="contact-row">
+        <label for="c-name">Imię i nazwisko</label>
+        <input type="text" id="c-name" name="name" required minlength="2" autocomplete="name">
+      </div>
+
+      <div class="contact-row">
+        <label for="c-email">Adres e-mail</label>
+        <input type="email" id="c-email" name="email" required autocomplete="email">
+      </div>
+
+      <div class="contact-row">
+        <label for="c-topic">Temat</label>
+        <select id="c-topic" name="topic">
+          <option value="zamowienie">Pytanie o zamówienie</option>
+          <option value="zwrot">Zwrot lub reklamacja</option>
+          <option value="rozmiar">Pomoc w doborze rozmiaru</option>
+          <option value="hurt">Zamówienia hurtowe / klubowe</option>
+          <option value="inne">Inne</option>
+        </select>
+      </div>
+
+      <div class="contact-row">
+        <label for="c-message">Wiadomość</label>
+        <textarea id="c-message" name="message" required minlength="10" placeholder="W czym możemy pomóc?"></textarea>
+      </div>
+
+      <div class="contact-row">
+        <label class="checkbox-row">
+          <input type="checkbox" id="c-rodo" name="rodo" required>
+          <span>Wyrażam zgodę na przetwarzanie moich danych osobowych w celu odpowiedzi na zapytanie. <a href="polityka-prywatnosci.html" target="_blank" rel="noopener">Polityka prywatności</a></span>
+        </label>
+      </div>
+
+      <button type="submit" class="contact-submit" id="contact-submit-btn">Wyślij wiadomość</button>
+      <div class="contact-msg" id="contact-msg" hidden></div>
+    </form>
+
+    <aside class="contact-info">
+      <div class="contact-card">
+        <h3>📧 E-mail</h3>
+        <p><a href="mailto:sklep@akademia-okocim.pl">sklep@akademia-okocim.pl</a></p>
+      </div>
+      <div class="contact-card">
+        <h3>📞 Telefon</h3>
+        <p><a href="tel:+48000000000">+48 000 000 000</a><br>Pon–Pt 9:00–17:00</p>
+      </div>
+      <div class="contact-card">
+        <h3>📍 Adres</h3>
+        <p>Akademia Okocimskiego<br>ul. [DO UZUPEŁNIENIA]<br>32-800 Brzesko</p>
+      </div>
+      <div class="contact-card">
+        <h3>⏱ Czas odpowiedzi</h3>
+        <p>Odpowiadamy w ciągu <strong>24h</strong> (dni robocze).</p>
+      </div>
+    </aside>
+  </div>
+
+</main>
+
+<script>
+  document.getElementById('contact-form').addEventListener('submit', async e => {
+    e.preventDefault();
+    const form = e.target;
+    const btn = document.getElementById('contact-submit-btn');
+    const msg = document.getElementById('contact-msg');
+    msg.hidden = true;
+
+    const name = document.getElementById('c-name').value.trim();
+    const email = document.getElementById('c-email').value.trim();
+    const message = document.getElementById('c-message').value.trim();
+    const rodo = document.getElementById('c-rodo').checked;
+
+    if (name.length < 2 || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || message.length < 10 || !rodo) {
+      msg.hidden = false;
+      msg.className = 'contact-msg err';
+      msg.textContent = 'Sprawdź wszystkie pola i zgodę RODO.';
+      return;
+    }
+
+    btn.disabled = true;
+    btn.textContent = 'Wysyłam…';
+
+    const payload = {
+      name, email,
+      topic: document.getElementById('c-topic').value,
+      message,
+      rodo,
+    };
+
+    try {
+      // TODO(backend): podmień na właściwy endpoint POST /api/contact { ... }
+      // const res = await fetch('/api/contact', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(payload) });
+      // if (!res.ok) throw new Error();
+      await new Promise(r => setTimeout(r, 800));
+      msg.hidden = false;
+      msg.className = 'contact-msg ok';
+      msg.textContent = 'Dziękujemy! Wiadomość wysłana — odpowiemy w ciągu 24h.';
+      form.reset();
+    } catch {
+      msg.hidden = false;
+      msg.className = 'contact-msg err';
+      msg.textContent = 'Coś poszło nie tak. Spróbuj ponownie lub napisz na sklep@akademia-okocim.pl.';
+    } finally {
+      btn.disabled = false;
+      btn.textContent = 'Wyślij wiadomość';
+    }
+  });
+</script>
+
+<div class="cart-overlay" id="cart-overlay"></div>
+<aside class="cart-drawer" id="cart-drawer" role="dialog" aria-label="Koszyk" aria-modal="true">
+  <div class="cart-drawer-header">
+    <h3>Koszyk <span id="cart-count-drawer">(0)</span></h3>
+    <button class="cart-close-btn" id="cart-close" aria-label="Zamknij koszyk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+  </div>
+  <div class="cart-items" id="cart-items"><div class="cart-empty" id="cart-empty"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>Koszyk jest pusty</div></div>
+  <div class="cart-drawer-footer" id="cart-footer" style="display:none;"><div class="cart-subtotal"><span class="cart-subtotal-label">Suma</span><span class="cart-subtotal-val" id="cart-total">0 zł</span></div><p class="cart-free-ship" id="cart-ship-info"></p><a href="checkout.html" class="cart-checkout-btn">Przejdź do kasy</a></div>
+</aside>
+
+<footer data-ao-footer></footer>
+
+<script src="00%20-%20Assets/js/products.js"></script>
+<script src="00%20-%20Assets/js/cart.js"></script>
+<script src="00%20-%20Assets/js/site.js"></script>
+</body>
+</html>

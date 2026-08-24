@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  TODO(klient): podmień https://akademia-okocim.pl/ na właściwą domenę.
+  Po wdrożeniu backendu produktów — wygeneruj URL-e dla każdego produktu
+  (np. produkt.html?id=11) dynamicznie.
+-->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- Strony główne -->
+  <url>
+    <loc>https://akademia-okocim.pl/</loc>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://akademia-okocim.pl/index.html</loc>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Kategorie -->
+  <url>
+    <loc>https://akademia-okocim.pl/kategoria.html?kat=koszulki</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://akademia-okocim.pl/kategoria.html?kat=bluzy</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://akademia-okocim.pl/kategoria.html?kat=spodenki</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://akademia-okocim.pl/kategoria.html?kat=czapki</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://akademia-okocim.pl/kategoria.html?kat=torby</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://akademia-okocim.pl/kategoria.html?kat=gadgety</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Produkty (przykładowe — uzupełnij po backendzie) -->
+  <url><loc>https://akademia-okocim.pl/produkt.html?id=11</loc><priority>0.8</priority></url>
+  <url><loc>https://akademia-okocim.pl/produkt.html?id=12</loc><priority>0.8</priority></url>
+  <url><loc>https://akademia-okocim.pl/produkt.html?id=13</loc><priority>0.8</priority></url>
+  <url><loc>https://akademia-okocim.pl/produkt.html?id=21</loc><priority>0.8</priority></url>
+  <url><loc>https://akademia-okocim.pl/produkt.html?id=61</loc><priority>0.8</priority></url>
+  <url><loc>https://akademia-okocim.pl/produkt.html?id=62</loc><priority>0.8</priority></url>
+
+  <!-- Strony informacyjne -->
+  <url>
+    <loc>https://akademia-okocim.pl/regulamin.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://akademia-okocim.pl/polityka-prywatnosci.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://akademia-okocim.pl/dostawa-i-zwroty.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://akademia-okocim.pl/faq.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://akademia-okocim.pl/kontakt.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://akademia-okocim.pl/tabela-rozmiarow.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://akademia-okocim.pl/o-nas.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://akademia-okocim.pl/reklamacje.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+</urlset>

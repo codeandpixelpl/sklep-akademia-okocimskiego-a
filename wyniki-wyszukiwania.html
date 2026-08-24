@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="canonical" href="https://sklep.akademia-okocim.pl/wyniki-wyszukiwania.html" />
+  <title>Wyniki wyszukiwania — Akademia Okocimskiego</title>
+  <meta name="description" content="Wyniki wyszukiwania w sklepie Akademii Okocimskiego.">
+  <meta name="robots" content="noindex,follow">
+  <link rel="stylesheet" href="00%20-%20Assets/fonts/fonts.css" />
+  <link rel="stylesheet" href="00%20-%20Assets/css/site.css" />
+  <style>
+    .search-hero { background: linear-gradient(135deg, var(--g500) 0%, var(--g900) 100%); padding: 56px 32px 40px; text-align: center; }
+    .search-hero h1 { font-family: 'Bebas Neue', sans-serif; font-size: clamp(32px, 4vw, 48px); color: #fff; letter-spacing: 0.04em; margin-bottom: 8px; }
+    .search-hero h1 em { font-style: normal; color: var(--gold); }
+    .search-hero p { color: var(--text-secondary); font-size: 15px; }
+    .search-page { max-width: 1360px; margin: 32px auto 80px; padding: 0 32px; }
+    .results-toolbar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 24px; flex-wrap: wrap; gap: 12px; }
+    .results-count { font-family: 'Barlow Condensed', sans-serif; font-size: 14px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-muted); }
+    .results-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+    .result-card { background: var(--bg-card); border: 1px solid rgba(240,235,227,0.06); border-radius: 12px; overflow: hidden; transition: all 0.3s; text-decoration: none; color: inherit; display: flex; flex-direction: column; }
+    .result-card:hover { transform: translateY(-4px); border-color: rgba(201,168,76,0.3); box-shadow: 0 16px 40px rgba(0,0,0,0.3); }
+    .result-card-img { aspect-ratio: 3/4; background: var(--surface); overflow: hidden; }
+    .result-card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s; }
+    .result-card:hover .result-card-img img { transform: scale(1.04); }
+    .result-card-body { padding: 14px 16px 18px; }
+    .result-card-cat { font-family: 'Barlow Condensed', sans-serif; font-size: 11px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-bottom: 4px; }
+    .result-card-name { font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--text-primary); margin-bottom: 8px; line-height: 1.3; }
+    .result-card-price { font-family: 'Oswald', sans-serif; font-size: 18px; font-weight: 600; color: var(--text-primary); }
+    .result-card-price-old { font-size: 12px; text-decoration: line-through; color: var(--text-muted); margin-right: 6px; font-family: 'DM Sans', sans-serif; }
+    .empty-results { text-align: center; padding: 80px 20px; color: var(--text-secondary); }
+    .empty-results h2 { font-family: 'Bebas Neue', sans-serif; font-size: 32px; color: var(--text-primary); margin-bottom: 12px; letter-spacing: 0.04em; }
+    .empty-results p { margin-bottom: 24px; }
+    .empty-results .suggestions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 16px; }
+    .empty-results .suggestions a { padding: 10px 20px; border: 1.5px solid rgba(201,168,76,0.3); border-radius: 100px; color: var(--gold); font-family: 'Barlow Condensed', sans-serif; font-weight: 600; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; transition: all 0.2s; text-decoration: none; }
+    .empty-results .suggestions a:hover { background: rgba(201,168,76,0.1); border-color: var(--gold); }
+    @media (max-width: 1024px) { .results-grid { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 768px) { .results-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; } }
+    @media (max-width: 480px) { .results-grid { gap: 10px; } }
+  </style>
+</head>
+<body>
+
+<div data-ao-header></div>
+
+<div class="search-hero">
+  <h1>Wyniki dla <em id="query-display">…</em></h1>
+  <p id="query-summary"></p>
+</div>
+
+<main id="main" class="search-page">
+  <div class="results-toolbar">
+    <span class="results-count" id="results-count">0 produktów</span>
+    <form action="wyniki-wyszukiwania.html" method="get" style="display:flex;gap:8px;align-items:center;">
+      <input type="search" name="q" id="refine-input" placeholder="Doprecyzuj…" style="padding:8px 14px;background:var(--bg-card);border:1.5px solid rgba(201,168,76,0.2);border-radius:6px;color:var(--text-primary);font-family:'DM Sans',sans-serif;font-size:14px;outline:none;">
+      <button type="submit" style="padding:8px 16px;background:var(--gold);color:var(--bg-deep);border:none;border-radius:6px;font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;">Szukaj</button>
+    </form>
+  </div>
+
+  <div class="results-grid" id="results-grid">
+    <div class="skeleton-card"><div class="skeleton-img"></div><div class="skeleton-body"><div class="skeleton-line short"></div><div class="skeleton-line medium"></div><div class="skeleton-line price"></div></div></div>
+    <div class="skeleton-card"><div class="skeleton-img"></div><div class="skeleton-body"><div class="skeleton-line short"></div><div class="skeleton-line medium"></div><div class="skeleton-line price"></div></div></div>
+    <div class="skeleton-card"><div class="skeleton-img"></div><div class="skeleton-body"><div class="skeleton-line short"></div><div class="skeleton-line medium"></div><div class="skeleton-line price"></div></div></div>
+    <div class="skeleton-card"><div class="skeleton-img"></div><div class="skeleton-body"><div class="skeleton-line short"></div><div class="skeleton-line medium"></div><div class="skeleton-line price"></div></div></div>
+  </div>
+  <div class="empty-results" id="empty-results" hidden>
+    <h2>Nic nie znaleziono</h2>
+    <p>Sprawdź pisownię albo spróbuj innych słów. Możesz też przeglądać kategorie:</p>
+    <div class="suggestions">
+      <a href="kategoria.html?kat=stroje">Stroje Meczowe</a>
+      <a href="kategoria.html?kat=treningi">Odzież Treningowa</a>
+      <a href="kategoria.html?kat=ochrona">Ochraniacze &amp; Skarpety</a>
+      <a href="kategoria.html?kat=akcesoria">Czapki &amp; Akcesoria</a>
+    </div>
+  </div>
+</main>
+
+<!-- Cart drawer (jak na pozostałych stronach) -->
+<div class="cart-overlay" id="cart-overlay"></div>
+<aside class="cart-drawer" id="cart-drawer" role="dialog" aria-label="Koszyk" aria-modal="true">
+  <div class="cart-drawer-header">
+    <h3>Koszyk <span id="cart-count-drawer">(0)</span></h3>
+    <button class="cart-close-btn" id="cart-close" aria-label="Zamknij koszyk">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <div class="cart-items" id="cart-items">
+    <div class="cart-empty" id="cart-empty">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+      Koszyk jest pusty
+    </div>
+  </div>
+  <div class="cart-drawer-footer" id="cart-footer" style="display:none;">
+    <div class="cart-subtotal">
+      <span class="cart-subtotal-label">Suma</span>
+      <span class="cart-subtotal-val" id="cart-total">0 zł</span>
+    </div>
+    <p class="cart-free-ship" id="cart-ship-info"></p>
+    <a href="checkout.html" class="cart-checkout-btn">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      Przejdź do kasy
+    </a>
+  </div>
+</aside>
+
+<!-- Newsletter -->
+<section class="newsletter">
+  <div class="container">
+    <div class="newsletter-inner">
+      <div class="newsletter-text">
+        <h3>Zapisz się i zyskaj <em>-10%</em></h3>
+        <p>Dołącz do naszego newslettera i otrzymaj 10% rabatu na pierwsze zamówienie.</p>
+      </div>
+      <form class="newsletter-form">
+        <input type="email" placeholder="Twój adres e-mail" required>
+        <button type="submit">Zapisz się</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer data-ao-footer></footer>
+
+<script src="00%20-%20Assets/js/products.js"></script>
+<script src="00%20-%20Assets/js/cart.js"></script>
+<script src="00%20-%20Assets/js/site.js"></script>
+<script>
+  const params = new URLSearchParams(location.search);
+  const query = (params.get('q') || '').trim();
+  const queryDisp = document.getElementById('query-display');
+  const querySum = document.getElementById('query-summary');
+  const refineInput = document.getElementById('refine-input');
+  const heroSearch = document.getElementById('hero-search');
+
+  if (heroSearch) heroSearch.value = query;
+  if (refineInput) refineInput.value = query;
+  document.title = query ? `"${query}" — wyniki wyszukiwania — Akademia Okocimskiego` : 'Wyszukiwarka — Akademia Okocimskiego';
+
+  const grid = document.getElementById('results-grid');
+  const emptyEl = document.getElementById('empty-results');
+  const countEl = document.getElementById('results-count');
+
+  if (!query) {
+    queryDisp.textContent = '…';
+    querySum.textContent = 'Wpisz frazę i naciśnij Enter, żeby wyszukać produkt.';
+    grid.style.display = 'none';
+    emptyEl.hidden = false;
+    countEl.textContent = '';
+  } else {
+    queryDisp.textContent = `"${query}"`;
+    const results = AO_Catalog.search(query);
+    countEl.textContent = `${results.length} ${results.length === 1 ? 'produkt' : (results.length % 10 >= 2 && results.length % 10 <= 4 && (results.length % 100 < 12 || results.length % 100 > 14)) ? 'produkty' : 'produktów'}`;
+
+    if (results.length === 0) {
+      grid.style.display = 'none';
+      emptyEl.hidden = false;
+      querySum.textContent = 'Brak produktów spełniających kryteria.';
+    } else {
+      querySum.textContent = `Znaleziono ${results.length} pasujących produktów.`;
+      grid.innerHTML = results.map(p => {
+        const priceHTML = p.oldPrice
+          ? `<span class="result-card-price-old">${p.oldPrice} zł</span>${p.price} zł`
+          : `${p.price} zł`;
+        return `
+          <a href="produkt.html?id=${p.id}" class="result-card">
+            <div class="result-card-img"><img src="${p.image}" width="600" height="800" alt="${AO_Site.escapeHtml(p.name)}" loading="lazy"></div>
+            <div class="result-card-body">
+              <div class="result-card-cat">${AO_Site.escapeHtml(p.cat)}</div>
+              <div class="result-card-name">${AO_Site.escapeHtml(p.name)}</div>
+              <div class="result-card-price">${priceHTML}</div>
+              ${AO_Site.omnibusHTML(p)}
+            </div>
+          </a>`;
+      }).join('');
+    }
+  }
+</script>
+
+</body>
+</html>
